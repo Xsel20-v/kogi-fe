@@ -11,6 +11,9 @@
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
 		35F0B2DD2BE9DD89009B3051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F0B2DC2BE9DD89009B3051 /* Assets.xcassets */; };
 		35F0B2E02BE9DD89009B3051 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F0B2DF2BE9DD89009B3051 /* Preview Assets.xcassets */; };
+		35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */; };
+		35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F62BE9E7DB009B3051 /* Pesan.swift */; };
+		35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F82BE9E7E5009B3051 /* Pengaturan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,9 @@
 		35F0B2DA2BE9DD88009B3051 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		35F0B2DC2BE9DD89009B3051 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35F0B2DF2BE9DD89009B3051 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perawatan.swift; sourceTree = "<group>"; };
+		35F0B2F62BE9E7DB009B3051 /* Pesan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pesan.swift; sourceTree = "<group>"; };
+		35F0B2F82BE9E7E5009B3051 /* Pengaturan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pengaturan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,10 @@
 		35F0B2D72BE9DD88009B3051 /* kogi-fe */ = {
 			isa = PBXGroup;
 			children = (
+				35F0B2F22BE9E769009B3051 /* Model */,
+				35F0B2F12BE9E763009B3051 /* View */,
+				35F0B2F32BE9E771009B3051 /* View Model */,
 				35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */,
-				35F0B2DA2BE9DD88009B3051 /* ContentView.swift */,
 				35F0B2DC2BE9DD89009B3051 /* Assets.xcassets */,
 				35F0B2DE2BE9DD89009B3051 /* Preview Content */,
 			);
@@ -65,6 +73,31 @@
 				35F0B2DF2BE9DD89009B3051 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		35F0B2F12BE9E763009B3051 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				35F0B2DA2BE9DD88009B3051 /* ContentView.swift */,
+				35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */,
+				35F0B2F62BE9E7DB009B3051 /* Pesan.swift */,
+				35F0B2F82BE9E7E5009B3051 /* Pengaturan.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		35F0B2F22BE9E769009B3051 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		35F0B2F32BE9E771009B3051 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
+				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
+				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
