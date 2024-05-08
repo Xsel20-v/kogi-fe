@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		354F32192BEB546200156436 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F32182BEB546100156436 /* CategoryButton.swift */; };
+		354F321B2BEB571300156436 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F321A2BEB571300156436 /* Constant.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
 		35F0B2DD2BE9DD89009B3051 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35F0B2DC2BE9DD89009B3051 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		354F32182BEB546100156436 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
+		354F321A2BEB571300156436 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogi_feApp.swift; sourceTree = "<group>"; };
 		35F0B2DA2BE9DD88009B3051 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +42,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		354F32172BEB542F00156436 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				354F32182BEB546100156436 /* CategoryButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		35F0B2CC2BE9DD88009B3051 = {
 			isa = PBXGroup;
 			children = (
@@ -57,12 +69,14 @@
 		35F0B2D72BE9DD88009B3051 /* kogi-fe */ = {
 			isa = PBXGroup;
 			children = (
+				354F32172BEB542F00156436 /* Component */,
 				35F0B2F22BE9E769009B3051 /* Model */,
 				35F0B2F12BE9E763009B3051 /* View */,
 				35F0B2F32BE9E771009B3051 /* View Model */,
 				35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */,
 				35F0B2DC2BE9DD89009B3051 /* Assets.xcassets */,
 				35F0B2DE2BE9DD89009B3051 /* Preview Content */,
+				354F321A2BEB571300156436 /* Constant.swift */,
 			);
 			path = "kogi-fe";
 			sourceTree = "<group>";
@@ -170,9 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354F321B2BEB571300156436 /* Constant.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
+				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 			);
