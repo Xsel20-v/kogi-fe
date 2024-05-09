@@ -10,6 +10,8 @@
 		351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBB82BECC8C200C73E59 /* DeskripsiKeluhan.swift */; };
 		351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBA2BECD41E00C73E59 /* Treatment.swift */; };
 		351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */; };
+		353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353039412BED3E6E000307B4 /* ContainerRingkasan.swift */; };
+		353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */; };
 		354F32192BEB546200156436 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F32182BEB546100156436 /* CategoryButton.swift */; };
 		354F321B2BEB571300156436 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F321A2BEB571300156436 /* Constant.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
@@ -29,6 +31,8 @@
 		351FCBB82BECC8C200C73E59 /* DeskripsiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeskripsiKeluhan.swift; sourceTree = "<group>"; };
 		351FCBBA2BECD41E00C73E59 /* Treatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treatment.swift; sourceTree = "<group>"; };
 		351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentViewModel.swift; sourceTree = "<group>"; };
+		353039412BED3E6E000307B4 /* ContainerRingkasan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerRingkasan.swift; sourceTree = "<group>"; };
+		353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnamnesisRadioButton.swift; sourceTree = "<group>"; };
 		354F32182BEB546100156436 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		354F321A2BEB571300156436 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +63,8 @@
 		354F32172BEB542F00156436 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */,
+				353039412BED3E6E000307B4 /* ContainerRingkasan.swift */,
 				354F32182BEB546100156436 /* CategoryButton.swift */,
 				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
 				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
@@ -214,11 +220,13 @@
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */,
 				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
+				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 				351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */,
+				353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
