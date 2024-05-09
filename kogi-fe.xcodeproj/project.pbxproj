@@ -17,6 +17,11 @@
 		35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */; };
 		35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F62BE9E7DB009B3051 /* Pesan.swift */; };
 		35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2F82BE9E7E5009B3051 /* Pengaturan.swift */; };
+		3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */; };
+		3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */; };
+		3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */; };
+		3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */; };
+		3D5E1A052BECB5C30072BB8B /* AnamnesisRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +36,11 @@
 		35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Perawatan.swift; sourceTree = "<group>"; };
 		35F0B2F62BE9E7DB009B3051 /* Pesan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pesan.swift; sourceTree = "<group>"; };
 		35F0B2F82BE9E7E5009B3051 /* Pengaturan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pengaturan.swift; sourceTree = "<group>"; };
+		3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPerawatan.swift; sourceTree = "<group>"; };
+		3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
+		3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisProgressBar.swift; sourceTree = "<group>"; };
+		3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDetilSesi.swift; sourceTree = "<group>"; };
+		3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisRadioButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +58,11 @@
 			isa = PBXGroup;
 			children = (
 				354F32182BEB546100156436 /* CategoryButton.swift */,
+				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
+				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
+				3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */,
+				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
+				3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -187,12 +202,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
+				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
+				3D5E1A052BECB5C30072BB8B /* AnamnesisRadioButton.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
+				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 				351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */,
 			);
@@ -328,7 +348,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -341,7 +361,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Axel.kogi-fe";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zel.kogi-fe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,7 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -370,7 +390,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Axel.kogi-fe";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zel.kogi-fe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
