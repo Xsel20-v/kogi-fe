@@ -2,7 +2,13 @@ import SwiftUI
 
 struct Perawatan: View {
     
-    @State var category: String = "Sakit Gigi"
+//    @State private var categoryPerawatan: String = "Sakit Gigi"
+//    @State private var statusPerawatan: String = "pending"
+//    @State private var namaKOAS: String = "Azella"
+//    @State private var departemen: String = "Konservasi Gigi"
+    
+    @StateObject var treatmentVM = TreatmentViewModel()
+    @State private var treatment: Treatment?
     
     var body: some View {
         NavigationView {
@@ -20,12 +26,30 @@ struct Perawatan: View {
                        
                     }
                     .padding(.leading, 30)
+//                ContainerPerawatan(status: .pending, category: treatment?.problemCategory ?? "menunggu data..", nama: treatment?.dentistID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
                 }
                 Spacer()
                
             }
             .ignoresSafeArea()
             .background(Constant.Colors.baseColor)
+            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
+            
+
+//            .task {
+//                do {
+//                    treatment = try await treatmentVM.fetchOnGoingTreatment()
+//                }catch NError.invalidURL {
+//                    print("invalid URL")
+//                }catch NError.invalidResponse {
+//                    print("invalid Response")
+//                }catch NError.invalidData {
+//                    print("invalid Data")
+//                }catch {
+//                    print("unexpected error")
+//                }
+//            }
         }
     }
 }
@@ -58,8 +82,6 @@ struct HomeBackground: View {
             .padding(.top, 70)
             .padding(.leading, 30)
             .padding(.trailing, 30)
-                
-                
         }
     }
 }
@@ -78,6 +100,7 @@ struct CategorySection: View {
                 NavigationLink(destination: DeskripsiKeluhan(category: Constant.Categories.sakitGigi)) {
                     CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
                 }
+
                 Spacer()
                 NavigationLink(destination: DeskripsiKeluhan(category: Constant.Categories.karangGigi)) {
                     CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
