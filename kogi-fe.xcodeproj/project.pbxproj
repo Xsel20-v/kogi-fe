@@ -21,6 +21,8 @@
 		3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */; };
 		3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */; };
 		3D5E1A052BECB5C30072BB8B /* AnamnesisRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */; };
+		3D5E1A072BECD5C70072BB8B /* ContainerRingkasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E1A062BECD5C70072BB8B /* ContainerRingkasan.swift */; };
+		3D5E1A092BECE8700072BB8B /* AnamnesisTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5E1A082BECE8700072BB8B /* AnamnesisTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisProgressBar.swift; sourceTree = "<group>"; };
 		3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDetilSesi.swift; sourceTree = "<group>"; };
 		3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisRadioButton.swift; sourceTree = "<group>"; };
+		3D5E1A062BECD5C70072BB8B /* ContainerRingkasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRingkasan.swift; sourceTree = "<group>"; };
+		3D5E1A082BECE8700072BB8B /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +65,8 @@
 				3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */,
 				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
 				3D5E1A042BECB5C30072BB8B /* AnamnesisRadioButton.swift */,
+				3D5E1A062BECD5C70072BB8B /* ContainerRingkasan.swift */,
+				3D5E1A082BECE8700072BB8B /* AnamnesisTextField.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -200,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
+				3D5E1A092BECE8700072BB8B /* AnamnesisTextField.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
 				3D5E1A052BECB5C30072BB8B /* AnamnesisRadioButton.swift in Sources */,
@@ -207,6 +214,7 @@
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
+				3D5E1A072BECD5C70072BB8B /* ContainerRingkasan.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,

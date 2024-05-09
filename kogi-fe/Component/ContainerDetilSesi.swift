@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct ContainerDetilSesi: View {
+    
+    enum Status {
+        case done, ongoing
+    }
+    
+    var status: Status = .done
+    
     var body: some View {
         ZStack(alignment: .leading) {
             Rectangle()
@@ -33,10 +40,9 @@ struct ContainerDetilSesi: View {
                     Rectangle()
                         .frame(width: 60, height: 12)
                         .cornerRadius(20)
-                        .foregroundColor(Color("systemGreen"))
+                        .foregroundColor(statusColor())
                     
-                    Text("Done")
-                        .font(.system(size: 8, weight: .bold))
+                    Text(statusText())                        .font(.system(size: 8, weight: .bold))
                         .foregroundColor(.white)
                 }
                 
@@ -63,6 +69,26 @@ struct ContainerDetilSesi: View {
                 }
             }
             .padding(.leading, 20)
+        }
+    }
+    
+    func statusColor() -> Color {
+        switch status {
+        case .done:
+            return Color("systemGreen")
+            
+        case .ongoing:
+            return Color("systemYellow")
+        }
+    }
+    
+    func statusText() -> String {
+        switch status {
+        case .done:
+            return "Done"
+            
+        case .ongoing:
+            return "Ongoing"
         }
     }
 }
