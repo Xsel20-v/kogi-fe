@@ -9,8 +9,8 @@ import Foundation
 
 class TreatmentViewModel: ObservableObject {
 
-    func fetchOnGoingTreatment() async throws -> Treatment? {
-        let endpoint = "https://kogibackscripting.onrender.com/api/Treatmentlist"
+    func fetchOnGoingTreatment() async throws -> [Treatment]? {
+        let endpoint = "https://kogibackscripting.onrender.com/api/getTreatmentList"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
         
@@ -19,7 +19,8 @@ class TreatmentViewModel: ObservableObject {
         request.httpMethod = "POST" // Set HTTP method to POST
         request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
         
-        let bodyData = "{\"uid\":\"P01\",\"treatmentstatus\":\"Done\"}"
+        let bodyData = "{\"uid\":\"P1\",\"status\":\"Done\"}"
+        
         print(bodyData)
         request.httpBody = bodyData.data(using: .utf8)
         
@@ -29,12 +30,10 @@ class TreatmentViewModel: ObservableObject {
         
         do {
             let jsonDecoder = JSONDecoder()
-            return try jsonDecoder.decode(Treatment.self, from: data)
+            return try jsonDecoder.decode([Treatment].self, from: data)
         } catch {
             throw NError.invalidData
         }
-
- 
     }
 
 }

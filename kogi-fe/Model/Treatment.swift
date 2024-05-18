@@ -8,15 +8,15 @@
 import Foundation
 
 struct Treatment: Codable {
-    var treatmentID: String
+    var treatmentID: String?
     var patientID: String
-    var dentistID: String
+    var coassID: String?
     var problemCategory: String
+    var areaOfSymptom: [String]
     var symptomsDesc: String
     var totalDaysOfSymptom: Int
-    var dateCreated: Date
-    var requestedDate: Date
-    var requestedHour: Date
+    var dateCreated: String
+    var requestedDate: String
     var treatmentStatus: String
-    var imageID: String
+    var image: Data?
 }
