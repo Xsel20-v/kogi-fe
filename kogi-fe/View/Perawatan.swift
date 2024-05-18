@@ -2,44 +2,44 @@ import SwiftUI
 
 struct Perawatan: View {
     
-//    @State private var categoryPerawatan: String = "Sakit Gigi"
-//    @State private var statusPerawatan: String = "pending"
-//    @State private var namaKOAS: String = "Azella"
-//    @State private var departemen: String = "Konservasi Gigi"
+    @State private var categoryPerawatan: String = "Sakit Gigi"
+    @State private var statusPerawatan: String = "pending"
+    @State private var namaKOAS: String = "Azella"
+    @State private var departemen: String = "Konservasi Gigi"
     
     @StateObject var treatmentVM = TreatmentViewModel()
-    @State private var treatment: Treatment?
+    @State private var treatment: [Treatment]?
     
     var body: some View {
-        NavigationView {
-            VStack (alignment: .leading){
-                HomeBackground()
-                    .padding(.bottom, 15)
-                CategorySection()
-                    .padding(.bottom, 15)
-                
-                VStack {
-                    HStack {
-                        Text("Perawatan")
-                            .fontWeight(.semibold)
-                        Spacer()
-                       
-                    }
-                    .padding(.leading, 30)
-//                ContainerPerawatan(status: .pending, category: treatment?.problemCategory ?? "menunggu data..", nama: treatment?.dentistID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
-                }
-                Spacer()
-               
-            }
-            .ignoresSafeArea()
-            .background(Constant.Colors.baseColor)
-            .navigationBarTitle("", displayMode: .inline)
-            .navigationBarBackButtonHidden(true)
+        VStack (alignment: .leading){
+            HomeBackground()
+                .padding(.bottom, 15)
+            CategorySection()
+                .padding(.bottom, 15)
             
+            VStack {
+                HStack {
+                    Text("Perawatan")
+                        .fontWeight(.semibold)
+                    Spacer()
+                   
+                }
+                .padding(.leading, 30)
+                ContainerPerawatan(status: .pending, category: treatment?.first?.problemCategory ?? "menunggu data..", nama: treatment?.first?.coassID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
+            }
+            Spacer()
+           
+        }
+        .ignoresSafeArea()
+        .background(Constant.Colors.baseColor)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        
 
 //            .task {
 //                do {
 //                    treatment = try await treatmentVM.fetchOnGoingTreatment()
+//                    print(treatment?.first)
 //                }catch NError.invalidURL {
 //                    print("invalid URL")
 //                }catch NError.invalidResponse {
@@ -50,7 +50,7 @@ struct Perawatan: View {
 //                    print("unexpected error")
 //                }
 //            }
-        }
+        
     }
 }
 
