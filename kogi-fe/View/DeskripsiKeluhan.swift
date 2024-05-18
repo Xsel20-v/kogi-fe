@@ -42,7 +42,7 @@ struct DeskripsiKeluhan: View {
 struct BodyView : View {
     var category: String
     var descriptionWidth: CGFloat = 342
-    var descriptionHeight: CGFloat = 343
+    var descriptionHeight: CGFloat = 342
     
     var body: some View {
         VStack {
