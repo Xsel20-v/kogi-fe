@@ -22,8 +22,6 @@ struct HeaderViewAnamnesis : View {
                 .foregroundColor(Constant.Colors.baseColor)
                 .padding(.top, 50)
         }
-        .padding(.bottom, 30)
-        
     }
 }
 

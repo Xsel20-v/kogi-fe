@@ -35,6 +35,10 @@ class TreatmentViewModel: ObservableObject {
             throw NError.invalidData
         }
     }
+    
+    func createTreatment(treatment: Treatment) async throws {
+        
+    }
 
 }
 

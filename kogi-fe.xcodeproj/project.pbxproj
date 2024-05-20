@@ -14,6 +14,7 @@
 		353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */; };
 		354F32192BEB546200156436 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F32182BEB546100156436 /* CategoryButton.swift */; };
 		354F321B2BEB571300156436 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F321A2BEB571300156436 /* Constant.swift */; };
+		3552BEE92BFBAE0000D1FE85 /* Ringkasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -42,6 +43,7 @@
 		353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnamnesisRadioButton.swift; sourceTree = "<group>"; };
 		354F32182BEB546100156436 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		354F321A2BEB571300156436 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ringkasan.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				359537722BF3485B00FAB58F /* LamaKeluhan.swift */,
 				359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */,
 				35F228912BF5F3820070DC35 /* AnamnesisView.swift */,
+				3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3552BEE92BFBAE0000D1FE85 /* Ringkasan.swift in Sources */,
 				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,

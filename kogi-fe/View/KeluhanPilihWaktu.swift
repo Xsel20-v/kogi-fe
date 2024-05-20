@@ -6,13 +6,172 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct KeluhanPilihWaktu: View {
+    
+    @Binding var path : NavigationPath
+    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+    
+    @State var lamaKeluhan : Int = 1
+    @State var keluhan : String = ""
+    @State var tanggalWaktu = Date.now
+    @FocusState private var isFocused: Bool
+    
+    var keluhanWidth : CGFloat = 348
+    var keluhanHeight : CGFloat = 200
+    
     var body: some View {
-        Text("Keluhan Pilih Waktu")
+        GeometryReader { geometry in
+            ZStack {
+                Color(Constant.Colors.baseColor)
+                    .ignoresSafeArea()
+                
+                VStack (alignment : .leading) {
+                    HeaderViewAnamnesis(category: "")
+                    ScrollView {
+                        VStack (alignment : .leading){
+                            if anamnesisViewModel.getTreatmentCategory() ==  Constant.Categories.sakitGigi || anamnesisViewModel.getTreatmentCategory() == Constant.Categories.gigiTiruan || anamnesisViewModel.getTreatmentCategory() ==  Constant.Categories.cabutGigi {
+                                HStack {
+                                    Text("Berapa hari keluhan muncul?")
+                                        .fontWeight(.semibold)
+
+                                    Spacer()
+                                    HStack {
+                                        Button(action: {
+                                            self.lamaKeluhan -= 1
+                                        }) {
+                                            Image(systemName: "minus.circle")
+                                        }
+                                        .padding(.trailing, 5)
+                                        
+                                        Text("\(lamaKeluhan)")
+                                            .foregroundColor(.blue)
+                                        
+                                        Button(action: {
+                                            self.lamaKeluhan += 1
+                                        }) {
+                                            Image(systemName: "plus.circle")
+                                        }
+                                        .padding(.leading, 5)
+                                    }
+                                }
+                                .padding(.bottom, 20)
+                            }
+                            
+                            Text("Ceritakan keluhan yang anda rasakan")
+                                .fontWeight(.semibold)
+                            ScrollView {
+                                TextEditor(text: $keluhan)
+                                    .font(.system(size: 12))
+                                    .padding()
+                                    .frame(width: keluhanWidth, height: keluhanHeight)
+                                    .overlay(alignment: .topLeading) {
+                                        if keluhan.isEmpty {
+                                            Text("Tuliskan keluhan anda...")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(.gray)
+                                                .padding()
+                                                .padding(.top, 8)
+                                                .padding(.leading, 4)
+                                        }
+                                    }
+                            }
+                            .frame(width: keluhanWidth, height: keluhanHeight) // Fixed frame for ScrollView
+                            .background(Color.white) // Set background color to white if needed
+                            .cornerRadius(20)
+                            .padding(.bottom, 20)
+                            
+                            Text("Pilih tanggal dan waktu perawatan")
+                                .fontWeight(.semibold)
+                            HStack {
+                                DatePicker(selection: $tanggalWaktu) {
+                                    Text("")
+                                }
+                                .labelsHidden()
+                            }
+                            .padding(.bottom, 20)
+                            
+                            Text("Foto Kondisi")
+                                .fontWeight(.semibold)
+                            
+                            if !anamnesisViewModel.selectedImages.isEmpty{
+                                ScrollView(.horizontal){
+                                    HStack {
+                                        ForEach(anamnesisViewModel.selectedImages, id: \.self) { image in
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(width : 80, height: 80)
+                                                .cornerRadius(10)
+                                                .overlay(alignment: .topTrailing, content: {
+                                                    Text("x")
+                                                        .font(.system(size: 24))
+                                                        .foregroundColor(.white)
+                                                        .padding(.trailing, 3)
+                                                        .onTapGesture {
+                                                            anamnesisViewModel.removeImage(selection: image)
+                                                        }
+                                                })
+
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            PhotosPicker(selection: $anamnesisViewModel.imageSelections, matching: .images) {
+                                HStack {
+                                    Spacer()
+                                    Rectangle()
+                                        .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
+                                        .frame(width: keluhanWidth, height: 75)
+                                        .foregroundColor(Constant.Colors.primaryColor)
+                                        .overlay {
+                                            ZStack {
+                                                Color(Constant.Colors.primaryColor)
+                                                    .opacity(0.075)
+                                                VStack {
+                                                    Image(systemName: "camera")
+                                                        .padding(.bottom,5)
+                                                    Text("Ambil foto gigi anda")
+                                                        .font(.system(size: 12))
+                                                }
+                                            }
+                                           
+                                        }
+                                    Spacer()
+                                }
+                                
+                            }
+                            
+                        }
+                        .padding()
+                    }
+                    Spacer()
+                    Button(action: {
+                        anamnesisViewModel.updateTotalDaysOfSymptom(totalDaysOfSymptom: lamaKeluhan)
+                        anamnesisViewModel.updateSymptomDesc(symptomDesc: keluhan)
+                        anamnesisViewModel.updateRequestedDate(requestedDate: tanggalWaktu)
+                        path.append("Ringkasan")
+//                        print(anamnesisViewModel.getTreatmentData())
+                    }, label: {
+                        ButtonComponent(text: "Selanjutnya", buttonColors: anamnesisViewModel.selectedImages.isEmpty || keluhan.isEmpty ? .gray : .blue)
+                    })
+                    .padding()
+                    .padding(.bottom,20)
+                    .disabled(keluhan.isEmpty || anamnesisViewModel.selectedImages.isEmpty)
+                       
+                }
+                .ignoresSafeArea()
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }
+            }
+        }
     }
+    
 }
 
 #Preview {
-    KeluhanPilihWaktu()
+    KeluhanPilihWaktu(path: .constant(NavigationPath()), anamnesisViewModel: AnamnesisViewModel())
 }

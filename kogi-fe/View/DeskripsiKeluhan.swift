@@ -9,7 +9,12 @@ import SwiftUI
 
 struct DeskripsiKeluhan: View {
     
+    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+    @AppStorage("userID") var userID = "P2"
+    
     var category: String
+    @Binding var path : NavigationPath
+    
     var needExtraQuestion : Bool {
         if category == Constant.Categories.sakitGigi || category == Constant.Categories.gigiTiruan || category == Constant.Categories.cabutGigi {
             return true
@@ -24,11 +29,20 @@ struct DeskripsiKeluhan: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderViewAnamnesis(category: category)
+                    .padding(.bottom, 30)
                 BodyView(category: category)
                     .padding(.bottom,30)
-                NavigationLink(destination: needExtraQuestion ? AnyView(LokasiKeluhan(category: category)) : AnyView(KeluhanPilihWaktu())) {
+//                NavigationLink(destination: needExtraQuestion ? AnyView(LokasiKeluhan(category: category, path: $path, anamnesisViewModel: anamnesisViewModel)) : AnyView(KeluhanPilihWaktu())) {
+//                    ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
+//                }
+                Button(action: {
+                    anamnesisViewModel.updateProblemCategory(problemCategory: category)
+                    anamnesisViewModel.updateUserID(userID: userID )
+                    anamnesisViewModel.updateDateCreated(dateCreated: Date())
+                    path.append(needExtraQuestion ? "Lokasi Keluhan" : "Keluhan Pilih Waktu")
+                }, label: {
                     ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
-                }
+                })
                 Spacer()
             
             }
@@ -106,5 +120,5 @@ struct BodyView : View {
 }
 
 #Preview {
-    DeskripsiKeluhan(category: "Sariawan")
+    DeskripsiKeluhan(anamnesisViewModel: AnamnesisViewModel(), category: "Sariawan", path: .constant(NavigationPath()))
 }

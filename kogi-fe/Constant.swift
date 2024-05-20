@@ -12,6 +12,8 @@ struct Constant {
         static let primaryColor = Color("primaryColor")
         static let secondaryColor = Color("secondaryColor")
         static let baseColor = Color("customWhite")
+        static let systemGray = Color("systemGray")
+        
     }
     
     struct Images{

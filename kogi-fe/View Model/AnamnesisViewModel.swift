@@ -6,32 +6,69 @@
 //
 
 import Foundation
+import _PhotosUI_SwiftUI
+import SwiftUI
 
+@MainActor
 class AnamnesisViewModel: ObservableObject {
-    @Published var treatment: Treatment
-//    @Published var currentPage = 0
+    @Published private var treatment: Treatment
+    @Published var selectedImages : [UIImage] = []
+    @Published var imageSelections : [PhotosPickerItem] = [] {
+        didSet {
+            setImages(from : imageSelections)
+        }
+    }
     
     init() {
         treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "")
     }
     
-//    func nextPage() {
-//        if currentPage < 2 {
-//            
-//        }
-//        currentPage += 1
-//    }
-//    
-//    func previousPage() {
-//        if currentPage > 0 {
-//            currentPage -= 1
-//        }
-//    }
+    func getTreatmentData() -> Treatment {
+        return treatment
+    }
+    
+    func getTreatmentCategory() -> String {
+        return treatment.problemCategory
+    }
+    
+    func getImages() -> [Data]? {
+        return treatment.images
+    }
+    
+    func getUserID() -> String {
+        return treatment.patientID
+    }
+    
+    func getAreaOfSymptom() -> [String]? {
+        if let areaOfSymptom = treatment.areaOfSymptom {
+            return areaOfSymptom
+        }
+        return []
+    }
+    
+    func getTotalDaysOfSymptom() -> Int {
+        return treatment.totalDaysOfSymptom
+    }
+    
+    func getDateCreated() -> String {
+        return treatment.dateCreated
+    }
+    
+    func getSymptomDesc() -> String {
+        return treatment.symptomsDesc
+    }
+    
+    func getRequestedDate() -> String {
+        return treatment.requestedDate
+    }
+    
+    func getStatus() -> String {
+        return treatment.treatmentStatus
+    }
     
     func updateUserID(userID: String) {
         treatment.patientID = userID
     }
-    
     
     func updateProblemCategory(problemCategory: String) {
         treatment.problemCategory = problemCategory
@@ -64,4 +101,41 @@ class AnamnesisViewModel: ObservableObject {
     func updateTreatmentStatus(treatmentStatus: String){
         treatment.treatmentStatus = treatmentStatus
     }
+    
+    func setImages(from selections: [PhotosPickerItem]) {
+        Task {
+            var images : [UIImage] = []
+            for selection in selections {
+                if let data = try? await selection.loadTransferable(type: Data.self){
+                    if let uiImage = UIImage(data: data){
+                        images.append(uiImage)
+                        print(data)
+                    }
+                }
+            }
+            self.selectedImages = images
+            updateImages(from: imageSelections)
+        }
+    }
+    
+    func updateImages(from selections: [PhotosPickerItem]) {
+        Task {
+            var images : [Data] = []
+            for selection in selections {
+                if let data = try? await selection.loadTransferable(type: Data.self){
+                    images.append(data)
+                }
+            }
+            treatment.images = images
+        }
+    }
+    
+    func removeImage(selection : UIImage) {
+        if let index = selectedImages.firstIndex(of: selection) {
+            selectedImages.remove(at: index)
+            imageSelections.remove(at: index)
+        }
+        updateImages(from: imageSelections)
+    }
+
 }
