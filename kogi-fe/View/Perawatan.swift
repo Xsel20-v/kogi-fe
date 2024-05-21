@@ -12,110 +12,112 @@ struct Perawatan: View {
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     var body: some View {
-        VStack (alignment: .leading){
-            HomeBackground()
-                .padding(.bottom, 15)
-            VStack {
-                HStack {
-                    Text("Kategori")
-                        .fontWeight(.semibold)
-                    Spacer()
-                   
-                }
-                .padding(.leading, 30)
-                HStack {
-                    Button(action: {
-                        path.append(Constant.Categories.sakitGigi)
-                    }, label: {
+        GeometryReader { geometry in
+            VStack (alignment: .leading){
+                HomeBackground()
+                    .padding(.bottom, 15)
+                VStack {
+                    HStack {
+                        Text("Kategori")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        
+                    }
+                    .padding(.leading, 30)
+                    HStack {
+                        Button(action: {
+                            path.append(Constant.Categories.sakitGigi)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
+                        })
+                        Spacer()
+                        Button(action: {
+                            path.append(Constant.Categories.karangGigi)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
+                        })
+                        
+                        Spacer()
+                        Button(action: {
+                            path.append(Constant.Categories.cabutGigi)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.cabutGigi, image: Constant.Images.cabutGigi)
+                        })
+                        
+                        Spacer()
+                        Button(action: {
+                            path.append(Constant.Categories.gigiTiruan)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.gigiTiruan, image: Constant.Images.gigiTiruan)
+                        })
+                        
+                    }
+                    .padding(.leading, 30)
+                    .padding(.trailing, 30)
+                    
+                    HStack {
+                        Button(action: {
+                            path.append(Constant.Categories.kawatLepasan)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.kawatLepasan, image: Constant.Images.kawatLepasan)
+                        })
+                        
+                        Spacer()
+                        Button(action: {
+                            path.append(Constant.Categories.gusiBengkak)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.gusiBengkak, image: Constant.Images.gusiBengkak)
+                        })
+                        
+                        Spacer()
+                        Button(action: {
+                            path.append(Constant.Categories.sariawan)
+                        }, label: {
+                            CategoryButton(text: Constant.Categories.sariawan, image: Constant.Images.sariawan)
+                        })
+                        
+                        Spacer()
                         CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
-                    })
-                    Spacer()
-                    Button(action: {
-                        path.append(Constant.Categories.karangGigi)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
-                    })
-                    
-                    Spacer()
-                    Button(action: {
-                        path.append(Constant.Categories.cabutGigi)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.cabutGigi, image: Constant.Images.cabutGigi)
-                    })
-                    
-                    Spacer()
-                    Button(action: {
-                        path.append(Constant.Categories.gigiTiruan)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.gigiTiruan, image: Constant.Images.gigiTiruan)
-                    })
-              
+                            .disabled(true)
+                            .opacity(0)
+                        
+                    }
+                    .padding(.leading, 30)
+                    .padding(.trailing, 30)
                 }
-                .padding(.leading, 30)
-                .padding(.trailing, 30)
-                
-                HStack {
-                    Button(action: {
-                        path.append(Constant.Categories.kawatLepasan)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.kawatLepasan, image: Constant.Images.kawatLepasan)
-                    })
-                    
-                    Spacer()
-                    Button(action: {
-                        path.append(Constant.Categories.gusiBengkak)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.gusiBengkak, image: Constant.Images.gusiBengkak)
-                    })
-                    
-                    Spacer()
-                    Button(action: {
-                        path.append(Constant.Categories.sariawan)
-                    }, label: {
-                        CategoryButton(text: Constant.Categories.sariawan, image: Constant.Images.sariawan)
-                    })
-                    
-                    Spacer()
-                    CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
-                        .disabled(true)
-                        .opacity(0)
-              
-                }
-                .padding(.leading, 30)
-                .padding(.trailing, 30)
-            }
                 .padding(.bottom, 15)
-            
-            VStack {
-                HStack {
-                    Text("Perawatan")
-                        .fontWeight(.semibold)
-                    Spacer()
-                   
+                
+                VStack {
+                    HStack {
+                        Text("Perawatan")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        
+                    }
+                    .padding(.leading, 30)
+                    ContainerPerawatan(
+                        status: .pending,
+                        category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
+                        nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
+                        departemen: "teuing",
+                        jumlahSesi: "0")
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                .padding(.leading, 30)
-                ContainerPerawatan(
-                    status: .pending,
-                    category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
-                    nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
-                    departemen: "teuing",
-                    jumlahSesi: "0")
+                .ignoresSafeArea()
+                .background(Constant.Colors.baseColor)
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
             }
             .ignoresSafeArea()
             .background(Constant.Colors.baseColor)
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
+            .onAppear(perform: {
+                Task {
+                    await treatmentViewModel.getTreatmentData()
+                }
+            })
         }
-        .ignoresSafeArea()
-        .background(Constant.Colors.baseColor)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .onAppear(perform: {
-            Task {
-                await treatmentViewModel.getTreatmentData()
-            }
-        })
-        
     }
 }
 
