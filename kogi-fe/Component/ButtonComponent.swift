@@ -10,7 +10,7 @@ import SwiftUI
 struct ButtonComponent: View {
     
     enum ButtonColors {
-        case blue, red
+        case blue, red, gray
     }
     
     var text : String
@@ -38,7 +38,11 @@ struct ButtonComponent: View {
             
         case .red:
             return Color("buttonRed")
+            
+        case .gray :
+            return Color.gray
         }
+        
     }
 }
 

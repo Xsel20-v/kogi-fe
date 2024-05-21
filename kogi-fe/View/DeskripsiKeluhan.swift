@@ -9,7 +9,12 @@ import SwiftUI
 
 struct DeskripsiKeluhan: View {
     
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    @AppStorage("userID") var userID = "P2"
+    
     var category: String
+    @Binding var path : NavigationPath
+    
     var needExtraQuestion : Bool {
         if category == Constant.Categories.sakitGigi || category == Constant.Categories.gigiTiruan || category == Constant.Categories.cabutGigi {
             return true
@@ -24,11 +29,17 @@ struct DeskripsiKeluhan: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderViewAnamnesis(category: category)
+                    .padding(.bottom, 30)
                 BodyView(category: category)
                     .padding(.bottom,30)
-                NavigationLink(destination: needExtraQuestion ? AnyView(LokasiKeluhan(category: category)) : AnyView(KeluhanPilihWaktu())) {
+                Button(action: {
+                    treatmentViewModel.updateProblemCategory(problemCategory: category)
+                    treatmentViewModel.updateUserID(userID: userID )
+                    treatmentViewModel.updateDateCreated(dateCreated: Date())
+                    path.append(needExtraQuestion ? "Lokasi Keluhan" : "Keluhan Pilih Waktu")
+                }, label: {
                     ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
-                }
+                })
                 Spacer()
             
             }
@@ -42,7 +53,7 @@ struct DeskripsiKeluhan: View {
 struct BodyView : View {
     var category: String
     var descriptionWidth: CGFloat = 342
-    var descriptionHeight: CGFloat = 343
+    var descriptionHeight: CGFloat = 342
     
     var body: some View {
         VStack {
@@ -106,5 +117,5 @@ struct BodyView : View {
 }
 
 #Preview {
-    DeskripsiKeluhan(category: "Sariawan")
+    DeskripsiKeluhan(treatmentViewModel: TreatmentViewModel(), category: "Sariawan", path: .constant(NavigationPath()))
 }

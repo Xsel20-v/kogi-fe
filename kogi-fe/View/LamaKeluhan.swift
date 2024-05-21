@@ -1,26 +1,38 @@
+////
+////  LamaKeluhan.swift
+////  kogi-fe
+////
+////  Created by Jonathan Axel Benaya on 14/05/24.
+////
 //
-//  LamaKeluhan.swift
-//  kogi-fe
+//import SwiftUI
 //
-//  Created by Jonathan Axel Benaya on 14/05/24.
+//struct LamaKeluhan: View {
+//    
+//    @Binding var path : NavigationPath
+//    @ObservedObject var treatmentViewModel: TreatmentViewModel
+//    
+//    var body: some View {
+//        VStack {
+//            Text("Lama Keluhan")
+//        }
+//        .onAppear(perform: {
+//            print(path.count)
+//        })
+//        .navigationBarBackButtonHidden(true)
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarLeading) {
+//                Button(action: {
+//                    path.removeLast()
+//                }, label: {
+//                    Image(systemName: "chevron.left")
+//                })
+//            }
+//        }
+//        
+//    }
+//}
 //
-
-import SwiftUI
-
-struct LamaKeluhan: View {
-    
-    
-    var body: some View {
-        VStack {
-            Text("Lama Keluhan")
-        }
-        .onAppear(perform: {
-            print("Lama Keluhan")
-        })
-        
-    }
-}
-
-#Preview {
-    LamaKeluhan()
-}
+//#Preview {
+//    LamaKeluhan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
+//}

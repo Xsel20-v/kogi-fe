@@ -12,11 +12,11 @@ struct Treatment: Codable {
     var patientID: String
     var coassID: String?
     var problemCategory: String
-    var areaOfSymptom: [String]
+    var areaOfSymptom: [String]?
     var symptomsDesc: String
     var totalDaysOfSymptom: Int
     var dateCreated: String
     var requestedDate: String
     var treatmentStatus: String
-    var image: [Data]?
+    var images: [Data]?
 }

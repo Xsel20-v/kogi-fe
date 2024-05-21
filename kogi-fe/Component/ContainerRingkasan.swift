@@ -33,7 +33,7 @@ struct ContainerRingkasan: View {
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
                             .offset(x: 175)
-                        Text(formatDate(treatment.dateCreated))
+                        Text(formatDate(treatment.requestedDate))
                             .font(.system(size: 14))
                             .offset(x: 185)
                     }
@@ -57,7 +57,7 @@ struct ContainerRingkasan: View {
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
                             .offset(x: 175)
-                        Text(treatment.areaOfSymptom.joined(separator: ", "))
+                        Text(treatment.areaOfSymptom?.joined(separator: ", ") ?? "")
                             .font(.system(size: 14))
                             .offset(x: 185)
                             .frame(maxWidth: 110)
@@ -87,7 +87,7 @@ struct ContainerRingkasan: View {
                     Text("Foto Kondisi Awal")
                         .font(.system(size: 14, weight: .semibold))
                     
-                    if let imagesData = treatment.image {
+                    if let imagesData = treatment.images {
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(imagesData, id: \.self) { imageData in
@@ -115,7 +115,7 @@ struct ContainerRingkasan: View {
     // Helper function to format date
     func formatDate(_ date: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if let date = formatter.date(from: date) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM dd, yyyy"
@@ -127,7 +127,7 @@ struct ContainerRingkasan: View {
     // Helper function to format time
     func formatTime(_ date: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         if let date = formatter.date(from: date) {
             let timeFormatter = DateFormatter()
             timeFormatter.dateFormat = "h:mm a"
@@ -167,7 +167,7 @@ struct ContainerRingkasan_Previews: PreviewProvider {
             dateCreated: "2023-06-20T09:41:00Z",
             requestedDate: "2023-06-29T09:41:00Z",
             treatmentStatus: "Pending",
-            image: nil
+            images: nil
         )
         
         ContainerRingkasan(treatment: sampleTreatment)
