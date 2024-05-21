@@ -11,30 +11,32 @@ struct Perawatan: View {
     @State private var treatment: [Treatment]?
     
     var body: some View {
-        VStack (alignment: .leading){
-            HomeBackground()
-                .padding(.bottom, 15)
-            CategorySection()
-                .padding(.bottom, 15)
-            
-            VStack {
-                HStack {
-                    Text("Perawatan")
-                        .fontWeight(.semibold)
-                    Spacer()
-                   
+        GeometryReader { geometry in
+            VStack (alignment: .leading){
+                HomeBackground()
+                    .padding(.bottom, 15)
+                CategorySection()
+                    .padding(.bottom, 15)
+                
+                VStack {
+                    HStack {
+                        Text("Perawatan")
+                            .fontWeight(.semibold)
+                        Spacer()
+                        
+                    }
+                    .padding(.leading, 30)
+                    ContainerPerawatan(status: .pending, category: treatment?.first?.problemCategory ?? "menunggu data..", nama: treatment?.first?.coassID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
+                        .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                .padding(.leading, 30)
-                ContainerPerawatan(status: .pending, category: treatment?.first?.problemCategory ?? "menunggu data..", nama: treatment?.first?.coassID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
+                Spacer()
+                
             }
-            Spacer()
-           
+            .ignoresSafeArea()
+            .background(Constant.Colors.baseColor)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
-        .ignoresSafeArea()
-        .background(Constant.Colors.baseColor)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        
 
 //            .task {
 //                do {
