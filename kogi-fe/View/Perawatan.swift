@@ -101,8 +101,10 @@ struct Perawatan: View {
                     departemen: "teuing",
                     jumlahSesi: "0")
             }
-            Spacer()
-           
+            .ignoresSafeArea()
+            .background(Constant.Colors.baseColor)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
         }
         .ignoresSafeArea()
         .background(Constant.Colors.baseColor)

@@ -52,6 +52,19 @@ struct Constant {
         static let ongoing = "ongoing"
         static let done = "done"
     }
+    
+    struct UIConstants {
+        // Define constants for layout measurements
+        static let containerWidthRatio: CGFloat = 0.9
+        static let containerHeightRatio: CGFloat = 0.235
+        static let height2Ratio: CGFloat = 0.052
+        static let cornerRadius: CGFloat = 20
+        static let circleWidth: CGFloat = 73
+        
+        // Define constants for font sizes (as ratios of screen width)
+        static let fontSize16Ratio: CGFloat = 0.04
+        static let fontSize12Ratio: CGFloat = 0.03
+    }
 }
 
 extension UserDefaults {
