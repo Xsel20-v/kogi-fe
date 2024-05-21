@@ -60,7 +60,6 @@ struct ContainerPerawatan: View {
                 ZStack(alignment: .leading) {
                     Text(category)
                         .font(.system(size: 16, weight: .semibold))
-                        .padding(.trailing, width/1.5)
                     
                     Image(systemName: "chevron.right")
                         .resizable()
