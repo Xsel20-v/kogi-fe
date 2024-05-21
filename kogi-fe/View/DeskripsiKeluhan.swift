@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeskripsiKeluhan: View {
     
-    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     @AppStorage("userID") var userID = "P2"
     
     var category: String
@@ -32,13 +32,10 @@ struct DeskripsiKeluhan: View {
                     .padding(.bottom, 30)
                 BodyView(category: category)
                     .padding(.bottom,30)
-//                NavigationLink(destination: needExtraQuestion ? AnyView(LokasiKeluhan(category: category, path: $path, anamnesisViewModel: anamnesisViewModel)) : AnyView(KeluhanPilihWaktu())) {
-//                    ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
-//                }
                 Button(action: {
-                    anamnesisViewModel.updateProblemCategory(problemCategory: category)
-                    anamnesisViewModel.updateUserID(userID: userID )
-                    anamnesisViewModel.updateDateCreated(dateCreated: Date())
+                    treatmentViewModel.updateProblemCategory(problemCategory: category)
+                    treatmentViewModel.updateUserID(userID: userID )
+                    treatmentViewModel.updateDateCreated(dateCreated: Date())
                     path.append(needExtraQuestion ? "Lokasi Keluhan" : "Keluhan Pilih Waktu")
                 }, label: {
                     ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
@@ -120,5 +117,5 @@ struct BodyView : View {
 }
 
 #Preview {
-    DeskripsiKeluhan(anamnesisViewModel: AnamnesisViewModel(), category: "Sariawan", path: .constant(NavigationPath()))
+    DeskripsiKeluhan(treatmentViewModel: TreatmentViewModel(), category: "Sariawan", path: .constant(NavigationPath()))
 }

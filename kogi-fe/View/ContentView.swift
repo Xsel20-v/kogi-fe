@@ -11,14 +11,13 @@ struct ContentView: View {
     
     @State private var tabSelection = 0
     @State var path = NavigationPath()
-    @StateObject var treatmentVM = TreatmentViewModel()
-    @StateObject var anamnesisViewModel = AnamnesisViewModel()
+    @StateObject var treatmentViewModel = TreatmentViewModel()
     
     var body: some View {
         
         NavigationStack(path: $path) {
             TabView(selection: $tabSelection) {
-                Perawatan(treatmentVM: treatmentVM, path: $path)
+                Perawatan(path: $path, treatmentViewModel: treatmentViewModel)
                     .badge(0)
                     .tabItem {
                         Label("Perawatan", systemImage: "heart.text.square")
@@ -38,29 +37,29 @@ struct ContentView: View {
             .navigationDestination(for: String.self) { value in
                 switch (value) {
                 case Constant.Categories.sakitGigi :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.sakitGigi, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
                 case Constant.Categories.karangGigi :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.karangGigi, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.karangGigi, path: $path)
                 case Constant.Categories.cabutGigi :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.cabutGigi, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.cabutGigi, path: $path)
                 case Constant.Categories.gigiTiruan :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.gigiTiruan, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.gigiTiruan, path: $path)
                 case Constant.Categories.kawatLepasan :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.kawatLepasan, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.kawatLepasan, path: $path)
                 case Constant.Categories.gusiBengkak :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.gusiBengkak, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.gusiBengkak, path: $path)
                 case Constant.Categories.sariawan :
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.sariawan, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sariawan, path: $path)
                 case "Lokasi Keluhan" :
-                    LokasiKeluhan(path: $path, anamnesisViewModel: anamnesisViewModel)
+                    LokasiKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Keluhan Pilih Waktu" :
-                    KeluhanPilihWaktu(path: $path, anamnesisViewModel: anamnesisViewModel)
+                    KeluhanPilihWaktu(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Ringkasan" :
-                    Ringkasan(path: $path, treatmentViewModel: treatmentVM, anamnesisViewModel: anamnesisViewModel)
+                    Ringkasan(path: $path, treatmentViewModel: treatmentViewModel)
 //                case "Lama Keluhan" :
-//                    LamaKeluhan(path: $path, anamnesisViewModel: anamnesisViewModel)
+//                    LamaKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
                 default:
-                    DeskripsiKeluhan(anamnesisViewModel: anamnesisViewModel, category: Constant.Categories.sakitGigi, path: $path)
+                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
                 }
             }
         }
@@ -69,5 +68,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(anamnesisViewModel: AnamnesisViewModel())
+    ContentView(treatmentViewModel: TreatmentViewModel())
 }

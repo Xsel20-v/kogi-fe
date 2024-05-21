@@ -11,7 +11,7 @@ import PhotosUI
 struct KeluhanPilihWaktu: View {
     
     @Binding var path : NavigationPath
-    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     @State var lamaKeluhan : Int = 1
     @State var keluhan : String = ""
@@ -31,7 +31,7 @@ struct KeluhanPilihWaktu: View {
                     HeaderViewAnamnesis(category: "")
                     ScrollView {
                         VStack (alignment : .leading){
-                            if anamnesisViewModel.getTreatmentCategory() ==  Constant.Categories.sakitGigi || anamnesisViewModel.getTreatmentCategory() == Constant.Categories.gigiTiruan || anamnesisViewModel.getTreatmentCategory() ==  Constant.Categories.cabutGigi {
+                            if treatmentViewModel.getTreatmentCategory() ==  Constant.Categories.sakitGigi || treatmentViewModel.getTreatmentCategory() == Constant.Categories.gigiTiruan || treatmentViewModel.getTreatmentCategory() ==  Constant.Categories.cabutGigi {
                                 HStack {
                                     Text("Berapa hari keluhan muncul?")
                                         .fontWeight(.semibold)
@@ -95,10 +95,10 @@ struct KeluhanPilihWaktu: View {
                             Text("Foto Kondisi")
                                 .fontWeight(.semibold)
                             
-                            if !anamnesisViewModel.selectedImages.isEmpty{
+                            if !treatmentViewModel.selectedImages.isEmpty{
                                 ScrollView(.horizontal){
                                     HStack {
-                                        ForEach(anamnesisViewModel.selectedImages, id: \.self) { image in
+                                        ForEach(treatmentViewModel.selectedImages, id: \.self) { image in
                                             Image(uiImage: image)
                                                 .resizable()
                                                 .scaledToFill()
@@ -110,7 +110,7 @@ struct KeluhanPilihWaktu: View {
                                                         .foregroundColor(.white)
                                                         .padding(.trailing, 3)
                                                         .onTapGesture {
-                                                            anamnesisViewModel.removeImage(selection: image)
+                                                            treatmentViewModel.removeImage(selection: image)
                                                         }
                                                 })
 
@@ -119,7 +119,7 @@ struct KeluhanPilihWaktu: View {
                                 }
                             }
                             
-                            PhotosPicker(selection: $anamnesisViewModel.imageSelections, matching: .images) {
+                            PhotosPicker(selection: $treatmentViewModel.imageSelections, matching: .images) {
                                 HStack {
                                     Spacer()
                                     Rectangle()
@@ -149,17 +149,17 @@ struct KeluhanPilihWaktu: View {
                     }
                     Spacer()
                     Button(action: {
-                        anamnesisViewModel.updateTotalDaysOfSymptom(totalDaysOfSymptom: lamaKeluhan)
-                        anamnesisViewModel.updateSymptomDesc(symptomDesc: keluhan)
-                        anamnesisViewModel.updateRequestedDate(requestedDate: tanggalWaktu)
+                        treatmentViewModel.updateTotalDaysOfSymptom(totalDaysOfSymptom: lamaKeluhan)
+                        treatmentViewModel.updateSymptomDesc(symptomDesc: keluhan)
+                        treatmentViewModel.updateRequestedDate(requestedDate: tanggalWaktu)
                         path.append("Ringkasan")
-//                        print(anamnesisViewModel.getTreatmentData())
+//                        print(treatmentViewModel.getAnamnesisData())
                     }, label: {
-                        ButtonComponent(text: "Selanjutnya", buttonColors: anamnesisViewModel.selectedImages.isEmpty || keluhan.isEmpty ? .gray : .blue)
+                        ButtonComponent(text: "Selanjutnya", buttonColors: treatmentViewModel.selectedImages.isEmpty || keluhan.isEmpty ? .gray : .blue)
                     })
                     .padding()
                     .padding(.bottom,20)
-                    .disabled(keluhan.isEmpty || anamnesisViewModel.selectedImages.isEmpty)
+                    .disabled(keluhan.isEmpty || treatmentViewModel.selectedImages.isEmpty)
                        
                 }
                 .ignoresSafeArea()
@@ -173,5 +173,5 @@ struct KeluhanPilihWaktu: View {
 }
 
 #Preview {
-    KeluhanPilihWaktu(path: .constant(NavigationPath()), anamnesisViewModel: AnamnesisViewModel())
+    KeluhanPilihWaktu(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 }

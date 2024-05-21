@@ -28,7 +28,7 @@ struct LokasiKeluhan: View {
     
     @Binding var path: NavigationPath
     
-    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     var body: some View {
         ZStack {
@@ -268,10 +268,10 @@ struct LokasiKeluhan: View {
                     }
                 }
                 Button(action: {
-                    anamnesisViewModel.updateAreaOfSymptom(areaOfSymptom: posisiGigi)
+                    treatmentViewModel.updateAreaOfSymptom(areaOfSymptom: posisiGigi)
                     isPindah.toggle()
                     path.append("Keluhan Pilih Waktu")
-                    print(anamnesisViewModel.getTreatmentData())
+                    print(treatmentViewModel.getAnamnesisData())
                 }, label: {
                     ButtonComponent(text: "Selanjutnya", buttonColors: !posisiGigi.isEmpty ? .blue : .gray
                     )
@@ -286,12 +286,12 @@ struct LokasiKeluhan: View {
         }
 //        .navigationDestination(for: String.self) { value in
 //            if value == "Lama Keluhan" {
-//                LamaKeluhan(path: $path, anamnesisViewModel: anamnesisViewModel)
+//                LamaKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
 //            }
 //        }
     }
 }
 
 #Preview {
-    LokasiKeluhan(path: .constant(NavigationPath()), anamnesisViewModel: AnamnesisViewModel())
+    LokasiKeluhan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 }

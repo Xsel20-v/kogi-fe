@@ -11,34 +11,34 @@
 //    
 //    var category: String
 //    
-//    @StateObject var anamnesisViewModel = AnamnesisViewModel()
+//    @StateObject var treatmentViewModel = TreatmentViewModel()
 //    
 //    var body: some View {
 //        VStack {
 //            
 //            if category == Constant.Categories.sakitGigi || category == Constant.Categories.gigiTiruan || category == Constant.Categories.cabutGigi {
 //                
-//                switch(anamnesisViewModel.currentPage) {
+//                switch(treatmentViewModel.currentPage) {
 //                case 0 :
-//                    LokasiKeluhan(category: category, anamnesisViewModel: anamnesisViewModel)
+//                    LokasiKeluhan(category: category, treatmentViewModel: treatmentViewModel)
 //                case 1 :
-//                    LamaKeluhan(anamnesisViewModel: anamnesisViewModel)
+//                    LamaKeluhan(treatmentViewModel: treatmentViewModel)
 //                case 2 :
 //                    KeluhanPilihWaktu()
 //                default:
-//                    LokasiKeluhan(category: category, anamnesisViewModel: anamnesisViewModel)
+//                    LokasiKeluhan(category: category, treatmentViewModel: treatmentViewModel)
 //                }
 //                
 //            } else {
-//                switch(anamnesisViewModel.currentPage) {
+//                switch(treatmentViewModel.currentPage) {
 //                case 0 :
-//                    LokasiKeluhan(category: category, anamnesisViewModel: anamnesisViewModel)
+//                    LokasiKeluhan(category: category, treatmentViewModel: treatmentViewModel)
 //                case 1 :
-//                    LamaKeluhan(anamnesisViewModel: anamnesisViewModel)
+//                    LamaKeluhan(treatmentViewModel: treatmentViewModel)
 //                case 2 :
 //                    KeluhanPilihWaktu()
 //                default:
-//                    LokasiKeluhan(category: category, anamnesisViewModel: anamnesisViewModel)
+//                    LokasiKeluhan(category: category, treatmentViewModel: treatmentViewModel)
 //            }
 //            
 //            Spacer()

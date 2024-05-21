@@ -2,15 +2,14 @@ import SwiftUI
 
 struct Perawatan: View {
     
+    
     @State private var categoryPerawatan: String = "Sakit Gigi"
     @State private var statusPerawatan: String = "pending"
     @State private var namaKOAS: String = "Azella"
     @State private var departemen: String = "Konservasi Gigi"
     
-    @ObservedObject var treatmentVM: TreatmentViewModel
-    @State private var treatment: [Treatment]?
-    
     @Binding var path: NavigationPath
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     var body: some View {
         VStack (alignment: .leading){
@@ -95,7 +94,12 @@ struct Perawatan: View {
                    
                 }
                 .padding(.leading, 30)
-                ContainerPerawatan(status: .pending, category: treatment?.first?.problemCategory ?? "menunggu data..", nama: treatment?.first?.coassID ?? "Pengajuan sedang diproses", departemen: "KOGI sedang mencari KOAS untukmu", jumlahSesi: "0")
+                ContainerPerawatan(
+                    status: .pending,
+                    category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
+                    nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
+                    departemen: "teuing",
+                    jumlahSesi: "0")
             }
             Spacer()
            
@@ -104,22 +108,11 @@ struct Perawatan: View {
         .background(Constant.Colors.baseColor)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-        
-
-//            .task {
-//                do {
-//                    treatment = try await treatmentVM.fetchOnGoingTreatment()
-//                    print(treatment?.first)
-//                }catch NError.invalidURL {
-//                    print("invalid URL")
-//                }catch NError.invalidResponse {
-//                    print("invalid Response")
-//                }catch NError.invalidData {
-//                    print("invalid Data")
-//                }catch {
-//                    print("unexpected error")
-//                }
-//            }
+        .onAppear(perform: {
+            Task {
+                await treatmentViewModel.getTreatmentData()
+            }
+        })
         
     }
 }
@@ -159,5 +152,5 @@ struct HomeBackground: View {
 
 
 #Preview {
-    Perawatan(treatmentVM: TreatmentViewModel(), path: .constant(NavigationPath()))
+    Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 }

@@ -10,7 +10,7 @@
 //struct LamaKeluhan: View {
 //    
 //    @Binding var path : NavigationPath
-//    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
+//    @ObservedObject var treatmentViewModel: TreatmentViewModel
 //    
 //    var body: some View {
 //        VStack {
@@ -34,5 +34,5 @@
 //}
 //
 //#Preview {
-//    LamaKeluhan(path: .constant(NavigationPath()), anamnesisViewModel: AnamnesisViewModel())
+//    LamaKeluhan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 //}

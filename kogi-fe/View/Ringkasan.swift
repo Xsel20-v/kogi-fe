@@ -19,8 +19,8 @@ struct Ringkasan: View {
     
     @Binding var path : NavigationPath
     
+//    @ObservedObject var treatmentViewModel: TreatmentViewModel
     @ObservedObject var treatmentViewModel: TreatmentViewModel
-    @ObservedObject var anamnesisViewModel: AnamnesisViewModel
     
     var body: some View {
         ZStack {
@@ -38,7 +38,7 @@ struct Ringkasan: View {
                 .zIndex(1)
                 .foregroundColor(Constant.Colors.systemGray)
                 .overlay {
-                    Image(anamnesisViewModel.getTreatmentCategory())
+                    Image(treatmentViewModel.getTreatmentCategory())
                         .resizable()
                         .scaledToFill()
                         .frame(width: imageWidth, height: imageHeight)
@@ -52,13 +52,13 @@ struct Ringkasan: View {
                         .foregroundColor(Constant.Colors.primaryColor)
                         .padding(.bottom, 80)
                     
-                    ContainerRingkasan()
+                    ContainerRingkasan(treatment: treatmentViewModel.getAnamnesisData())
                     
                     Spacer()
                     Button(action: {
-                        anamnesisViewModel.updateDateCreated(dateCreated: Date.now)
-                        anamnesisViewModel.updateTreatmentStatus(treatmentStatus: "pending")
-                        print(anamnesisViewModel.getTreatmentData())
+                        treatmentViewModel.updateDateCreated(dateCreated: Date.now)
+                        treatmentViewModel.updateTreatmentStatus(treatmentStatus: "pending")
+                        print(treatmentViewModel.getAnamnesisData())
                         path.removeLast(path.count)
                     }, label: {
                         ButtonComponent(text: "Ajukan Perawatan", buttonColors: .blue)
@@ -73,5 +73,5 @@ struct Ringkasan: View {
 }
 
 #Preview {
-    Ringkasan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel(), anamnesisViewModel: AnamnesisViewModel())
+    Ringkasan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 }
