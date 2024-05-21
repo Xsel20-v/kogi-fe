@@ -57,22 +57,22 @@ struct ContainerPerawatan: View {
                 .foregroundColor(statusColor())
             
             VStack(alignment: .leading) {
-                HStack {
+                ZStack(alignment: .leading) {
                     Text(category)
                         .font(.system(size: 16, weight: .semibold))
-                        .padding(.trailing, width/1.5)
+//                        .padding(.trailing, width/1.5)
                     
                     Image(systemName: "chevron.right")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 16)
+                        .offset(x: 315)
                 }
                 .padding(.top, -25)
                 
-                HStack{
+                ZStack(alignment: .leading) {
                     Circle()
                         .frame(width: 73)
-//                        .offset(x : -30, y: 5)
                     
                     VStack(alignment: .leading) {
                         Text(nama)
@@ -81,6 +81,7 @@ struct ContainerPerawatan: View {
                             .font(.system(size: 12))
                             .italic()
                     }
+                    .offset(x: 85)
                 }
                 .padding(.top, 5)
                 
@@ -126,7 +127,7 @@ struct ContainerPerawatan: View {
 }
 
 #Preview {
-    ContainerPerawatan(status: .pending, category: "Sakit Gigi", nama: "Azella Mutyara", departemen: "Departemen Konservasi Gigi", jumlahSesi: "2")
+    ContainerPerawatan(status: .pending, category: "Sakit Gigi", nama: "Azella Gania Mutyara", departemen: "Departemen Konservasi Gigi", jumlahSesi: "2")
 }
 
 
