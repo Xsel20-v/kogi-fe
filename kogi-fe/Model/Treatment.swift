@@ -18,5 +18,5 @@ struct Treatment: Codable {
     var dateCreated: String
     var requestedDate: String
     var treatmentStatus: String
-    var image: Data?
+    var image: [Data]?
 }
