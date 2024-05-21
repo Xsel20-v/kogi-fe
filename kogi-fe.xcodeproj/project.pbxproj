@@ -32,6 +32,8 @@
 		3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */; };
 		3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */; };
 		3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */; };
+		3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */; };
+		3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4342BF49497003F0E36 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisProgressBar.swift; sourceTree = "<group>"; };
 		3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDetilSesi.swift; sourceTree = "<group>"; };
+		3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
+		3D79F4342BF49497003F0E36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
 				3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */,
 				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
+				3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */,
+				3D79F4342BF49497003F0E36 /* ImagePicker.swift */,
 				35EE09272BEE6B77009E1966 /* AutoScroller.swift */,
 				35F2288D2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift */,
 			);
@@ -237,6 +243,8 @@
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
+				3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */,
+				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,

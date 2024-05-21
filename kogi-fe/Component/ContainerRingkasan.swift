@@ -23,44 +23,54 @@ struct ContainerRingkasan: View {
                     .padding(.bottom, 10)
                 
                 VStack(alignment: .leading, spacing: 20) {
-                    HStack {
+                    ZStack(alignment: .leading) {
                         Text("Tanggal Pengajuan")
                             .font(.system(size: 14, weight: .semibold))
                             .padding(.trailing, 40)
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
+                            .offset(x: 175)
                         Text("Jun 20, 2023")
                             .font(.system(size: 14))
+                            .offset(x: 185)
                     }
                     
-                    HStack {
+                    ZStack(alignment: .leading) {
                         Text("Waktu Pengajuan")
                             .font(.system(size: 14, weight: .semibold))
                             .padding(.trailing, 51)
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
+                            .offset(x: 175)
                         Text("9:41 AM")
                             .font(.system(size: 14))
+                            .offset(x: 185)
                     }
                     
-                    HStack {
+                    ZStack(alignment: .leading) {
                         Text("Posisi Keluhan")
                             .font(.system(size: 14, weight: .semibold))
                             .padding(.trailing, 70)
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
-                        Text("Taring atas")
+                            .offset(x: 175)
+                        Text("Taring atas, Geraham atas, Taring bawah, Geraham bawah")
                             .font(.system(size: 14))
+                            .offset(x: 185)
+                            .frame(maxWidth: 110)
+                            .multilineTextAlignment(.leading)
                     }
                     
-                    HStack {
+                    ZStack(alignment: .leading) {
                         Text("Rentang Waktu")
                             .font(.system(size: 14, weight: .semibold))
                             .padding(.trailing, 65)
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
+                            .offset(x: 175)
                         Text("3 Hari")
                             .font(.system(size: 14))
+                            .offset(x: 185)
                     }
                     
                     Text("Deskripsi Keluhan")
