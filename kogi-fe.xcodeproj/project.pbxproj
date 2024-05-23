@@ -20,6 +20,7 @@
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
 		35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */; };
 		35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */; };
+		35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */; };
 		35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE09272BEE6B77009E1966 /* AutoScroller.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
@@ -53,6 +54,7 @@
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
 		35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTreatment.swift; sourceTree = "<group>"; };
+		35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 		35EE09272BEE6B77009E1966 /* AutoScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogi_feApp.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		35F0B2F12BE9E763009B3051 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */,
 				35F0B2DA2BE9DD88009B3051 /* ContentView.swift */,
 				35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */,
 				35F0B2F62BE9E7DB009B3051 /* Pesan.swift */,
@@ -297,6 +300,7 @@
 				35F2288E2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift in Sources */,
 				351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */,
 				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
+				35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */,
 				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
 				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
