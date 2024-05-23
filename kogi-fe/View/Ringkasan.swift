@@ -59,6 +59,12 @@ struct Ringkasan: View {
                         treatmentViewModel.updateDateCreated(dateCreated: Date.now)
                         treatmentViewModel.updateTreatmentStatus(treatmentStatus: "pending")
                         print(treatmentViewModel.getAnamnesisData())
+                        Task {
+                            await treatmentViewModel.postTreatmentData()
+                            treatmentViewModel.selectedImages.removeAll()
+                            treatmentViewModel.imageSelections.removeAll()
+                            treatmentViewModel.clearTreatmentData()
+                        }
                         path.removeLast(path.count)
                     }, label: {
                         ButtonComponent(text: "Ajukan Perawatan", buttonColors: .blue)
@@ -69,6 +75,10 @@ struct Ringkasan: View {
             }
             .ignoresSafeArea()
         }
+        .onAppear(perform: {
+            treatmentViewModel.imageSelections.removeAll()
+            treatmentViewModel.selectedImages.removeAll()
+        })
     }
 }
 

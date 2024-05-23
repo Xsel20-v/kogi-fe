@@ -19,6 +19,14 @@
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
 		35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */; };
+		35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */; };
+		35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */; };
+		35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */; };
+		35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 35CFF9962BFEF75A00F4ABB9 /* SocketIO */; };
+		35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */; };
+		35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */; };
+		35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */; };
+		35CFF99F2BFF03C100F4ABB9 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */; };
 		35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE09272BEE6B77009E1966 /* AutoScroller.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
@@ -61,6 +69,13 @@
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
 		35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTreatment.swift; sourceTree = "<group>"; };
+		35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHelper.swift; sourceTree = "<group>"; };
+		35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
 		35EE09272BEE6B77009E1966 /* AutoScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogi_feApp.swift; sourceTree = "<group>"; };
@@ -96,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,9 +121,8 @@
 		354F32172BEB542F00156436 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				3D944C962BFCBA9900A55802 /* Pasien+Dokter */,
-				3D944C952BFCBA8A00A55802 /* Dokter */,
-				3D944C942BFCBA8100A55802 /* Pasien */,
+				35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */,
+				35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */,
 				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
 				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
 				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
@@ -130,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */,
+				35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -177,6 +193,7 @@
 		35F0B2F12BE9E763009B3051 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */,
 				35F0B2DA2BE9DD88009B3051 /* ContentView.swift */,
 				35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */,
 				35F0B2F62BE9E7DB009B3051 /* Pesan.swift */,
@@ -202,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				351FCBBA2BECD41E00C73E59 /* Treatment.swift */,
+				35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */,
+				35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,29 +230,9 @@
 			children = (
 				351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */,
 				35F2288F2BF5E37C0070DC35 /* AnamnesisViewModel.swift */,
+				35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */,
 			);
 			path = "View Model";
-			sourceTree = "<group>";
-		};
-		3D944C942BFCBA8100A55802 /* Pasien */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pasien;
-			sourceTree = "<group>";
-		};
-		3D944C952BFCBA8A00A55802 /* Dokter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dokter;
-			sourceTree = "<group>";
-		};
-		3D944C962BFCBA9900A55802 /* Pasien+Dokter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Pasien+Dokter";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +251,9 @@
 			dependencies = (
 			);
 			name = "kogi-fe";
+			packageProductDependencies = (
+				35CFF9962BFEF75A00F4ABB9 /* SocketIO */,
+			);
 			productName = "kogi-fe";
 			productReference = 35F0B2D52BE9DD88009B3051 /* kogi-fe.app */;
 			productType = "com.apple.product-type.application";
@@ -280,6 +282,9 @@
 				Base,
 			);
 			mainGroup = 35F0B2CC2BE9DD88009B3051;
+			packageReferences = (
+				35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+			);
 			productRefGroup = 35F0B2D62BE9DD88009B3051 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -315,6 +320,9 @@
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
+				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
+				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
+				35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */,
 				3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */,
 				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
@@ -322,19 +330,22 @@
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,
 				3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
+				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */,
 				3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */,
 				3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */,
-				35F2288E2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift in Sources */,
-				351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */,
-				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
 				3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */,
-				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
-				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
 				3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */,
 				3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */,
 				3D4A3EB22BFF088B003FBC8F /* HeaderViewComponent.swift in Sources */,
+				35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */,
+				35F2288E2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift in Sources */,
+				351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */,
+				354F32192BEB546200156436 /* CategoryButton.swift in Sources */,
+				35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */,
+				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
+				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
@@ -550,6 +561,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		35CFF9962BFEF75A00F4ABB9 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 35F0B2CD2BE9DD88009B3051 /* Project object */;
 }

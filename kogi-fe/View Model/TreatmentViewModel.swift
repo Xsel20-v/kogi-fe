@@ -20,17 +20,21 @@ class TreatmentViewModel: ObservableObject {
         }
     }
     
+    @AppStorage("userID") var userID = "P2"
+    
     var networkService: NetworkService?
     
     init() {
-        treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "")
+        treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
     }
     
-    func getTreatmentData() async {
+    func getTreatmentData() async -> Bool {
         networkService = NetworkService()
         do {
             if let treatment = try await networkService?.fetchOnGoingTreatment()?.first {
                 fetchedTreatmentData = treatment
+                print(fetchedTreatmentData)
+                return true
             }
         }catch NError.invalidURL {
             print("invalid URL")
@@ -41,6 +45,7 @@ class TreatmentViewModel: ObservableObject {
         }catch {
             print("unexpected error")
         }
+        return false
     }
     
     
@@ -52,8 +57,26 @@ class TreatmentViewModel: ObservableObject {
         return treatment.problemCategory
     }
     
-    func getImages() -> [Data]? {
-        return treatment.images
+    func getImages() async -> [UIImage]? {
+        
+        if let images = fetchedTreatmentData?.images {
+            var dataImages: [Data] = []
+            var uiImages: [UIImage] = []
+            
+            for image in images {
+                if let dataImage = Data(base64Encoded: image){
+                    dataImages.append(dataImage)
+                }
+            }
+            
+            for dataImage in dataImages {
+                if let uiImage = UIImage(data: dataImage){
+                    uiImages.append(uiImage)
+                }
+            }
+            return uiImages
+        }
+        return nil
     }
     
     func getUserID() -> String {
@@ -147,7 +170,10 @@ class TreatmentViewModel: ObservableObject {
                     images.append(data)
                 }
             }
-            treatment.images = images
+            for image in images {
+                treatment.images.append(image.base64EncodedString())
+            }
+            
         }
     }
     
@@ -156,7 +182,29 @@ class TreatmentViewModel: ObservableObject {
             selectedImages.remove(at: index)
             imageSelections.remove(at: index)
         }
+        treatment.images = []
         updateImages(from: imageSelections)
+    }
+    
+    func postTreatmentData() async {
+        networkService = NetworkService()
+        do {
+            try await networkService?.sendPostTreatment(treatment: treatment)
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch NError.invalidEncodingData {
+            print("invalid Encoding Data")
+        }catch {
+            print("unexpected error.")
+        }
+    }
+    
+    func clearTreatmentData() {
+        treatment = Treatment(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
     }
 
 }
