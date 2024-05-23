@@ -42,8 +42,18 @@
 		3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */; };
 		3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */; };
 		3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */; };
+		3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */; };
+		3D4A3EB22BFF088B003FBC8F /* HeaderViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */; };
+		3D4A3EB42BFF1D37003FBC8F /* DetilSesiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */; };
 		3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */; };
 		3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4342BF49497003F0E36 /* ImagePicker.swift */; };
+		3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D944C972BFDC6D800A55802 /* FilterSheet.swift */; };
+		3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D944C992BFDE7F500A55802 /* BottomSheetView.swift */; };
+		3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8792BFE15260050161D /* IjazahView.swift */; };
+		3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87B2BFE15540050161D /* GantiSandiView.swift */; };
+		3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */; };
+		3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87F2BFE15BB0050161D /* KeluarView.swift */; };
+		3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8812BFEE51A0050161D /* ChatRoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,8 +92,18 @@
 		3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonComponent.swift; sourceTree = "<group>"; };
 		3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisProgressBar.swift; sourceTree = "<group>"; };
 		3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDetilSesi.swift; sourceTree = "<group>"; };
+		3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerawatanView.swift; sourceTree = "<group>"; };
+		3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewComponent.swift; sourceTree = "<group>"; };
+		3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetilSesiView.swift; sourceTree = "<group>"; };
 		3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
 		3D79F4342BF49497003F0E36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		3D944C972BFDC6D800A55802 /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
+		3D944C992BFDE7F500A55802 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		3D97B8792BFE15260050161D /* IjazahView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IjazahView.swift; sourceTree = "<group>"; };
+		3D97B87B2BFE15540050161D /* GantiSandiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GantiSandiView.swift; sourceTree = "<group>"; };
+		3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusatBantuanView.swift; sourceTree = "<group>"; };
+		3D97B87F2BFE15BB0050161D /* KeluarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluarView.swift; sourceTree = "<group>"; };
+		3D97B8812BFEE51A0050161D /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +134,9 @@
 				35F2288D2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift */,
 				35EE09272BEE6B77009E1966 /* AutoScroller.swift */,
 				353039412BED3E6E000307B4 /* ContainerRingkasan.swift */,
+				3D944C972BFDC6D800A55802 /* FilterSheet.swift */,
+				3D944C992BFDE7F500A55802 /* BottomSheetView.swift */,
+				3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -181,6 +204,13 @@
 				359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */,
 				35F228912BF5F3820070DC35 /* AnamnesisView.swift */,
 				3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */,
+				3D97B8792BFE15260050161D /* IjazahView.swift */,
+				3D97B87B2BFE15540050161D /* GantiSandiView.swift */,
+				3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */,
+				3D97B87F2BFE15BB0050161D /* KeluarView.swift */,
+				3D97B8812BFEE51A0050161D /* ChatRoomView.swift */,
+				3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */,
+				3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,8 +311,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D4A3EB42BFF1D37003FBC8F /* DetilSesiView.swift in Sources */,
 				3552BEE92BFBAE0000D1FE85 /* Ringkasan.swift in Sources */,
 				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
+				3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */,
+				3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */,
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
@@ -295,10 +328,17 @@
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,
+				3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */,
+				3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */,
+				3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */,
+				3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */,
+				3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */,
+				3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */,
+				3D4A3EB22BFF088B003FBC8F /* HeaderViewComponent.swift in Sources */,
 				35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */,
 				35F2288E2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift in Sources */,
 				351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */,
@@ -306,7 +346,6 @@
 				35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */,
 				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
 				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
-				35CFF99F2BFF03C100F4ABB9 /* FilterSheet.swift in Sources */,
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
@@ -448,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -456,6 +495,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -477,7 +517,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -485,6 +525,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

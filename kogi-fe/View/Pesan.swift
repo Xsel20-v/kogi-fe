@@ -12,39 +12,41 @@ struct Pesan: View {
     @Binding var tabSelection: Int
     
     var body: some View {
-//        NavigationView {
-            List {
-                Button {
-                    path.append("Chat Room")
-                } label: {
-                    MessageView(
-                        imageName: "person.crop.circle.fill",
-                        name: "Jonathan",
-                        message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
-                        time: "08.13"
-                    )
+        ZStack {
+            Color("primaryColor")
+                    .ignoresSafeArea()
+            VStack(alignment: .leading) {
+                
+                Text("Pesan")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 20)
+                
+                List {
+                    Button {
+                        path.append("Chat Room")
+                    } label: {
+                        MessageView(
+                            imageName: "person.crop.circle.fill",
+                            name: "Jonathan",
+                            message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
+                            time: "08.13"
+                        )
+                    }
+                    Button {
+                        path.append("Chat Room")
+                    } label: {
+                        MessageView(
+                            imageName: "person.crop.circle.fill",
+                            name: "Jonathan",
+                            message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
+                            time: "08.13"
+                        )
+                    }
                 }
-
-//                NavigationLink(destination: Text("Message Detail View")) {
-//                    MessageView(
-//                        imageName: "person.crop.circle.fill",
-//                        name: "Jonathan",
-//                        message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
-//                        time: "08.13"
-//                    )
-//                }
-//                NavigationLink(destination: Text("Message Detail View")) {
-//                    MessageView(
-//                        imageName: "person.crop.circle.fill",
-//                        name: "Jonathan",
-//                        message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
-//                        time: "08.13"
-//                    )
-//                }
             }
-            .navigationBarTitle("Pesan", displayMode: .large)
-            
-//        }
+        }
     }
 }
 
@@ -61,19 +63,26 @@ struct MessageView: View {
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                .foregroundColor(.black)
             
             VStack(alignment: .leading) {
                 HStack {
                     Text(name)
                         .font(.headline)
+                        .foregroundColor(.black)
                     Spacer()
                     Text(time)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-                Text(message)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
+                HStack{
+                    Text(message)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
+                }
             }
         }
         .padding(.vertical, 8)
