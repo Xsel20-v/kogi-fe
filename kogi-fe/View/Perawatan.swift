@@ -95,12 +95,7 @@ struct Perawatan: View {
                         
                     }
                     .padding(.leading, 30)
-                    ContainerPerawatan(
-                        status: .pending,
-                        category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
-                        nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
-                        departemen: "teuing",
-                        jumlahSesi: "0")
+                    ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!)
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 }
                 .ignoresSafeArea()
