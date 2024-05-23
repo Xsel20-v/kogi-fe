@@ -87,17 +87,20 @@
 		354F32172BEB542F00156436 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */,
-				353039412BED3E6E000307B4 /* ContainerRingkasan.swift */,
-				354F32182BEB546100156436 /* CategoryButton.swift */,
-				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
+				3D944C962BFCBA9900A55802 /* Pasien+Dokter */,
+				3D944C952BFCBA8A00A55802 /* Dokter */,
+				3D944C942BFCBA8100A55802 /* Pasien */,
 				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
-				3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */,
+				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
 				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
-				3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */,
+				354F32182BEB546100156436 /* CategoryButton.swift */,
 				3D79F4342BF49497003F0E36 /* ImagePicker.swift */,
-				35EE09272BEE6B77009E1966 /* AutoScroller.swift */,
+				353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */,
+				3D3BE4C72BEBE81A000771A2 /* AnamnesisProgressBar.swift */,
+				3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */,
 				35F2288D2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift */,
+				35EE09272BEE6B77009E1966 /* AutoScroller.swift */,
+				353039412BED3E6E000307B4 /* ContainerRingkasan.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -183,6 +186,27 @@
 				35F2288F2BF5E37C0070DC35 /* AnamnesisViewModel.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		3D944C942BFCBA8100A55802 /* Pasien */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pasien;
+			sourceTree = "<group>";
+		};
+		3D944C952BFCBA8A00A55802 /* Dokter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Dokter;
+			sourceTree = "<group>";
+		};
+		3D944C962BFCBA9900A55802 /* Pasien+Dokter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Pasien+Dokter";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

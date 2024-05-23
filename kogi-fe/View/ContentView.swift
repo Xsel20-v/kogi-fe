@@ -18,17 +18,17 @@ struct ContentView: View {
         NavigationStack(path: $path) {
             TabView(selection: $tabSelection) {
                 Perawatan(path: $path, treatmentViewModel: treatmentViewModel)
-                    .badge(0)
+                    .tag(0)
                     .tabItem {
                         Label("Perawatan", systemImage: "heart.text.square")
                     }
-                Pesan()
-                    .badge(1)
+                Pesan(path: $path, tabSelection: $tabSelection)
+                    .tag(1)
                     .tabItem {
                         Label("Pesan", systemImage: "ellipsis.message")
                     }
-                Pengaturan()
-                    .badge(2)
+                Pengaturan(path: $path, tabSelection: $tabSelection)
+                    .tag(2)
                     .tabItem {
                         Label("Pengaturan", systemImage: "gearshape")
                     }
@@ -56,6 +56,8 @@ struct ContentView: View {
                     KeluhanPilihWaktu(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Ringkasan" :
                     Ringkasan(path: $path, treatmentViewModel: treatmentViewModel)
+                case "Chat Room":
+                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
 //                case "Lama Keluhan" :
 //                    LamaKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
                 default:
