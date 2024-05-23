@@ -19,6 +19,7 @@
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
 		35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */; };
+		35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */; };
 		35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE09272BEE6B77009E1966 /* AutoScroller.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
@@ -51,6 +52,7 @@
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
 		35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTreatment.swift; sourceTree = "<group>"; };
 		35EE09272BEE6B77009E1966 /* AutoScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogi_feApp.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				351FCBBA2BECD41E00C73E59 /* Treatment.swift */,
+				35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
+				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */,
 				35F2288E2BF34D6C0070DC35 /* HeaderViewAnamnesis.swift in Sources */,

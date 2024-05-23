@@ -14,7 +14,7 @@ struct Treatment: Codable {
     var problemCategory: String
     var areaOfSymptom: [String]?
     var symptomsDesc: String
-    var totalDaysOfSymptom: Int
+    var totalDaysOfSymptom: Int = 0
     var dateCreated: String
     var requestedDate: String
     var treatmentStatus: String

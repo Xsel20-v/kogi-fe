@@ -59,6 +59,11 @@ struct Ringkasan: View {
                         treatmentViewModel.updateDateCreated(dateCreated: Date.now)
                         treatmentViewModel.updateTreatmentStatus(treatmentStatus: "pending")
                         print(treatmentViewModel.getAnamnesisData())
+                        Task {
+                            await treatmentViewModel.postTreatmentData()
+                            treatmentViewModel.selectedImages.removeAll()
+                            treatmentViewModel.imageSelections.removeAll()
+                        }
                         path.removeLast(path.count)
                     }, label: {
                         ButtonComponent(text: "Ajukan Perawatan", buttonColors: .blue)

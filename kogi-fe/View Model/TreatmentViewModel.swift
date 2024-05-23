@@ -26,11 +26,13 @@ class TreatmentViewModel: ObservableObject {
         treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "")
     }
     
-    func getTreatmentData() async {
+    func getTreatmentData() async -> Bool {
         networkService = NetworkService()
         do {
             if let treatment = try await networkService?.fetchOnGoingTreatment()?.first {
                 fetchedTreatmentData = treatment
+                print(fetchedTreatmentData)
+                return true
             }
         }catch NError.invalidURL {
             print("invalid URL")
@@ -41,6 +43,7 @@ class TreatmentViewModel: ObservableObject {
         }catch {
             print("unexpected error")
         }
+        return false
     }
     
     
@@ -157,6 +160,23 @@ class TreatmentViewModel: ObservableObject {
             imageSelections.remove(at: index)
         }
         updateImages(from: imageSelections)
+    }
+    
+    func postTreatmentData() async {
+        networkService = NetworkService()
+        do {
+            try await networkService?.sendPostTreatment(treatment: treatment)
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch NError.invalidEncodingData {
+            print("invalid Encoding Data")
+        }catch {
+            print("unexpected error.")
+        }
     }
 
 }

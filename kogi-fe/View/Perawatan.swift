@@ -7,6 +7,7 @@ struct Perawatan: View {
     @State private var statusPerawatan: String = "pending"
     @State private var namaKOAS: String = "Azella"
     @State private var departemen: String = "Konservasi Gigi"
+    @State private var dataIsRetrieved = false
     
     @Binding var path: NavigationPath
     @ObservedObject var treatmentViewModel: TreatmentViewModel
@@ -90,16 +91,31 @@ struct Perawatan: View {
                 HStack {
                     Text("Perawatan")
                         .fontWeight(.semibold)
+                    Button(action: {
+                        Task {
+                            dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                        }
+                    }, label: {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundColor(Constant.Colors.primaryColor)
+                    })
                     Spacer()
                    
                 }
                 .padding(.leading, 30)
-                ContainerPerawatan(
-                    status: .pending,
-                    category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
-                    nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
-                    departemen: "teuing",
-                    jumlahSesi: "0")
+                
+                if dataIsRetrieved {
+                    ContainerPerawatan(
+                        status: .pending,
+                        category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
+                        nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
+                        departemen: "teuing",
+                        jumlahSesi: "0")
+                } else {
+                    Text("Tidak ada perawatan")
+                        .padding()
+                }
+                
             }
             Spacer()
            
@@ -110,7 +126,7 @@ struct Perawatan: View {
         .navigationBarHidden(true)
         .onAppear(perform: {
             Task {
-                await treatmentViewModel.getTreatmentData()
+                dataIsRetrieved = await treatmentViewModel.getTreatmentData()
             }
         })
         
