@@ -1,22 +1,18 @@
 //
-//  Treatment.swift
+//  PostTreatment.swift
 //  kogi-fe
 //
-//  Created by Jonathan Axel Benaya on 09/05/24.
+//  Created by Jonathan Axel Benaya on 21/05/24.
 //
 
 import Foundation
 
-struct Treatment: Codable {
-    var treatmentID: String?
+struct PostTreatment : Codable {
     var patientID: String
-    var coassID: String?
     var problemCategory: String
     var areaOfSymptom: [String]?
     var symptomsDesc: String
     var totalDaysOfSymptom: Int = 0
-    var dateCreated: String
     var requestedDate: String
-    var treatmentStatus: String
     var images: [String]
 }

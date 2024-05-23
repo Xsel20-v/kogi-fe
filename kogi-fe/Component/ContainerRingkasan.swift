@@ -80,18 +80,19 @@ struct ContainerRingkasan: View {
                         Text("Deskripsi Keluhan")
                             .font(.system(size: 14, weight: .semibold))
                         
-                        Text(treatment.symptomsDesc)
+                        Text(treatment.symptomsDesc ?? "Gatau males mau beli truk")
                             .font(.system(size: 14))
                     }
                     
                     Text("Foto Kondisi Awal")
                         .font(.system(size: 14, weight: .semibold))
                     
-                    if let imagesData = treatment.images {
+//                    if let imagesData = treatment.images {
+                    let imagesData = treatment.images
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(imagesData, id: \.self) { imageData in
-                                    if let uiImage = UIImage(data: imageData) {
+                                    if let uiImage = UIImage(data: Data(base64Encoded: imageData)!) {
                                         Image(uiImage: uiImage)
                                             .resizable()
                                             .frame(width: 80, height: 80)
@@ -100,11 +101,11 @@ struct ContainerRingkasan: View {
                             }
                         }
                         .padding(.top, -10)
-                    } else {
-                        Text("No Image Available")
-                            .font(.system(size: 14))
-                            .padding(.top, -10)
-                    }
+//                    } else {
+//                        Text("No Image Available")
+//                            .font(.system(size: 14))
+//                            .padding(.top, -10)
+//                    }
                 }
             }
             .frame(width: 320, height: 430)
@@ -167,7 +168,7 @@ struct ContainerRingkasan_Previews: PreviewProvider {
             dateCreated: "2023-06-20T09:41:00Z",
             requestedDate: "2023-06-29T09:41:00Z",
             treatmentStatus: "Pending",
-            images: nil
+            images: []
         )
         
         ContainerRingkasan(treatment: sampleTreatment)
