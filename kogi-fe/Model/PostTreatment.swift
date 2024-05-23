@@ -14,5 +14,5 @@ struct PostTreatment : Codable {
     var symptomsDesc: String
     var totalDaysOfSymptom: Int = 0
     var requestedDate: String
-    var images: [Data]
+    var images: [String]
 }

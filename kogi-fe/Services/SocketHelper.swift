@@ -7,7 +7,7 @@ class SocketHelper {
     private var socket: SocketIOClient
 
     private init() {
-        guard let url = URL(string: "http://localhost:3000") else {
+        guard let url = URL(string: "wss://kogi-api.onrender.com/") else {
             fatalError("Invalid URL")
         }
         manager = SocketManager(socketURL: url, config: [.log(true), .compress])

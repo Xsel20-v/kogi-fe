@@ -8,9 +8,12 @@ struct Perawatan: View {
     @State private var namaKOAS: String = "Azella"
     @State private var departemen: String = "Konservasi Gigi"
     @State private var dataIsRetrieved = false
+    @State private var imageIsConverted = false
     
     @Binding var path: NavigationPath
     @ObservedObject var treatmentViewModel: TreatmentViewModel
+    
+    @State var images: [UIImage] = []
     
     var body: some View {
         GeometryReader { geometry in
@@ -89,12 +92,23 @@ struct Perawatan: View {
                 .padding(.bottom, 15)
                 
                 VStack {
+                    if imageIsConverted {
+                        ForEach(images, id: \.self) { image in
+                            Image(uiImage: image)
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .cornerRadius(20)
+                                .padding(.leading, 10)
+                                .padding(5)
+                        }
+                    }
                     HStack {
                         Text("Perawatan")
                             .fontWeight(.semibold)
                         Button(action: {
                             Task {
                                 dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                                
                             }
                         }, label: {
                             Image(systemName: "arrow.clockwise")
@@ -106,12 +120,8 @@ struct Perawatan: View {
                     .padding(.leading, 30)
                     
                     if dataIsRetrieved {
-                        ContainerPerawatan(
-                            status: .pending,
-                            category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
-                            nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
-                            departemen: "teuing",
-                            jumlahSesi: "0")
+                        ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
                     } else {
                         Text("Tidak ada perawatan")
                             .padding()
@@ -128,6 +138,12 @@ struct Perawatan: View {
             .onAppear(perform: {
                 Task {
                     dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                    if let images = await treatmentViewModel.getImages() {
+                        self.images = images
+                        imageIsConverted = true
+                    } else {
+                        print("GADA MAS FOTONYA!")
+                    }
                 }
             })
             

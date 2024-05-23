@@ -63,6 +63,7 @@ struct Ringkasan: View {
                             await treatmentViewModel.postTreatmentData()
                             treatmentViewModel.selectedImages.removeAll()
                             treatmentViewModel.imageSelections.removeAll()
+                            treatmentViewModel.clearTreatmentData()
                         }
                         path.removeLast(path.count)
                     }, label: {
@@ -74,6 +75,10 @@ struct Ringkasan: View {
             }
             .ignoresSafeArea()
         }
+        .onAppear(perform: {
+            treatmentViewModel.imageSelections.removeAll()
+            treatmentViewModel.selectedImages.removeAll()
+        })
     }
 }
 

@@ -10,7 +10,8 @@ import SwiftUI
 struct DeskripsiKeluhan: View {
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
-    @AppStorage("userID") var userID = "P2"
+    
+    let userID = UserDefaults.standard.string(forKey: "userID") ?? "P2"
     
     var category: String
     @Binding var path : NavigationPath

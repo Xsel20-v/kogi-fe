@@ -8,6 +8,8 @@
 import Foundation
 
 class NetworkService {
+    let userID = UserDefaults.standard.string(forKey: "userID") ?? "P2"
+    
     func fetchOnGoingTreatment() async throws -> [Treatment]? {
         let endpoint = "https://kogi-api.onrender.com/api/getTreatmentList"
         
@@ -18,7 +20,7 @@ class NetworkService {
         request.httpMethod = "POST" // Set HTTP method to POST
         request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
         
-        let bodyData = "{\"uid\": \"P2\",\"status\": \"pending\"}"
+        let bodyData = "{\"uid\": \"\(userID)\",\"status\": \"pending\"}"
         
         print(bodyData)
         request.httpBody = bodyData.data(using: .utf8)
@@ -44,7 +46,7 @@ class NetworkService {
             symptomsDesc: treatment.symptomsDesc,
             totalDaysOfSymptom: treatment.totalDaysOfSymptom,
             requestedDate: treatment.requestedDate,
-            images: treatment.images!
+            images: treatment.images
         )
         
         // Encode the postTreatment object to JSON
