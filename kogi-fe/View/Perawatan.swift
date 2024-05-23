@@ -87,50 +87,51 @@ struct Perawatan: View {
                     .padding(.trailing, 30)
                 }
                 .padding(.bottom, 15)
+                
+                VStack {
+                    HStack {
+                        Text("Perawatan")
+                            .fontWeight(.semibold)
+                        Button(action: {
+                            Task {
+                                dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                            }
+                        }, label: {
+                            Image(systemName: "arrow.clockwise")
+                                .foregroundColor(Constant.Colors.primaryColor)
+                        })
+                        Spacer()
+                        
+                    }
+                    .padding(.leading, 30)
+                    
+                    if dataIsRetrieved {
+                        ContainerPerawatan(
+                            status: .pending,
+                            category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
+                            nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
+                            departemen: "teuing",
+                            jumlahSesi: "0")
+                    } else {
+                        Text("Tidak ada perawatan")
+                            .padding()
+                    }
+                    
+                }
+                Spacer()
+                
+            }
+            .ignoresSafeArea()
+            .background(Constant.Colors.baseColor)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarHidden(true)
+            .onAppear(perform: {
+                Task {
+                    dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                }
+            })
             
-            VStack {
-                HStack {
-                    Text("Perawatan")
-                        .fontWeight(.semibold)
-                    Button(action: {
-                        Task {
-                            dataIsRetrieved = await treatmentViewModel.getTreatmentData()
-                        }
-                    }, label: {
-                        Image(systemName: "arrow.clockwise")
-                            .foregroundColor(Constant.Colors.primaryColor)
-                    })
-                    Spacer()
-                   
-                }
-                .padding(.leading, 30)
-                
-                if dataIsRetrieved {
-                    ContainerPerawatan(
-                        status: .pending,
-                        category: treatmentViewModel.fetchedTreatmentData?.problemCategory ?? "",
-                        nama: treatmentViewModel.fetchedTreatmentData?.coassID ?? "",
-                        departemen: "teuing",
-                        jumlahSesi: "0")
-                } else {
-                    Text("Tidak ada perawatan")
-                        .padding()
-                }
-                
-            }
-            Spacer()
-           
         }
-        .ignoresSafeArea()
-        .background(Constant.Colors.baseColor)
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
-        .onAppear(perform: {
-            Task {
-                dataIsRetrieved = await treatmentViewModel.getTreatmentData()
-            }
-        })
-        
     }
 }
 
@@ -168,6 +169,6 @@ struct HomeBackground: View {
 }
 
 
-#Preview {
-    Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
-}
+//#Preview {
+//    Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
+//}

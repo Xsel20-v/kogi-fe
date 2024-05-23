@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct Pengaturan: View {
+    
+    @Binding var path : NavigationPath
+    @Binding var tabSelection : Int
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    Pengaturan()
+    Pengaturan(path: .constant(NavigationPath()), tabSelection: .constant(2))
 }
