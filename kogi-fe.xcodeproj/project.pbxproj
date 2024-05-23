@@ -25,6 +25,8 @@
 		35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 35CFF9962BFEF75A00F4ABB9 /* SocketIO */; };
 		35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */; };
 		35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */; };
+		35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */; };
+		35CFF99F2BFF03C100F4ABB9 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */; };
 		35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE09272BEE6B77009E1966 /* AutoScroller.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
@@ -62,6 +64,8 @@
 		35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHelper.swift; sourceTree = "<group>"; };
 		35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
 		35EE09272BEE6B77009E1966 /* AutoScroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoScroller.swift; sourceTree = "<group>"; };
 		35F0B2D52BE9DD88009B3051 /* kogi-fe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kogi-fe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = kogi_feApp.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 		354F32172BEB542F00156436 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */,
+				35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */,
 				3D3BE4C52BEBE1D5000771A2 /* ButtonComponent.swift */,
 				3D3BE4C32BEBCC23000771A2 /* ContainerPerawatan.swift */,
 				3D3BE4CB2BEBEFDD000771A2 /* ContainerDetilSesi.swift */,
@@ -283,6 +289,7 @@
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
 				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
 				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
+				35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */,
 				3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */,
 				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
@@ -299,6 +306,7 @@
 				35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */,
 				353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */,
 				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
+				35CFF99F2BFF03C100F4ABB9 /* FilterSheet.swift in Sources */,
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
