@@ -15,16 +15,15 @@ struct ContainerPerawatan: View {
         case pending, ongoing, done
     }
     
-    var status: Status
+    @State var status: Status = .ongoing
+    var treatment: Treatment
     
     var shadowRadius : CGFloat = 4
     var shadowY : CGFloat = 4
     var color1 : Color = .white
     
-    var category: String
-    var nama : String
-    var departemen: String
-    var jumlahSesi: String
+    var nama : String = "Azella"
+    var jumlahSesi: String = "2"
     
     var body: some View {
         GeometryReader { geometry in
@@ -70,7 +69,7 @@ struct ContainerPerawatan: View {
                 
                 VStack(alignment: .leading) {
                     ZStack(alignment: .leading) {
-                        Text(category)
+                        Text(treatment.problemCategory)
                             .font(.system(size: fontSize16, weight: .semibold))
                         
                         Image(systemName: "chevron.right")
@@ -88,7 +87,7 @@ struct ContainerPerawatan: View {
                         VStack(alignment: .leading) {
                             Text(nama)
                                 .font(.system(size: fontSize16, weight: .semibold))
-                            Text(departemen)
+                            Text("Departemen \(fetchDepartment())")
                                 .font(.system(size: fontSize12))
                                 .italic()
                             
@@ -104,7 +103,7 @@ struct ContainerPerawatan: View {
                     
                     HStack{
                         
-                        Image(systemName: "mic.fill")
+                        Image(systemName: "mappin")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: fontSize16, height: fontSize16)
@@ -122,7 +121,7 @@ struct ContainerPerawatan: View {
                             .frame(width: fontSize16, height: fontSize16)
                             .foregroundColor(foregroundIcon())
                         
-                        Text("24 Jun 2024 (11.00)")
+                        Text("\(formatDate(treatment.requestedDate)) \(formatTime(treatment.requestedDate))")
                             .font(.system(size: fontSize12))
                             .padding(.leading, geometry.size.height * -0.0065)
                             .foregroundColor(foregroundLocationAndDate())
@@ -132,6 +131,9 @@ struct ContainerPerawatan: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)
+            .onAppear {
+                getStatus()
+            }
         }
     }
     
@@ -163,10 +165,87 @@ struct ContainerPerawatan: View {
             return Color("primaryColor")
         }
     }
+    
+    func fetchDepartment() -> String {
+        let category = treatment.problemCategory
+        
+        if category == "Karang Gigi" || category == "Gusi Bengkak" {
+            return "Periodonsia"
+        } else if category == "Sakit Gigi" {
+            return "Konservasi Gigi"
+        } else if category == "Sariwan"{
+            return "Ilmu Penyakit Mulut"
+        } else if category == "Kawat Lepasan" {
+            return "Orthodonsia"
+        } else if category == "Gigi Palsu" {
+            return "Prostodonsia"
+        } else if category == "Gigi Tiruan" {
+            return "Bedah Mulut"
+        } else {
+            return "Tidak Ditemukan"
+        }
+    }
+    
+    func getStatus(){
+        let treatmentStatus = treatment.treatmentStatus
+        
+        switch treatmentStatus {
+        case "pending":
+            status = .pending
+        case "ongoing":
+            status = .ongoing
+        case "done":
+            status = .done
+        default:
+            status = .pending
+        }
+    }
+    
+    // Helper function to format date
+    func formatDate(_ date: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        if let date = formatter.date(from: date) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            print(dateFormatter.string(from: date))
+            return dateFormatter.string(from: date)
+        }
+        return "Invalid date"
+    }
+    // Helper function to format time
+    func formatTime(_ date: String) -> String {
+        let formatter = ISO8601DateFormatter()
+        if let date = formatter.date(from: date) {
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "(HH:mm)"
+            return timeFormatter.string(from: date)
+        }
+        return "Invalid time"
+    }
 }
 
-#Preview {
-    ContainerPerawatan(status: .ongoing, category: "Sakit Gigi", nama: "Azella Gania Mutyara", departemen: "Departemen Konservasi Gigi", jumlahSesi: "2")
-}
+//#Preview {
+//    ContainerPerawatan(status: .ongoing, category: "Sakit Gigi", nama: "Azella Gania Mutyara", departemen: "Departemen Konservasi Gigi", jumlahSesi: "2")
+//}
 
+struct ContainerPerawatan_Previews: PreviewProvider {
+    static var previews: some View {
+        let sampleTreatment = Treatment(
+            treatmentID: "12345",
+            patientID: "patient123",
+            coassID: "coass123",
+            problemCategory: "Sakit Gigi",
+            areaOfSymptom: ["Taring atas", "Geraham atas", "Taring bawah", "Geraham bawah"],
+            symptomsDesc: "Gigi saya terasa sakit sejak beberapa hari lalu, dan semakin parah ketika saya makan atau minum sesuatu yang dingin atau panas. Rasa nyerinya tajam dan berdenyut, menyebar hingga ke rahang dan kadang-kadang membuat kepala saya pusing.",
+            totalDaysOfSymptom: 3,
+            dateCreated: "2023-06-20T09:41:00Z",
+            requestedDate: "2023-06-29T09:41:00Z",
+            treatmentStatus: "pending",
+            images: nil
+        )
+        
+        ContainerPerawatan(treatment: sampleTreatment)
+    }
+}
 
