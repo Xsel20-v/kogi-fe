@@ -92,16 +92,16 @@ struct Perawatan: View {
                 .padding(.bottom, 15)
                 
                 VStack {
-                    if imageIsConverted {
-                        ForEach(images, id: \.self) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                                .cornerRadius(20)
-                                .padding(.leading, 10)
-                                .padding(5)
-                        }
-                    }
+//                    if imageIsConverted {
+//                        ForEach(images, id: \.self) { image in
+//                            Image(uiImage: image)
+//                                .resizable()
+//                                .frame(width: 80, height: 80)
+//                                .cornerRadius(20)
+//                                .padding(.leading, 10)
+//                                .padding(5)
+//                        }
+//                    }
                     HStack {
                         Text("Perawatan")
                             .fontWeight(.semibold)
@@ -172,9 +172,11 @@ struct HomeBackground: View {
                 
                 Spacer()
                 
-                Button(action: {}, label: {
+                Button(action: {
+                    
+                }) {
                     Image(systemName: "clock.fill")
-                })
+                }
             }
             .foregroundColor(Constant.Colors.baseColor)
             .padding(.top, 70)

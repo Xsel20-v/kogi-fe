@@ -28,11 +28,11 @@ class SocketHelper {
             "sender": message.sender,
             "timestamp": message.timestamp
         ]
-        socket.emit("chat message", messageData)
+        socket.emit("message", messageData)
     }
 
     func receiveMessage(completion: @escaping (ChatMessage) -> Void) {
-        socket.on("chat message") { (dataArray, ack) in
+        socket.on("message") { (dataArray, ack) in
             if let data = dataArray[0] as? [String: Any],
                let body = data["content"] as? String,
                let sender = data["sender"] as? String,
