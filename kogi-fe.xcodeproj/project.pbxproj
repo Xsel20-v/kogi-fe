@@ -50,6 +50,7 @@
 		3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */; };
 		3D4A3EBE2C00873C003FBC8F /* RiwayatPerawatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */; };
 		3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */; };
+		3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */; };
 		3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */; };
 		3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4342BF49497003F0E36 /* ImagePicker.swift */; };
 		3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D944C972BFDC6D800A55802 /* FilterSheet.swift */; };
@@ -106,6 +107,7 @@
 		3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCariPerawatan.swift; sourceTree = "<group>"; };
 		3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiwayatPerawatanView.swift; sourceTree = "<group>"; };
 		3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
 		3D79F4342BF49497003F0E36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3D944C972BFDC6D800A55802 /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */,
 				35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */,
 				3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */,
+				3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
 				3D4A3EBA2C007CD7003FBC8F /* SearchBar.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
+				3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 				351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */,
 				359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */,
