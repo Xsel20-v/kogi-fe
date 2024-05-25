@@ -60,6 +60,8 @@
 		3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87F2BFE15BB0050161D /* KeluarView.swift */; };
 		3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8812BFEE51A0050161D /* ChatRoomView.swift */; };
 		3D9C20092C01BAA300876E20 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20082C01BAA300876E20 /* Starscream */; };
+		3D9C200B2C01BC6F00876E20 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200A2C01BC6F00876E20 /* LogInView.swift */; };
+		3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200C2C01BF7700876E20 /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,6 +119,8 @@
 		3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusatBantuanView.swift; sourceTree = "<group>"; };
 		3D97B87F2BFE15BB0050161D /* KeluarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluarView.swift; sourceTree = "<group>"; };
 		3D97B8812BFEE51A0050161D /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		3D9C200A2C01BC6F00876E20 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		3D9C200C2C01BF7700876E20 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +235,8 @@
 				3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */,
 				3D4A3EB52C007BF9003FBC8F /* CariPerawatanView.swift */,
 				3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */,
+				3D9C200A2C01BC6F00876E20 /* LogInView.swift */,
+				3D9C200C2C01BF7700876E20 /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +345,7 @@
 				3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */,
 				3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */,
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
+				3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
@@ -349,6 +356,7 @@
 				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
+				3D9C200B2C01BC6F00876E20 /* LogInView.swift in Sources */,
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,
 				3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
