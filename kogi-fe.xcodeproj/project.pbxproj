@@ -22,7 +22,6 @@
 		35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */; };
 		35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */; };
 		35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */; };
-		35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 35CFF9962BFEF75A00F4ABB9 /* SocketIO */; };
 		35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */; };
 		35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */; };
 		35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */; };
@@ -60,6 +59,7 @@
 		3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */; };
 		3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87F2BFE15BB0050161D /* KeluarView.swift */; };
 		3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8812BFEE51A0050161D /* ChatRoomView.swift */; };
+		3D9C20092C01BAA300876E20 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20082C01BAA300876E20 /* Starscream */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */,
+				3D9C20092C01BAA300876E20 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +272,7 @@
 			);
 			name = "kogi-fe";
 			packageProductDependencies = (
-				35CFF9962BFEF75A00F4ABB9 /* SocketIO */,
+				3D9C20082C01BAA300876E20 /* Starscream */,
 			);
 			productName = "kogi-fe";
 			productReference = 35F0B2D52BE9DD88009B3051 /* kogi-fe.app */;
@@ -303,7 +303,7 @@
 			);
 			mainGroup = 35F0B2CC2BE9DD88009B3051;
 			packageReferences = (
-				35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */,
 			);
 			productRefGroup = 35F0B2D62BE9DD88009B3051 /* Products */;
 			projectDirPath = "";
@@ -590,21 +590,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.8;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		35CFF9962BFEF75A00F4ABB9 /* SocketIO */ = {
+		3D9C20082C01BAA300876E20 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
-			productName = SocketIO;
+			package = 3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

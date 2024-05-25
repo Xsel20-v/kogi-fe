@@ -34,7 +34,7 @@ struct SwiftUIView: View {
                 .padding()
                 
                 Button("Send") {
-                    let message = "[\"azella\",\"\(messageToSend)\"]"
+                    let message = "[\"azella\",\"testttt\"]"
                     webSocketManager.sendMessage(message)
                 }
                 .padding()
