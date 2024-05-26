@@ -37,6 +37,63 @@ class NetworkService {
         }
     }
     
+//    func fetchPatientData() async throws -> [Patient]? {
+//        let endpoint = "https://kogi-api.onrender.com/api/users"
+//        
+//        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+//        
+//        var request = URLRequest(url: url)
+//        
+//        request.httpMethod = "POST" // Set HTTP method to POST
+//        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
+//        
+//        let bodyData = "{\"uid\": \"\(userID)\"}"
+//        
+//        print(bodyData)
+//        request.httpBody = bodyData.data(using: .utf8)
+//        
+//        let (data, response) = try await URLSession.shared.data(for: request)
+//        
+//        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+//        
+//        do {
+//            let jsonDecoder = JSONDecoder()
+//            return try jsonDecoder.decode([Patient].self, from: data)
+//        } catch {
+//            throw NError.invalidData
+//        }
+//    }
+    
+    func fetchPatientData() async throws -> [Patient]? {
+        let endpoint = "https://kogi-api.onrender.com/api/users"
+        
+        guard var urlComponents = URLComponents(string: endpoint) else { throw NError.invalidURL }
+        
+        // Add query parameter for the user ID
+        urlComponents.queryItems = [URLQueryItem(name: "uid", value: userID)]
+        
+        guard let url = urlComponents.url else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        
+        // Set HTTP method to GET
+        request.httpMethod = "GET"
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NError.invalidResponse
+        }
+        
+        do {
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode([Patient].self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+    }
+
+    
     func sendPostTreatment(treatment: Treatment) async throws {
         
         var postTreatment = PostTreatment(

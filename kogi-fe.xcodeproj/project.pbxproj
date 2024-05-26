@@ -22,11 +22,9 @@
 		35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */; };
 		35CFF9922BFEED8200F4ABB9 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */; };
 		35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */; };
-		35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 35CFF9962BFEF75A00F4ABB9 /* SocketIO */; };
 		35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */; };
 		35CFF99B2BFEFCC100F4ABB9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */; };
 		35CFF99D2BFF03B800F4ABB9 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99C2BFF03B800F4ABB9 /* BottomSheetView.swift */; };
-		35CFF99F2BFF03C100F4ABB9 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35CFF99E2BFF03C100F4ABB9 /* FilterSheet.swift */; };
 		35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE09272BEE6B77009E1966 /* AutoScroller.swift */; };
 		35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2D82BE9DD88009B3051 /* kogi_feApp.swift */; };
 		35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F0B2DA2BE9DD88009B3051 /* ContentView.swift */; };
@@ -45,6 +43,13 @@
 		3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */; };
 		3D4A3EB22BFF088B003FBC8F /* HeaderViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */; };
 		3D4A3EB42BFF1D37003FBC8F /* DetilSesiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */; };
+		3D4A3EB62C007BF9003FBC8F /* CariPerawatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB52C007BF9003FBC8F /* CariPerawatanView.swift */; };
+		3D4A3EB82C007C3A003FBC8F /* HeaderViewWithTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB72C007C3A003FBC8F /* HeaderViewWithTitle.swift */; };
+		3D4A3EBA2C007CD7003FBC8F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EB92C007CD7003FBC8F /* SearchBar.swift */; };
+		3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */; };
+		3D4A3EBE2C00873C003FBC8F /* RiwayatPerawatanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */; };
+		3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */; };
+		3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */; };
 		3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */; };
 		3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79F4342BF49497003F0E36 /* ImagePicker.swift */; };
 		3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D944C972BFDC6D800A55802 /* FilterSheet.swift */; };
@@ -54,6 +59,13 @@
 		3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */; };
 		3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87F2BFE15BB0050161D /* KeluarView.swift */; };
 		3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8812BFEE51A0050161D /* ChatRoomView.swift */; };
+		3D9C20092C01BAA300876E20 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20082C01BAA300876E20 /* Starscream */; };
+		3D9C200B2C01BC6F00876E20 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200A2C01BC6F00876E20 /* LogInView.swift */; };
+		3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200C2C01BF7700876E20 /* SignUpView.swift */; };
+		3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200E2C01D09200876E20 /* SocketIOManager.swift */; };
+		3D9C20122C01D37F00876E20 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20112C01D37F00876E20 /* SocketIO */; };
+		3D9C20182C0245D100876E20 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20172C0245D100876E20 /* Patient.swift */; };
+		3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20192C02480600876E20 /* PatientViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +107,13 @@
 		3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerawatanView.swift; sourceTree = "<group>"; };
 		3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewComponent.swift; sourceTree = "<group>"; };
 		3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetilSesiView.swift; sourceTree = "<group>"; };
+		3D4A3EB52C007BF9003FBC8F /* CariPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CariPerawatanView.swift; sourceTree = "<group>"; };
+		3D4A3EB72C007C3A003FBC8F /* HeaderViewWithTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderViewWithTitle.swift; sourceTree = "<group>"; };
+		3D4A3EB92C007CD7003FBC8F /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCariPerawatan.swift; sourceTree = "<group>"; };
+		3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiwayatPerawatanView.swift; sourceTree = "<group>"; };
+		3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
 		3D79F4342BF49497003F0E36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3D944C972BFDC6D800A55802 /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
@@ -104,6 +123,11 @@
 		3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PusatBantuanView.swift; sourceTree = "<group>"; };
 		3D97B87F2BFE15BB0050161D /* KeluarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluarView.swift; sourceTree = "<group>"; };
 		3D97B8812BFEE51A0050161D /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		3D9C200A2C01BC6F00876E20 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		3D9C200C2C01BF7700876E20 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		3D9C200E2C01D09200876E20 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
+		3D9C20172C0245D100876E20 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
+		3D9C20192C02480600876E20 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35CFF9972BFEF75A00F4ABB9 /* SocketIO in Frameworks */,
+				3D9C20092C01BAA300876E20 /* Starscream in Frameworks */,
+				3D9C20122C01D37F00876E20 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +162,9 @@
 				3D944C972BFDC6D800A55802 /* FilterSheet.swift */,
 				3D944C992BFDE7F500A55802 /* BottomSheetView.swift */,
 				3D4A3EB12BFF088B003FBC8F /* HeaderViewComponent.swift */,
+				3D4A3EB72C007C3A003FBC8F /* HeaderViewWithTitle.swift */,
+				3D4A3EB92C007CD7003FBC8F /* SearchBar.swift */,
+				3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -146,6 +174,9 @@
 			children = (
 				35CFF98D2BFCB81100F4ABB9 /* NetworkService.swift */,
 				35CFF9932BFEF62F00F4ABB9 /* SocketHelper.swift */,
+				3D9C200E2C01D09200876E20 /* SocketIOManager.swift */,
+				3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */,
+				3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,6 +242,10 @@
 				3D97B8812BFEE51A0050161D /* ChatRoomView.swift */,
 				3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */,
 				3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */,
+				3D4A3EB52C007BF9003FBC8F /* CariPerawatanView.swift */,
+				3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */,
+				3D9C200A2C01BC6F00876E20 /* LogInView.swift */,
+				3D9C200C2C01BF7700876E20 /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +256,7 @@
 				351FCBBA2BECD41E00C73E59 /* Treatment.swift */,
 				35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */,
 				35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */,
+				3D9C20172C0245D100876E20 /* Patient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,6 +267,7 @@
 				351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */,
 				35F2288F2BF5E37C0070DC35 /* AnamnesisViewModel.swift */,
 				35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */,
+				3D9C20192C02480600876E20 /* PatientViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -252,7 +289,8 @@
 			);
 			name = "kogi-fe";
 			packageProductDependencies = (
-				35CFF9962BFEF75A00F4ABB9 /* SocketIO */,
+				3D9C20082C01BAA300876E20 /* Starscream */,
+				3D9C20112C01D37F00876E20 /* SocketIO */,
 			);
 			productName = "kogi-fe";
 			productReference = 35F0B2D52BE9DD88009B3051 /* kogi-fe.app */;
@@ -283,7 +321,8 @@
 			);
 			mainGroup = 35F0B2CC2BE9DD88009B3051;
 			packageReferences = (
-				35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */,
+				3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 35F0B2D62BE9DD88009B3051 /* Products */;
 			projectDirPath = "";
@@ -313,12 +352,17 @@
 			files = (
 				3D4A3EB42BFF1D37003FBC8F /* DetilSesiView.swift in Sources */,
 				3552BEE92BFBAE0000D1FE85 /* Ringkasan.swift in Sources */,
+				3D4A3EB82C007C3A003FBC8F /* HeaderViewWithTitle.swift in Sources */,
 				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
 				3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */,
 				3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */,
+				3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */,
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
+				3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
+				3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
+				3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
 				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
 				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
@@ -327,9 +371,12 @@
 				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
 				3D3BE4C42BEBCC23000771A2 /* ContainerPerawatan.swift in Sources */,
 				35F0B2DB2BE9DD88009B3051 /* ContentView.swift in Sources */,
+				3D9C200B2C01BC6F00876E20 /* LogInView.swift in Sources */,
 				35EE09282BEE6B77009E1966 /* AutoScroller.swift in Sources */,
 				3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
+				3D4A3EBE2C00873C003FBC8F /* RiwayatPerawatanView.swift in Sources */,
+				3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */,
@@ -349,11 +396,15 @@
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				3D4A3EBA2C007CD7003FBC8F /* SearchBar.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
+				3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 				351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */,
 				359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */,
 				353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */,
+				3D4A3EB62C007BF9003FBC8F /* CariPerawatanView.swift in Sources */,
+				3D9C20182C0245D100876E20 /* Patient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +614,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.6;
+			};
+		};
+		3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -574,9 +633,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		35CFF9962BFEF75A00F4ABB9 /* SocketIO */ = {
+		3D9C20082C01BAA300876E20 /* Starscream */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 35CFF9952BFEF75A00F4ABB9 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = 3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+		3D9C20112C01D37F00876E20 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */
