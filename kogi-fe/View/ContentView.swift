@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var tabSelection = 0
     @State var path = NavigationPath()
     @StateObject var treatmentViewModel = TreatmentViewModel()
+    @StateObject var patientViewModel = PatientViewModel()
     
     var body: some View {
         
@@ -27,7 +28,7 @@ struct ContentView: View {
                     .tabItem {
                         Label("Pesan", systemImage: "ellipsis.message")
                     }
-                Pengaturan(path: $path, tabSelection: $tabSelection)
+                Pengaturan(path: $path, tabSelection: $tabSelection, patientViewModel: patientViewModel)
                     .tag(2)
                     .tabItem {
                         Label("Pengaturan", systemImage: "gearshape")
@@ -58,6 +59,10 @@ struct ContentView: View {
                     Ringkasan(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Chat Room":
                     ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
+                case "Ijazah":
+                    IjazahView(path: $path, tabSelection: $tabSelection)
+                case "Ganti Sandi":
+                    GantiSandiView(path: $path, tabSelection: $tabSelection)
 //                case "Lama Keluhan" :
 //                    LamaKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
                 default:

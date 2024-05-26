@@ -24,9 +24,9 @@
 //
 //    func sendMessage(message: ChatMessage) {
 //        let messageData: [String: Any] = [
-//            "body": message.body,
-//            "sender": message.sender,
-//            "timestamp": message.timestamp
+//            "body": message.body
+////            "sender": message.sender,
+////            "timestamp": message.timestamp
 //        ]
 //        socket.emit("message", messageData)
 //    }
@@ -37,7 +37,7 @@
 //               let body = data["content"] as? String,
 //               let sender = data["sender"] as? String,
 //               let timestamp = data["timestamp"] as? String {
-//                let message = ChatMessage(body: body, sender: sender, timestamp: timestamp )
+//                let message = ChatMessage(id: "azel", body: body)
 //                completion(message)
 //            }
 //        }

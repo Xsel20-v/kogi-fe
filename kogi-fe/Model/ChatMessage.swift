@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct ChatMessage: Identifiable {
-    let id : String
-    let body: String
-//    let sender: String
-//    let timestamp: String
+struct ChatMessage: Codable, Identifiable {
+    let id = UUID()
+    let destination: String
+    let message: String
 }

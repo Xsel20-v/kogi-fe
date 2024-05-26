@@ -11,7 +11,10 @@ struct Pengaturan: View {
     
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
-    @StateObject var treatmentViewModel = TreatmentViewModel()
+    //    @StateObject var treatmentViewModel = TreatmentViewModel()
+    
+    @State var patient: Patient?
+    @StateObject var patientViewModel: PatientViewModel
     
     var body: some View {
         ZStack{
@@ -41,30 +44,41 @@ struct Pengaturan: View {
                         }
                     }
                 
-                
                 Form{
                     Section {
                         HStack {
                             Text("Nama")
                                 .foregroundColor(.gray)
                             Spacer()
-                            Text("Azella")
+                            if let patientName = patientViewModel.fetchedPatientData?.name {
+                                Text(patientName)
+                            } else {
+                                ProgressView()
+                            }
                         }
                         HStack {
                             Text("Lahir")
                                 .foregroundColor(.gray)
                             Spacer()
-                            Text("15 April 1997")
+                            if let dateOfBirth = patientViewModel.fetchedPatientData?.dateOfBirth {
+                                Text(dateOfBirth)
+                            } else {
+                                ProgressView()
+                            }
                         }
                         HStack {
                             Text("Email")
                                 .foregroundColor(.gray)
                             Spacer()
-                            Text("azella.m@email.com")
+                            if let email = patientViewModel.fetchedPatientData?.email {
+                                Text(email)
+                            } else {
+                                ProgressView()
+                            }
                         }
                         
                         Button(action: {
-                            path.append("")
+                            path.append("Ijazah")
                         }, label: {
                             HStack{
                                 Text("Ijazah")
@@ -75,7 +89,7 @@ struct Pengaturan: View {
                         })
                         
                         Button(action: {
-                            path.append("")
+                            path.append("Ganti Sandi")
                         }, label: {
                             HStack{
                                 Text("Ganti Sandi")
@@ -85,7 +99,7 @@ struct Pengaturan: View {
                             .foregroundColor(.black)
                         })
                         
-                                                
+                        
                     }
                     
                     Section {
@@ -94,6 +108,7 @@ struct Pengaturan: View {
                             path.append("")
                         }, label: {
                             HStack{
+                                Image(systemName: "questionmark.circle")
                                 Text("Pusat Bantuan")
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -105,6 +120,7 @@ struct Pengaturan: View {
                             path.append("")
                         }, label: {
                             HStack{
+                                Image(systemName: "rectangle.portrait.and.arrow.right")
                                 Text("Keluar")
                                 Spacer()
                                 Image(systemName: "chevron.right")
@@ -118,6 +134,11 @@ struct Pengaturan: View {
                 .frame(width: 390, height: 536)
                 .offset(y: 35)
             }
+            .onAppear {
+                Task {
+                    await patientViewModel.getPatientData()
+                }
+            }
             .ignoresSafeArea()
         }
         
@@ -126,5 +147,5 @@ struct Pengaturan: View {
 
 
 #Preview {
-    Pengaturan(path: .constant(NavigationPath()), tabSelection: .constant(2))
+    Pengaturan(path: .constant(NavigationPath()), tabSelection: .constant(2), patientViewModel: PatientViewModel())
 }
