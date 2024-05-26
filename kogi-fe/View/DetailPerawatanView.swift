@@ -142,7 +142,7 @@ struct DetailPerawatanView_Previews: PreviewProvider {
             dateCreated: "2023-06-20T09:41:00Z",
             requestedDate: "2023-06-29T09:41:00Z",
             treatmentStatus: "pending",
-            images: nil
+            images: []
         )
         
         DetailPerawatanView(treatment: sampleTreatment)
