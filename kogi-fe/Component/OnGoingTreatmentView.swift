@@ -20,7 +20,7 @@ struct OnGoingTreatmentView: View {
             VStack {
                 ContainerRingkasan(treatment: treatmentViewModel.fetchedTreatmentData ?? Treatment(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: []))
                     .padding(.bottom, 50)
-                
+                Spacer()
                 Button(action: {
                     showAlert = true
                 }, label: {
@@ -36,10 +36,9 @@ struct OnGoingTreatmentView: View {
                             }
                             showSheet = false
                         },
-                        secondaryButton: .cancel()
+                        secondaryButton: .cancel(Text("Tidak"))
                     )
                 }
-                Spacer()
             }
             .padding()
             .padding(.top, 30)

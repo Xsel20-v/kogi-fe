@@ -2,7 +2,6 @@ import SwiftUI
 
 struct Perawatan: View {
     
-    
     @State private var categoryPerawatan: String = "Sakit Gigi"
     @State private var statusPerawatan: String = "pending"
     @State private var namaKOAS: String = "Azella"
@@ -19,7 +18,7 @@ struct Perawatan: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                VStack (alignment: .leading){
+                VStack(alignment: .leading) {
                     HomeBackground()
                         .padding(.bottom, 15)
                     VStack {
@@ -27,7 +26,6 @@ struct Perawatan: View {
                             Text("Kategori")
                                 .fontWeight(.semibold)
                             Spacer()
-                            
                         }
                         .padding(.leading, 30)
                         HStack {
@@ -42,21 +40,18 @@ struct Perawatan: View {
                             }, label: {
                                 CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
                             })
-                            
                             Spacer()
                             Button(action: {
                                 path.append(Constant.Categories.cabutGigi)
                             }, label: {
                                 CategoryButton(text: Constant.Categories.cabutGigi, image: Constant.Images.cabutGigi)
                             })
-                            
                             Spacer()
                             Button(action: {
                                 path.append(Constant.Categories.gigiTiruan)
                             }, label: {
                                 CategoryButton(text: Constant.Categories.gigiTiruan, image: Constant.Images.gigiTiruan)
                             })
-                            
                         }
                         .padding(.leading, 30)
                         .padding(.trailing, 30)
@@ -67,26 +62,22 @@ struct Perawatan: View {
                             }, label: {
                                 CategoryButton(text: Constant.Categories.kawatLepasan, image: Constant.Images.kawatLepasan)
                             })
-                            
                             Spacer()
                             Button(action: {
                                 path.append(Constant.Categories.gusiBengkak)
                             }, label: {
                                 CategoryButton(text: Constant.Categories.gusiBengkak, image: Constant.Images.gusiBengkak)
                             })
-                            
                             Spacer()
                             Button(action: {
                                 path.append(Constant.Categories.sariawan)
                             }, label: {
                                 CategoryButton(text: Constant.Categories.sariawan, image: Constant.Images.sariawan)
                             })
-                            
                             Spacer()
                             CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
                                 .disabled(true)
                                 .opacity(0)
-                            
                         }
                         .padding(.leading, 30)
                         .padding(.trailing, 30)
@@ -94,30 +85,18 @@ struct Perawatan: View {
                     .padding(.bottom, 15)
                     
                     VStack {
-    //                    if imageIsConverted {
-    //                        ForEach(images, id: \.self) { image in
-    //                            Image(uiImage: image)
-    //                                .resizable()
-    //                                .frame(width: 80, height: 80)
-    //                                .cornerRadius(20)
-    //                                .padding(.leading, 10)
-    //                                .padding(5)
-    //                        }
-    //                    }
                         HStack {
                             Text("Perawatan")
                                 .fontWeight(.semibold)
                             Button(action: {
                                 Task {
                                     dataIsRetrieved = await treatmentViewModel.getTreatmentData()
-                                    
                                 }
                             }, label: {
                                 Image(systemName: "arrow.clockwise")
                                     .foregroundColor(Constant.Colors.primaryColor)
                             })
                             Spacer()
-                            
                         }
                         .padding(.leading, 30)
                         
@@ -131,10 +110,8 @@ struct Perawatan: View {
                             Text("Tidak ada perawatan")
                                 .padding()
                         }
-                        
                     }
                     Spacer()
-                    
                 }
                 .ignoresSafeArea()
                 .background(Constant.Colors.baseColor)
@@ -151,36 +128,35 @@ struct Perawatan: View {
                         }
                     }
                 })
-                BottomSheetView(isPresented: $showSheet, maxHeight: 1300) {
+                .sheet(isPresented: $showSheet, content: {
                     OnGoingTreatmentView(showSheet: $showSheet, treatmentViewModel: treatmentViewModel)
-                }
+                        .hideTabBar()
+                })
+
             }
-            
         }
     }
 }
 
 struct HomeBackground: View {
-    private var name : String = "Dicky"
+    private var name: String = "Dicky"
     private var homeBackgroundWidth: CGFloat = 393
     private var homeBackgroundHeight: CGFloat = 277.69
     
-    var body: some View{
-        ZStack (alignment : .topLeading) {
+    var body: some View {
+        ZStack(alignment: .topLeading) {
             Image(Constant.Images.homeBackground)
                 .resizable()
                 .frame(width: homeBackgroundWidth, height: homeBackgroundHeight)
             
             HStack {
-                VStack (alignment: .leading) {
+                VStack(alignment: .leading) {
                     Text("Halo, " + name + "!")
                         .bold()
                     Text("Bagaimana kondisi gigi kamu?")
                         .opacity(0.6)
                 }
-                
                 Spacer()
-                
                 Button(action: {
                     
                 }) {
@@ -195,7 +171,7 @@ struct HomeBackground: View {
     }
 }
 
-
 #Preview {
     Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
 }
+
