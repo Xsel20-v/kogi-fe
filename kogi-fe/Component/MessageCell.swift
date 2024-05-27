@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MessageCell: View {
+    let type: String
     let message: String
     let timeStamp: String
     let isMyMessage: Bool
@@ -24,27 +25,51 @@ struct MessageCell: View {
     }
 
     var body: some View {
-        VStack(alignment: isMyMessage ? .trailing : .leading) {
-            Text(message)
-                .padding(10)
-                .foregroundColor(.black)
-                .background(isMyMessage ? Constant.Colors.myMessage : Constant.Colors.notMyMessage)
-                .cornerRadius(10)
-                .shadow(radius: 2)
-                .overlay(alignment: isMyMessage ? .bottomLeading : .bottomTrailing) {
-                    Triangle()
-                        .frame(width: 15, height: 15)
-                        .foregroundColor(isMyMessage ? Constant.Colors.myMessage : Constant.Colors.notMyMessage)
-                        .offset(x: isMyMessage ? -7 : 7, y: 1.5)
-                }
+        HStack {
+            if !isMyMessage {
+                Spacer()
+            }
             
-            Text(formattedTimeStamp)
-                .font(.caption)
-                .foregroundColor(.gray)
+            VStack(alignment: isMyMessage ? .leading : .trailing) {
+                if type == "text" {
+                    Text(message)
+                        .padding(10)
+                        .foregroundColor(.black)
+                        .background(isMyMessage ? Constant.Colors.myMessage : Constant.Colors.notMyMessage)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
+                        .overlay(alignment: isMyMessage ? .bottomLeading : .bottomTrailing) {
+                            Triangle()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(isMyMessage ? Constant.Colors.myMessage : Constant.Colors.notMyMessage)
+                                .offset(x: isMyMessage ? -7 : 7, y: 1.5)
+                        }
+                } else {
+                    getConvertedImage(message: message)
+                        .cornerRadius(10)
+                        .shadow(radius: 2)
+                        .frame(width: 150, height: 150)
+                }
+                
+                Text(formattedTimeStamp)
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+            if isMyMessage {
+                Spacer()
+            }
         }
         .padding()
-            
-        
+    }
+    
+    func getConvertedImage(message : String) -> Image {
+        if let dataImage = Data(base64Encoded: message) {
+            if let uiImage = UIImage(data: dataImage) {
+                return Image(uiImage: uiImage)
+            }
+        }
+        return Image(systemName: "camera")
     }
 }
 
@@ -64,5 +89,6 @@ struct Triangle: Shape {
 }
 
 #Preview {
-    MessageCell(message: "Hello my name is Jonathan Axel Benaya, i live in Bandung. I Like to code and now I am currently finishing my thesis", timeStamp: "2024-05-23T14:52:29", isMyMessage: false)
+//    MessageCell(type: "text", message: "Hello my name is Axel", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
+    MessageCell(type: "image", message: "iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
 }
