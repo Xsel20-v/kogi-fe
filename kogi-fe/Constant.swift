@@ -14,7 +14,8 @@ struct Constant {
         static let baseColor = Color("customWhite")
         static let systemGray = Color("systemGray")
         static let systemYellow = Color("systemYellow")
-        
+        static let myMessage = Color("myMessage")
+        static let notMyMessage = Color("notMyMessage")
     }
     
     struct Images{
