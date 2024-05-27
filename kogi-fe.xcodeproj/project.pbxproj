@@ -21,6 +21,7 @@
 		3566D0AA2C04344600E25115 /* HideTabBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0A92C04344600E25115 /* HideTabBarModifier.swift */; };
 		3566D0AE2C04486E00E25115 /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0AD2C04486E00E25115 /* FullScreenImageView.swift */; };
 		3566D0B02C04487800E25115 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0AF2C04487800E25115 /* MessageCell.swift */; };
+		3566D0B22C044E1500E25115 /* ChatBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0B12C044E1500E25115 /* ChatBar.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -88,6 +89,7 @@
 		3566D0A92C04344600E25115 /* HideTabBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideTabBarModifier.swift; sourceTree = "<group>"; };
 		3566D0AD2C04486E00E25115 /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		3566D0AF2C04487800E25115 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		3566D0B12C044E1500E25115 /* ChatBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBar.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				3D4A3EB92C007CD7003FBC8F /* SearchBar.swift */,
 				3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */,
 				3566D0A52C039D0300E25115 /* OnGoingTreatmentView.swift */,
+				3566D0B12C044E1500E25115 /* ChatBar.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */,
 				3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */,
 				3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */,
+				3566D0B22C044E1500E25115 /* ChatBar.swift in Sources */,
 				3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */,
 				3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */,
 				3D4A3EB22BFF088B003FBC8F /* HeaderViewComponent.swift in Sources */,
