@@ -128,7 +128,7 @@ class TreatmentViewModel: ObservableObject {
     
     func updateDateCreated(dateCreated: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         treatment.dateCreated = formatter.string(from: dateCreated)
     }
     
@@ -138,12 +138,34 @@ class TreatmentViewModel: ObservableObject {
     
     func updateRequestedDate(requestedDate: Date) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         treatment.requestedDate = formatter.string(from: requestedDate)
     }
     
-    func updateTreatmentStatus(treatmentStatus: String){
+    func setTreatmentStatus(treatmentStatus: String){
         treatment.treatmentStatus = treatmentStatus
+    }
+    
+    func updateTreatmentStatus(treatmentStatus: String) async{
+        if treatmentStatus == "pending" {
+            fetchedTreatmentData?.treatmentStatus = treatmentStatus
+        } else {
+            if let treatment = fetchedTreatmentData {
+                fetchedTreatmentData?.treatmentStatus = treatmentStatus
+                do {
+                    try await networkService?.updateTreatmentData(treatment: treatment)
+                }catch NError.invalidURL {
+                    print("invalid URL")
+                }catch NError.invalidResponse {
+                    print("invalid Response")
+                }catch NError.invalidData {
+                    print("invalid Data")
+                }catch {
+                    print("unexpected error")
+                }
+            }
+            
+        }
     }
     
     func setImages(from selections: [PhotosPickerItem]) {

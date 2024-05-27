@@ -140,6 +140,50 @@ class NetworkService {
             throw error
         }
     }
+    
+    func updateTreatmentData(treatment: Treatment) async throws {
+        
+        if let treatmentID = treatment.treatmentID {
+            var updateTreatment = UpdateTreatment(
+                treatmentID: treatmentID,
+                coassID: treatment.coassID,
+                problemCategory: treatment.problemCategory,
+                status: treatment.treatmentStatus,
+                date: treatment.requestedDate)
+            
+            guard let jsonData = try? JSONEncoder().encode(updateTreatment) else { throw NError.invalidEncodingData }
+            
+            let endpoint = "https://kogi-api.onrender.com/api/UpdateTreatment"
+            
+            guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            do {
+                // Perform the network request
+                let (data, response) = try await URLSession.shared.data(for: request)
+                
+                // Ensure the response is an HTTPURLResponse and has a status code of 200
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    throw NError.invalidResponse
+                }
+                
+                // Print the response data if it can be converted to a string
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response: \(responseString)")
+                }
+            } catch {
+                // Handle any errors that occurred during the network request
+                print("Error: \(error)")
+                throw error
+            }
+            
+        }
+        
+    }
 }
 
 enum NError : Error {

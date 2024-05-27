@@ -204,7 +204,7 @@ struct ContainerPerawatan: View {
     // Helper function to format date
     func formatDate(_ date: String) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         if let date = formatter.date(from: date) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd MMM yyyy"
@@ -215,10 +215,11 @@ struct ContainerPerawatan: View {
     }
     // Helper function to format time
     func formatTime(_ date: String) -> String {
-        let formatter = ISO8601DateFormatter()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         if let date = formatter.date(from: date) {
             let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "(HH:mm)"
+            timeFormatter.dateFormat = "h:mm a"
             return timeFormatter.string(from: date)
         }
         return "Invalid time"
@@ -239,8 +240,8 @@ struct ContainerPerawatan_Previews: PreviewProvider {
             areaOfSymptom: ["Taring atas", "Geraham atas", "Taring bawah", "Geraham bawah"],
             symptomsDesc: "Gigi saya terasa sakit sejak beberapa hari lalu, dan semakin parah ketika saya makan atau minum sesuatu yang dingin atau panas. Rasa nyerinya tajam dan berdenyut, menyebar hingga ke rahang dan kadang-kadang membuat kepala saya pusing.",
             totalDaysOfSymptom: 3,
-            dateCreated: "2023-06-20T09:41:00Z",
-            requestedDate: "2023-06-29T09:41:00Z",
+            dateCreated: "2023-06-20T09:41:00",
+            requestedDate: "2023-06-29T09:41:00",
             treatmentStatus: "pending",
             images: []
         )

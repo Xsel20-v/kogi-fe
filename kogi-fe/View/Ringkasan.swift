@@ -57,7 +57,7 @@ struct Ringkasan: View {
                     Spacer()
                     Button(action: {
                         treatmentViewModel.updateDateCreated(dateCreated: Date.now)
-                        treatmentViewModel.updateTreatmentStatus(treatmentStatus: "pending")
+                        treatmentViewModel.setTreatmentStatus(treatmentStatus: "pending")
                         print(treatmentViewModel.getAnamnesisData())
                         Task {
                             await treatmentViewModel.postTreatmentData()

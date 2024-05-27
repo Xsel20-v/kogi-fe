@@ -13,6 +13,7 @@ struct Constant {
         static let secondaryColor = Color("secondaryColor")
         static let baseColor = Color("customWhite")
         static let systemGray = Color("systemGray")
+        static let systemYellow = Color("systemYellow")
         
     }
     
