@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct SignUpView: View {
+    
     @State private var fullName: String = ""
     @State private var birthDate: Date = Date()
     @State private var isDatePickerVisible = false
+    @State private var email: String = ""
     @State private var createPassword: String = ""
     @State private var verifyPassword: String = ""
     @State private var isPasswordVisible: Bool = false
     @State private var isVerifyPasswordVisible: Bool = false
+    @State private var showAlert: Bool = false
+    
+    @ObservedObject var loginViewModel: LoginViewModel
+    
+    @Binding var path: NavigationPath
+    
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("isPatient") var isPatient: Bool = false
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -96,6 +106,16 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal, 16)
                     
+                    // Create Email Input
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Email")
+                        TextField("Email", text: $email)
+                            .padding()
+                            .background(Color(.systemGray6))
+                            .cornerRadius(20.0)
+                    }
+                    .padding(.horizontal, 16)
+                    
                     // Create Password Input
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Password")
@@ -152,7 +172,14 @@ struct SignUpView: View {
             // Create Account Button
             Button(action: {
                 // Handle create account action
-                print("Create Account button tapped")
+                if isFilled() {
+                    Task {
+                        isLoggedIn = await loginViewModel.signUpNewPatient(nama: fullName, birthDate: birthDate.toString(), email: email, password: createPassword)
+                    }
+                } else {
+                    showAlert = true
+                }
+//                print("Create Account button tapped")
             }) {
                 ButtonComponent(text: "Buat Akun", buttonColors: .blue)
             }
@@ -163,7 +190,7 @@ struct SignUpView: View {
                 Text("Sudah Punya Akun?")
                     .foregroundColor(.gray)
                 Button(action: {
-                    // Handle sign in action
+                    path.removeLast()
                     print("Sign In button tapped")
                 }) {
                     Text("Masuk Disini")
@@ -179,9 +206,33 @@ struct SignUpView: View {
         }
         .background(Color.white)
         .edgesIgnoringSafeArea(.top)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Sign Up Tidak Berhasil"),
+                message: Text(loginViewModel.alertMessage),
+                dismissButton: .default(Text("Tutup")) {
+                    self.showAlert = false
+                }
+            )
+        }
+    }
+    
+    func isFilled() -> Bool {
+        if !fullName.isEmpty && birthDate != Date.now && !createPassword.isEmpty && !verifyPassword.isEmpty {
+            
+            if createPassword == verifyPassword {
+                return true
+            } else {
+                loginViewModel.alertMessage = "Password tidak sama"
+                return false
+            }
+        } else {
+            loginViewModel.alertMessage = "Pastikan anda mengisi seluruh data yang diperlukan"
+            return false
+        }
     }
 }
 
 #Preview {
-    SignUpView()
+    SignUpView(loginViewModel: LoginViewModel(), path: .constant(NavigationPath()))
 }

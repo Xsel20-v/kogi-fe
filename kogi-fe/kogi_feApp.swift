@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct kogi_feApp: App {
+    
+    @AppStorage("isLoggedIn") var isLoggedIn = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                ContentView()
+            } else {
+                OnBoardingView()
+            }
+            
         }
     }
 }

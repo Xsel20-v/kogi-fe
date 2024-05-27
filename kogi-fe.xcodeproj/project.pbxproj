@@ -22,6 +22,12 @@
 		3566D0AE2C04486E00E25115 /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0AD2C04486E00E25115 /* FullScreenImageView.swift */; };
 		3566D0B02C04487800E25115 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0AF2C04487800E25115 /* MessageCell.swift */; };
 		3566D0B22C044E1500E25115 /* ChatBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0B12C044E1500E25115 /* ChatBar.swift */; };
+		3566D0B62C04BC5400E25115 /* OnBoardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0B52C04BC5400E25115 /* OnBoardingView.swift */; };
+		3566D0B82C04BDC200E25115 /* OnBoardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0B72C04BDC200E25115 /* OnBoardingData.swift */; };
+		3566D0BA2C04BF7D00E25115 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0B92C04BF7D00E25115 /* OnBoardingPage.swift */; };
+		3566D0BC2C04E69100E25115 /* Coass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BB2C04E69100E25115 /* Coass.swift */; };
+		3566D0BE2C04E7F300E25115 /* NewPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BD2C04E7F300E25115 /* NewPatient.swift */; };
+		3566D0C02C04EC8100E25115 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -90,6 +96,12 @@
 		3566D0AD2C04486E00E25115 /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		3566D0AF2C04487800E25115 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		3566D0B12C044E1500E25115 /* ChatBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBar.swift; sourceTree = "<group>"; };
+		3566D0B52C04BC5400E25115 /* OnBoardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingView.swift; sourceTree = "<group>"; };
+		3566D0B72C04BDC200E25115 /* OnBoardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingData.swift; sourceTree = "<group>"; };
+		3566D0B92C04BF7D00E25115 /* OnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPage.swift; sourceTree = "<group>"; };
+		3566D0BB2C04E69100E25115 /* Coass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coass.swift; sourceTree = "<group>"; };
+		3566D0BD2C04E7F300E25115 /* NewPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatient.swift; sourceTree = "<group>"; };
+		3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -263,6 +275,8 @@
 				3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */,
 				3D9C200A2C01BC6F00876E20 /* LogInView.swift */,
 				3D9C200C2C01BF7700876E20 /* SignUpView.swift */,
+				3566D0B52C04BC5400E25115 /* OnBoardingView.swift */,
+				3566D0B92C04BF7D00E25115 /* OnBoardingPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,6 +289,9 @@
 				35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */,
 				3D9C20172C0245D100876E20 /* Patient.swift */,
 				3566D0A72C03A18700E25115 /* UpdateTreatment.swift */,
+				3566D0B72C04BDC200E25115 /* OnBoardingData.swift */,
+				3566D0BB2C04E69100E25115 /* Coass.swift */,
+				3566D0BD2C04E7F300E25115 /* NewPatient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +303,7 @@
 				35F2288F2BF5E37C0070DC35 /* AnamnesisViewModel.swift */,
 				35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */,
 				3D9C20192C02480600876E20 /* PatientViewModel.swift */,
+				3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -383,6 +401,7 @@
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
+				3566D0BA2C04BF7D00E25115 /* OnBoardingPage.swift in Sources */,
 				3566D0A82C03A18700E25115 /* UpdateTreatment.swift in Sources */,
 				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
 				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
@@ -398,8 +417,12 @@
 				3566D0AA2C04344600E25115 /* HideTabBarModifier.swift in Sources */,
 				3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
+				3566D0B82C04BDC200E25115 /* OnBoardingData.swift in Sources */,
+				3566D0BE2C04E7F300E25115 /* NewPatient.swift in Sources */,
 				35F0B2F72BE9E7DB009B3051 /* Pesan.swift in Sources */,
 				35CFF98E2BFCB81100F4ABB9 /* NetworkService.swift in Sources */,
+				3566D0C02C04EC8100E25115 /* LoginViewModel.swift in Sources */,
+				3566D0BC2C04E69100E25115 /* Coass.swift in Sources */,
 				3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */,
 				3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */,
 				3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */,
@@ -425,6 +448,7 @@
 				3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */,
 				35F0B2F52BE9E7D0009B3051 /* Perawatan.swift in Sources */,
 				351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */,
+				3566D0B62C04BC5400E25115 /* OnBoardingView.swift in Sources */,
 				359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */,
 				353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */,
 				3D4A3EB62C007BF9003FBC8F /* CariPerawatanView.swift in Sources */,

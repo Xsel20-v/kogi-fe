@@ -8,9 +8,8 @@
 import Foundation
 
 class NetworkService {
-    let userID = UserDefaults.standard.string(forKey: "userID") ?? "P2"
     
-    func fetchOnGoingTreatment() async throws -> [Treatment]? {
+    func fetchOnGoingTreatment(userID: String) async throws -> [Treatment]? {
         let endpoint = "https://kogi-api.onrender.com/api/getTreatmentList"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
@@ -64,7 +63,7 @@ class NetworkService {
 //        }
 //    }
     
-    func fetchPatientData() async throws -> [Patient]? {
+    func fetchPatientData(userID: String) async throws -> [Patient]? {
         let endpoint = "https://kogi-api.onrender.com/api/users"
         
         guard var urlComponents = URLComponents(string: endpoint) else { throw NError.invalidURL }
@@ -183,6 +182,43 @@ class NetworkService {
             
         }
         
+    }
+    
+    func createNewPatient(patient: NewPatient) async throws -> Patient {
+        let newPatient = patient
+        
+        guard let jsonData = try? JSONEncoder().encode(newPatient) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/insertPatient"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        do {
+            // Perform the network request
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw NError.invalidResponse
+            }
+            
+            // Decode the response data into a Patient model
+            let patient = try JSONDecoder().decode(Patient.self, from: data)
+            
+            return patient
+            
+            
+        } catch {
+            // Handle any errors that occurred during the network request
+            print("Error: \(error)")
+            throw error
+        }
+
     }
 }
 

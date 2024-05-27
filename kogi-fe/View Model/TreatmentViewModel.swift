@@ -31,7 +31,7 @@ class TreatmentViewModel: ObservableObject {
     func getTreatmentData() async -> Bool {
         networkService = NetworkService()
         do {
-            if let treatment = try await networkService?.fetchOnGoingTreatment()?.first {
+            if let treatment = try await networkService?.fetchOnGoingTreatment(userID: userID)?.first {
                 fetchedTreatmentData = treatment
                 print(fetchedTreatmentData)
                 return true
