@@ -15,7 +15,7 @@ struct ContainerPerawatan: View {
         case pending, ongoing, done
     }
     
-    @State var status: Status = .ongoing
+    @State var status: Status = .pending
     var treatment: Treatment
     
     var shadowRadius : CGFloat = 4
@@ -67,67 +67,133 @@ struct ContainerPerawatan: View {
                     .offset(y: height/2 - height2/2 - height2/4)
                     .foregroundColor(statusColor())
                 
-                VStack(alignment: .leading) {
-                    ZStack(alignment: .leading) {
-                        Text(treatment.problemCategory)
-                            .font(.system(size: fontSize16, weight: .semibold))
-                        
-                        Image(systemName: "chevron.right")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: fontSize16)
-                            .offset(x: chevronRightOffset)
-                    }
-                    .padding(.top, -padding25)
-                    
-                    ZStack(alignment: .leading) {
-                        Circle()
-                            .frame(width: geometry.size.width * 0.187)
-                        
-                        VStack(alignment: .leading) {
-                            Text(nama)
+                if status == .pending{
+                    VStack(alignment: .leading) {
+                        ZStack(alignment: .leading) {
+                            Text(treatment.problemCategory)
                                 .font(.system(size: fontSize16, weight: .semibold))
-                            Text("Departemen \(fetchDepartment())")
-                                .font(.system(size: fontSize12))
-                                .italic()
                             
-                            if status == .done {
-                                Text("\(jumlahSesi) Sesi")
-                                    .font(.system(size: fontSize12, weight: .thin))
-                                    .italic()
-                            }
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: fontSize16)
+                                .offset(x: chevronRightOffset)
                         }
-                        .offset(x: geometry.size.width * 0.22)
+                        .padding(.top, -padding25)
+                        
+                        ZStack(alignment: .leading) {
+                            Image(systemName: "person.crop.circle.badge.clock")
+                                .resizable()
+                                .frame(width: 70, height: 60)
+                            
+                            VStack(alignment: .leading) {
+                                Text("Pengajuan sedang diproses")
+                                    .font(.system(size: fontSize16, weight: .semibold))
+                                Text("KOGI sedang mencari KOAS untukmu")
+                                    .font(.system(size: fontSize12))
+                                    .italic()
+                                
+                                if status == .done {
+                                    Text("\(jumlahSesi) Sesi")
+                                        .font(.system(size: fontSize12, weight: .thin))
+                                        .italic()
+                                }
+                            }
+                            .offset(x: geometry.size.width * 0.22)
+                        }
+                        .padding(.top, geometry.size.height * 0.011)
+                        
+                        HStack{
+                            
+                            Image(systemName: "mappin")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: fontSize16, height: fontSize16)
+                                .foregroundColor(foregroundIcon())
+                            
+                            Text("RSGM UNPAD, Kota Bandung")
+                                .font(.system(size: fontSize12))
+                                .padding(.leading, geometry.size.height * -0.0065)
+                                .foregroundColor(foregroundLocationAndDate())
+                            
+                            
+                            Image(systemName: "clock.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: fontSize16, height: fontSize16)
+                                .foregroundColor(foregroundIcon())
+                            
+                            Text("\(formatDate(treatment.requestedDate)) \(formatTime(treatment.requestedDate))")
+                                .font(.system(size: fontSize12))
+                                .padding(.leading, geometry.size.height * -0.0065)
+                                .foregroundColor(foregroundLocationAndDate())
+                        }
+                        .offset(y: geometry.size.width * 0.06)
+                        
                     }
-                    .padding(.top, geometry.size.height * 0.0065)
-                    
-                    HStack{
+                } else {
+                    VStack(alignment: .leading) {
+                        ZStack(alignment: .leading) {
+                            Text(treatment.problemCategory)
+                                .font(.system(size: fontSize16, weight: .semibold))
+                            
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: fontSize16)
+                                .offset(x: chevronRightOffset)
+                        }
+                        .padding(.top, -padding25)
                         
-                        Image(systemName: "mappin")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: fontSize16, height: fontSize16)
-                            .foregroundColor(foregroundIcon())
+                        ZStack(alignment: .leading) {
+                            Circle()
+                                .frame(width: geometry.size.width * 0.187)
+                            
+                            VStack(alignment: .leading) {
+                                Text(nama)
+                                    .font(.system(size: fontSize16, weight: .semibold))
+                                Text("Departemen \(fetchDepartment())")
+                                    .font(.system(size: fontSize12))
+                                    .italic()
+                                
+                                if status == .done {
+                                    Text("\(jumlahSesi) Sesi")
+                                        .font(.system(size: fontSize12, weight: .thin))
+                                        .italic()
+                                }
+                            }
+                            .offset(x: geometry.size.width * 0.22)
+                        }
+                        .padding(.top, geometry.size.height * 0.0065)
                         
-                        Text("RSGM UNPAD, Kota Bandung")
-                            .font(.system(size: fontSize12))
-                            .padding(.leading, geometry.size.height * -0.0065)
-                            .foregroundColor(foregroundLocationAndDate())
+                        HStack{
+                            
+                            Image(systemName: "mappin")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: fontSize16, height: fontSize16)
+                                .foregroundColor(foregroundIcon())
+                            
+                            Text("RSGM UNPAD, Kota Bandung")
+                                .font(.system(size: fontSize12))
+                                .padding(.leading, geometry.size.height * -0.0065)
+                                .foregroundColor(foregroundLocationAndDate())
+                            
+                            
+                            Image(systemName: "clock.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: fontSize16, height: fontSize16)
+                                .foregroundColor(foregroundIcon())
+                            
+                            Text("\(formatDate(treatment.requestedDate)) \(formatTime(treatment.requestedDate))")
+                                .font(.system(size: fontSize12))
+                                .padding(.leading, geometry.size.height * -0.0065)
+                                .foregroundColor(foregroundLocationAndDate())
+                        }
+                        .offset(y: geometry.size.width * 0.06)
                         
-                        
-                        Image(systemName: "clock.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: fontSize16, height: fontSize16)
-                            .foregroundColor(foregroundIcon())
-                        
-                        Text("\(formatDate(treatment.requestedDate)) \(formatTime(treatment.requestedDate))")
-                            .font(.system(size: fontSize12))
-                            .padding(.leading, geometry.size.height * -0.0065)
-                            .foregroundColor(foregroundLocationAndDate())
                     }
-                    .offset(y: geometry.size.width * 0.06)
-                    
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)
