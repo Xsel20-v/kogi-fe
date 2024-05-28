@@ -72,6 +72,8 @@
 		3D9C20122C01D37F00876E20 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20112C01D37F00876E20 /* SocketIO */; };
 		3D9C20182C0245D100876E20 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20172C0245D100876E20 /* Patient.swift */; };
 		3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20192C02480600876E20 /* PatientViewModel.swift */; };
+		3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201B2C04940700876E20 /* SessionModel.swift */; };
+		3D9C201E2C0494EF00876E20 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +142,8 @@
 		3D9C200E2C01D09200876E20 /* SocketIOManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		3D9C20172C0245D100876E20 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		3D9C20192C02480600876E20 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
+		3D9C201B2C04940700876E20 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
+		3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +245,6 @@
 		35F0B2F12BE9E763009B3051 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */,
 				35F0B2DA2BE9DD88009B3051 /* ContentView.swift */,
 				35F0B2F42BE9E7D0009B3051 /* Perawatan.swift */,
 				35F0B2F62BE9E7DB009B3051 /* Pesan.swift */,
@@ -257,6 +260,7 @@
 				3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */,
 				3D97B87F2BFE15BB0050161D /* KeluarView.swift */,
 				3D97B8812BFEE51A0050161D /* ChatRoomView.swift */,
+				35CFF9912BFEED8200F4ABB9 /* ChatRoomView.swift */,
 				3D4A3EAF2BFF05DF003FBC8F /* DetailPerawatanView.swift */,
 				3D4A3EB32BFF1D37003FBC8F /* DetilSesiView.swift */,
 				3D4A3EB52C007BF9003FBC8F /* CariPerawatanView.swift */,
@@ -274,6 +278,7 @@
 				35CFF98F2BFCDC8B00F4ABB9 /* PostTreatment.swift */,
 				35CFF99A2BFEFCC100F4ABB9 /* ChatMessage.swift */,
 				3D9C20172C0245D100876E20 /* Patient.swift */,
+				3D9C201B2C04940700876E20 /* SessionModel.swift */,
 				3566D0A72C03A18700E25115 /* UpdateTreatment.swift */,
 			);
 			path = Model;
@@ -286,6 +291,7 @@
 				35F2288F2BF5E37C0070DC35 /* AnamnesisViewModel.swift */,
 				35CFF9982BFEFBE300F4ABB9 /* ChatViewModel.swift */,
 				3D9C20192C02480600876E20 /* PatientViewModel.swift */,
+				3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				3D97B87A2BFE15260050161D /* IjazahView.swift in Sources */,
 				35F0B2F92BE9E7E5009B3051 /* Pengaturan.swift in Sources */,
 				3D4A3EBE2C00873C003FBC8F /* RiwayatPerawatanView.swift in Sources */,
+				3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */,
 				3566D0AA2C04344600E25115 /* HideTabBarModifier.swift in Sources */,
 				3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
@@ -403,6 +410,7 @@
 				3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */,
 				3D97B87C2BFE15540050161D /* GantiSandiView.swift in Sources */,
 				3D944C9A2BFDE7F500A55802 /* BottomSheetView.swift in Sources */,
+				3D9C201E2C0494EF00876E20 /* SessionViewModel.swift in Sources */,
 				3566D0B22C044E1500E25115 /* ChatBar.swift in Sources */,
 				3D944C982BFDC6D800A55802 /* FilterSheet.swift in Sources */,
 				3D4A3EB02BFF05DF003FBC8F /* DetailPerawatanView.swift in Sources */,
