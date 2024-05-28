@@ -60,9 +60,9 @@ struct OnBoardingView: View {
                                 ButtonComponent(text: "Pasien", buttonColors: .blue)
                             })
                             Button(action: {
-//                                isPatient = false
-//                                path.append("LogIn")
-                                showAlert.toggle()
+                                isPatient = false
+                                path.append("LogIn")
+//                                showAlert.toggle()
                                 print("DOKTER")
                             }, label: {
                                 ButtonComponent(text: "Dokter", buttonColors: .blue)

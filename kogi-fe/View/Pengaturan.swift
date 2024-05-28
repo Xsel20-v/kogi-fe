@@ -9,11 +9,23 @@ import SwiftUI
 
 struct Pengaturan: View {
     
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("isPatient") var isPatient: Bool = false
+    @AppStorage("userID") var userID = "P2"
+    @AppStorage("username") var username = "Axel"
+    @AppStorage("dob") var dob = "2002-07-20"
+    @AppStorage("email") var email_ = "1@2.com"
+    @AppStorage("password") var password = "123"
+    
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
     //    @StateObject var treatmentViewModel = TreatmentViewModel()
     
     @State var patient: Patient?
+    @State var showAlert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
+    
     @StateObject var patientViewModel: PatientViewModel
     
     var body: some View {
@@ -50,31 +62,19 @@ struct Pengaturan: View {
                             Text("Nama")
                                 .foregroundColor(.gray)
                             Spacer()
-                            if let patientName = patientViewModel.fetchedPatientData?.name {
-                                Text(patientName)
-                            } else {
-                                ProgressView()
-                            }
+                            Text(username)
                         }
                         HStack {
                             Text("Lahir")
                                 .foregroundColor(.gray)
                             Spacer()
-                            if let dateOfBirth = patientViewModel.fetchedPatientData?.dateOfBirth {
-                                Text(dateOfBirth)
-                            } else {
-                                ProgressView()
-                            }
+                            Text(dob)
                         }
                         HStack {
                             Text("Email")
                                 .foregroundColor(.gray)
                             Spacer()
-                            if let email = patientViewModel.fetchedPatientData?.email {
-                                Text(email)
-                            } else {
-                                ProgressView()
-                            }
+                            Text(email_)
                         }
                         
                         Button(action: {
@@ -117,7 +117,9 @@ struct Pengaturan: View {
                         })
                         
                         Button(action: {
-                            path.append("")
+                            alertTitle = "Apakah anda ingin keluar?"
+                            alertMessage = "Apakah anda ingin mengganti akun?"
+                            showAlert = true
                         }, label: {
                             HStack{
                                 Image(systemName: "rectangle.portrait.and.arrow.right")
@@ -140,6 +142,22 @@ struct Pengaturan: View {
                 }
             }
             .ignoresSafeArea()
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text(alertTitle),
+                    message: Text(alertMessage),
+                    primaryButton: .destructive(Text("Keluar")) {
+                        isLoggedIn = false
+                        isPatient = false
+                        userID = ""
+                        username = ""
+                        dob = ""
+                        email_ = ""
+                        password = ""
+                    },
+                    secondaryButton: .cancel(Text("Tidak"))
+                )
+            }
         }
         
     }

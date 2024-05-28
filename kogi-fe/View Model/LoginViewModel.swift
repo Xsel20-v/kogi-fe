@@ -10,48 +10,102 @@ import SwiftUI
 
 class LoginViewModel: ObservableObject {
     
-    @AppStorage("userID") var userID = "P2"
-    @AppStorage("username") var username = "Axel"
-    @AppStorage("isLoggedIn") var isLoggedIn = false
-    @AppStorage("dob") var dob = "2002-07-20"
-    @AppStorage("email") var email = "1@2.com"
-    @AppStorage("password") var password = "123"
-    
+    @Published var alertTitle = ""
     @Published var alertMessage = ""
     
     var networkService: NetworkService?
     
-    func signUpNewPatient(nama: String, birthDate: String, email: String, password: String) async -> Bool {
+    func signUpNewPatient(nama: String, birthDate: String, email: String, password: String) async -> Patient? {
         networkService = NetworkService()
         
         let newPatient = NewPatient(name: nama, date: birthDate, email: email, password: password)
         
         do {
             if let patient = try await networkService?.createNewPatient(patient: newPatient) {
-                self.userID = patient.patientID
-                self.username = patient.name
-                self.dob = patient.dateOfBirth
-                self.email = patient.email
-                self.password = patient.password
-                return true
+                return patient
             }
         }catch NError.invalidURL {
             print("invalid URL")
-            return false
-        }catch NError.invalidResponse {
-            print("invalid Response")
-            return false
+            return nil
+        }catch NError.emailIsUsed {
+            alertTitle = "Sign Up Tidak Berhasil"
+            alertMessage = "Email telah terpakai, lakukan log in atau gunakan email lain"
+            print("emailIsUsed")
+            return nil
         }catch NError.invalidData {
             print("invalid Data")
-            alertMessage = "Email telah terpakai, coba log in"
-            return false
+            return nil
+        }catch NError.invalidDecodingData{
+            print("invalid Decoding Data")
+            return nil
         }catch {
             print("unexpected error")
-            return false
+            return nil
         }
         
-        return false
+        return nil
         
     }
     
+    func signUpNewCoass(nama: String, email: String, password: String) async -> Coass? {
+        networkService = NetworkService()
+        
+        let newCoass = NewCoass(name: nama, email: email, password: password)
+        
+        do {
+            if let coass = try await networkService?.createNewCoass(coass: newCoass) {
+                return coass
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+            return nil
+        }catch NError.emailIsUsed {
+            alertTitle = "Sign Up Tidak Berhasil"
+            alertMessage = "Email telah terpakai, lakukan log in atau gunakan email lain"
+            print("emailIsUsed")
+            return nil
+        }catch NError.invalidData {
+            print("invalid Data")
+            return nil
+        }catch NError.invalidDecodingData{
+            print("invalid Decoding Data")
+            return nil
+        }catch {
+            print("unexpected error")
+            return nil
+        }
+        
+        return nil
+        
+    }
+    
+    func logInUser<T: Decodable>(email: String, password: String, isPatient: Bool) async -> T? {
+        networkService = NetworkService()
+        
+        let loginInfo = LoginInfo(email: email, password: password, isPatient: isPatient)
+        
+        do {
+            if let user: T = try await networkService?.logIn(loginInfo: loginInfo) {
+                return user
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+            return nil
+        }catch NError.emailOrPasswordWrong {
+            alertTitle = "Log In Tidak Berhasil"
+            alertMessage = "Email atau password salah"
+            print("emailOrPasswordWrong")
+            return nil
+        }catch NError.invalidData {
+            print("invalid Data")
+            return nil
+        }catch NError.invalidDecodingData{
+            print("invalid Decoding Data")
+            return nil
+        }catch {
+            print("unexpected error")
+            return nil
+        }
+        return nil
+    }
 }

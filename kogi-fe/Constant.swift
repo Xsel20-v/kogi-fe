@@ -93,7 +93,7 @@ extension UserDefaults {
 }
 
 extension Date {
-    func currentDateString(format: String = "yyyy-MM-dd HH:mm:ss") -> String {
+    func currentDateString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         return formatter.string(from: self)

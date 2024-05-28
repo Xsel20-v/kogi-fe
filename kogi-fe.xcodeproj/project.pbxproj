@@ -28,6 +28,8 @@
 		3566D0BC2C04E69100E25115 /* Coass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BB2C04E69100E25115 /* Coass.swift */; };
 		3566D0BE2C04E7F300E25115 /* NewPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BD2C04E7F300E25115 /* NewPatient.swift */; };
 		3566D0C02C04EC8100E25115 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */; };
+		3566D0C22C05D98000E25115 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C12C05D98000E25115 /* LoginInfo.swift */; };
+		3566D0C42C05EB5C00E25115 /* NewCoass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C32C05EB5C00E25115 /* NewCoass.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -102,6 +104,8 @@
 		3566D0BB2C04E69100E25115 /* Coass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coass.swift; sourceTree = "<group>"; };
 		3566D0BD2C04E7F300E25115 /* NewPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPatient.swift; sourceTree = "<group>"; };
 		3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		3566D0C12C05D98000E25115 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
+		3566D0C32C05EB5C00E25115 /* NewCoass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCoass.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				3566D0B72C04BDC200E25115 /* OnBoardingData.swift */,
 				3566D0BB2C04E69100E25115 /* Coass.swift */,
 				3566D0BD2C04E7F300E25115 /* NewPatient.swift */,
+				3566D0C12C05D98000E25115 /* LoginInfo.swift */,
+				3566D0C32C05EB5C00E25115 /* NewCoass.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
 				3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
+				3566D0C22C05D98000E25115 /* LoginInfo.swift in Sources */,
 				3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */,
@@ -443,6 +450,7 @@
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				3566D0C42C05EB5C00E25115 /* NewCoass.swift in Sources */,
 				3D4A3EBA2C007CD7003FBC8F /* SearchBar.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
 				3D4A3F372C00AF5D003FBC8F /* SwiftUIView.swift in Sources */,

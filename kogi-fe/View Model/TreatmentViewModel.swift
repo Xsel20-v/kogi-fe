@@ -150,8 +150,8 @@ class TreatmentViewModel: ObservableObject {
         if treatmentStatus == "pending" {
             fetchedTreatmentData?.treatmentStatus = treatmentStatus
         } else {
+            fetchedTreatmentData?.treatmentStatus = treatmentStatus
             if let treatment = fetchedTreatmentData {
-                fetchedTreatmentData?.treatmentStatus = treatmentStatus
                 do {
                     try await networkService?.updateTreatmentData(treatment: treatment)
                 }catch NError.invalidURL {

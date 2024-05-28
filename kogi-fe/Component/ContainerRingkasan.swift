@@ -45,7 +45,7 @@ struct ContainerRingkasan: View {
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
                             .offset(x: 175)
-                        Text(formatTime(treatment.dateCreated))
+                        Text(formatTime(treatment.requestedDate))
                             .font(.system(size: 14))
                             .offset(x: 185)
                     }

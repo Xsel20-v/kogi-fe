@@ -8,10 +8,10 @@
 import Foundation
 
 struct Coass: Codable {
-    var patientID: String
+    var coassID: String
     var name: String
-    var profilePicture: String
-    var certificate: String
+    var profilePicture: String?
+    var certificate: String?
     var email: String
     var password: String
 }
