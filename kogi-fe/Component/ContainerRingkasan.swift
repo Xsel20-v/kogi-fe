@@ -80,7 +80,7 @@ struct ContainerRingkasan: View {
                         Text("Deskripsi Keluhan")
                             .font(.system(size: 14, weight: .semibold))
                         
-                        Text(treatment.symptomsDesc ?? "Gatau males mau beli truk")
+                        Text(treatment.symptomsDesc)
                             .font(.system(size: 14))
                     }
                     
