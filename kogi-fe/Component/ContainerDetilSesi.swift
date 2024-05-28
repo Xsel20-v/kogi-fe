@@ -20,12 +20,10 @@ struct ContainerDetilSesi: View {
     
     var body: some View {
         
-        GeometryReader { geometry in
-            let containerWidth = geometry.size.width * 0.9 /* 354 pixels in iphone 15 pro*/
-            let containerHeight = geometry.size.height * 0.13 /* 109 pixels in iphone 15 pro*/
-            let imageIconFrame = geometry.size.height * 0.014
-            let chevronRightOffset = geometry.size.width * 0.79
-            let statusContainerWidth = geometry.size.width * 0.15
+            let containerWidth = CGFloat(354)
+            let containerHeight = CGFloat(109)
+            let imageIconFrame = CGFloat(15)
+            let statusContainerWidth = CGFloat(45)
             
             ZStack(alignment: .leading) {
                 Rectangle()
@@ -36,15 +34,16 @@ struct ContainerDetilSesi: View {
                 
                 VStack(alignment: .leading) {
                     
-                    ZStack(alignment: .leading){
-                        Text("Sesi 1: ghjjjj")
+                    HStack(){
+                        Text("Sesi 1")
                             .font(.system(size: 12, weight: .semibold))
+                        
+                        Spacer()
                         
                         Image(systemName: "chevron.right")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height: imageIconFrame)
-                            .offset(x: chevronRightOffset)
                     }
                     
                     ZStack{
@@ -80,10 +79,10 @@ struct ContainerDetilSesi: View {
                             .font(.system(size: 12))
                     }
                 }
-                .padding(.leading, 20)
+                .padding()
             }
-            .frame(maxWidth: .infinity, alignment: .center)
-        }
+            .frame(width: containerWidth, height: containerHeight)
+        
     }
     
     func statusColor() -> Color {

@@ -19,6 +19,7 @@ struct ChatRoomView: View {
         }
         .onAppear(perform: {
             print(tabSelection)
+            
         })
        
     }
