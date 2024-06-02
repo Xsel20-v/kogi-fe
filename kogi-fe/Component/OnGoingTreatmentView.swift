@@ -18,6 +18,9 @@ struct OnGoingTreatmentView: View {
             Color(Constant.Colors.systemYellow)
                 .ignoresSafeArea()
             VStack {
+                Image("swipeDownIndicator")
+                    .padding(.bottom, 20)
+                Spacer()
                 ContainerRingkasan(treatment: treatmentViewModel.fetchedTreatmentData ?? Treatment(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: []))
                     .padding(.bottom, 50)
                 Spacer()

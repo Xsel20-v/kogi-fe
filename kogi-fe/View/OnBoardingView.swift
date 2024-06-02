@@ -23,6 +23,8 @@ struct OnBoardingView: View {
         NavigationStack(path: $path) {
             GeometryReader { geometry in
                 ZStack {
+                    Color(Constant.Colors.baseColor)
+                        .ignoresSafeArea()
                     OnBoardingPage(data: onBoardingItems[index])
                     if index < onBoardingItems.count-1 {
                         Text("Lewati")

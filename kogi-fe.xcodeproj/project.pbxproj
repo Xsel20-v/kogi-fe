@@ -30,6 +30,10 @@
 		3566D0C02C04EC8100E25115 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */; };
 		3566D0C22C05D98000E25115 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C12C05D98000E25115 /* LoginInfo.swift */; };
 		3566D0C42C05EB5C00E25115 /* NewCoass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C32C05EB5C00E25115 /* NewCoass.swift */; };
+		3566D0C62C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C52C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift */; };
+		3566D0C82C0604C900E25115 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C72C0604C900E25115 /* Message.swift */; };
+		3566D0CA2C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */; };
+		3566D0CC2C06203000E25115 /* SheetTambahSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -106,6 +110,10 @@
 		3566D0BF2C04EC8100E25115 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		3566D0C12C05D98000E25115 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		3566D0C32C05EB5C00E25115 /* NewCoass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCoass.swift; sourceTree = "<group>"; };
+		3566D0C52C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerKonfirmasiPerawatan.swift; sourceTree = "<group>"; };
+		3566D0C72C0604C900E25115 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetKonfirmasiPerawatan.swift; sourceTree = "<group>"; };
+		3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTambahSesi.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -197,6 +205,9 @@
 				3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */,
 				3566D0A52C039D0300E25115 /* OnGoingTreatmentView.swift */,
 				3566D0B12C044E1500E25115 /* ChatBar.swift */,
+				3566D0C52C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift */,
+				3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */,
+				3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -298,6 +309,7 @@
 				3566D0BD2C04E7F300E25115 /* NewPatient.swift */,
 				3566D0C12C05D98000E25115 /* LoginInfo.swift */,
 				3566D0C32C05EB5C00E25115 /* NewCoass.swift */,
+				3566D0C72C0604C900E25115 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -448,8 +460,11 @@
 				3566D0A42C039CE900E25115 /* BottomSheetView.swift in Sources */,
 				359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */,
 				35F228902BF5E37C0070DC35 /* AnamnesisViewModel.swift in Sources */,
+				3566D0CA2C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				3566D0C82C0604C900E25115 /* Message.swift in Sources */,
+				3566D0C62C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift in Sources */,
 				3566D0C42C05EB5C00E25115 /* NewCoass.swift in Sources */,
 				3D4A3EBA2C007CD7003FBC8F /* SearchBar.swift in Sources */,
 				3D3BE4C62BEBE1D5000771A2 /* ButtonComponent.swift in Sources */,
@@ -459,6 +474,7 @@
 				3566D0B62C04BC5400E25115 /* OnBoardingView.swift in Sources */,
 				359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */,
 				353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */,
+				3566D0CC2C06203000E25115 /* SheetTambahSesi.swift in Sources */,
 				3D4A3EB62C007BF9003FBC8F /* CariPerawatanView.swift in Sources */,
 				3D9C20182C0245D100876E20 /* Patient.swift in Sources */,
 			);

@@ -20,6 +20,7 @@ class TreatmentViewModel: ObservableObject {
         }
     }
     
+    
     @AppStorage("userID") var userID = "P2"
     
     var networkService: NetworkService?

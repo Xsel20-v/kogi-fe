@@ -105,3 +105,36 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+extension String {
+    func dateToString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        if let date = formatter.date(from: self) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            print(dateFormatter.string(from: date))
+            return dateFormatter.string(from: date)
+        }
+        return "Invalid date"
+    }
+    
+    func timeToString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = formatter.date(from: self) {
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateFormat = "h:mm a"
+            return timeFormatter.string(from: date)
+        }
+        return "Invalid time"
+    }
+    
+    func toDate(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> Date? {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = format
+            dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            return dateFormatter.date(from: self)
+        }
+}
