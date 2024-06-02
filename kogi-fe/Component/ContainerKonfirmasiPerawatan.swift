@@ -117,5 +117,5 @@ struct ContainerKonfirmasiPerawatan: View {
 }
 
 #Preview {
-    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: Message(id: "M1", type: "treatment", roomID: "R1", sender: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-06-24T09:01:24", "Sakit Gigi", "Azella"]))
+    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: Message(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-06-24T09:01:24", "Sakit Gigi", "Azella"]))
 }

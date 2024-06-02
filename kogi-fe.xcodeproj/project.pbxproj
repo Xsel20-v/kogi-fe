@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		350197EE2C0CAC6A00AE30C4 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350197ED2C0CAC6A00AE30C4 /* ChatRoomHeader.swift */; };
+		350197F02C0CCAE400AE30C4 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 350197EF2C0CCAE400AE30C4 /* SocketIO */; };
 		351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBB82BECC8C200C73E59 /* DeskripsiKeluhan.swift */; };
 		351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBA2BECD41E00C73E59 /* Treatment.swift */; };
 		351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */; };
@@ -85,7 +86,6 @@
 		3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20192C02480600876E20 /* PatientViewModel.swift */; };
 		3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201B2C04940700876E20 /* SessionModel.swift */; };
 		3D9C201E2C0494EF00876E20 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */; };
-		3DC419002C05DE3500A2451E /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC418FF2C05DE3500A2451E /* SocketIO */; };
 		3DC419022C05DF1300A2451E /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */; };
 		3DC419042C05F10A00A2451E /* DetailPerawatanPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */; };
 /* End PBXBuildFile section */
@@ -180,7 +180,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DC419002C05DE3500A2451E /* SocketIO in Frameworks */,
+				350197F02C0CCAE400AE30C4 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,7 +356,7 @@
 			);
 			name = "kogi-fe";
 			packageProductDependencies = (
-				3DC418FF2C05DE3500A2451E /* SocketIO */,
+				350197EF2C0CCAE400AE30C4 /* SocketIO */,
 			);
 			productName = "kogi-fe";
 			productReference = 35F0B2D52BE9DD88009B3051 /* kogi-fe.app */;
@@ -626,7 +626,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = ZVGYNW47J9;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -656,7 +656,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = ZVGYNW47J9;
+				DEVELOPMENT_TEAM = 9PUN53DGHU;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -713,7 +713,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3DC418FF2C05DE3500A2451E /* SocketIO */ = {
+		350197EF2C0CCAE400AE30C4 /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3DC418FE2C05DE3500A2451E /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;

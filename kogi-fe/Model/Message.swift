@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Message: Codable, Identifiable {
-    let id: String
-    let type: String
-    let roomID: String
-    let sender: String
-    let timestamp: String
-    let message: [String]
-}
+//struct Message: Codable, Identifiable {
+//    let id: String
+//    let type: String
+//    let roomID: String
+//    let sender: String
+//    let timestamp: String
+//    let message: [String]
+//}
