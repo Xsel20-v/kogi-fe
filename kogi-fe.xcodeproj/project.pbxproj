@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350197EE2C0CAC6A00AE30C4 /* ChatRoomHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350197ED2C0CAC6A00AE30C4 /* ChatRoomHeader.swift */; };
 		351FCBB92BECC8C200C73E59 /* DeskripsiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBB82BECC8C200C73E59 /* DeskripsiKeluhan.swift */; };
 		351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBA2BECD41E00C73E59 /* Treatment.swift */; };
 		351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */; };
@@ -89,6 +90,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350197ED2C0CAC6A00AE30C4 /* ChatRoomHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomHeader.swift; sourceTree = "<group>"; };
 		351FCBB82BECC8C200C73E59 /* DeskripsiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeskripsiKeluhan.swift; sourceTree = "<group>"; };
 		351FCBBA2BECD41E00C73E59 /* Treatment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Treatment.swift; sourceTree = "<group>"; };
 		351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentViewModel.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				3566D0C52C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift */,
 				3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */,
 				3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */,
+				350197ED2C0CAC6A00AE30C4 /* ChatRoomHeader.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */,
 				3566D0AA2C04344600E25115 /* HideTabBarModifier.swift in Sources */,
 				3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */,
+				350197EE2C0CAC6A00AE30C4 /* ChatRoomHeader.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,
 				3566D0B82C04BDC200E25115 /* OnBoardingData.swift in Sources */,
 				3566D0BE2C04E7F300E25115 /* NewPatient.swift in Sources */,

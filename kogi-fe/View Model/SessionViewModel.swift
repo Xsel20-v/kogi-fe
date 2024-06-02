@@ -20,7 +20,7 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    @AppStorage("treatmentID") var userID = "T1"
+    @AppStorage("treatmentID") var treatmentID = "T1"
     
     var networkService: NetworkService?
     
@@ -32,7 +32,7 @@ class SessionViewModel: ObservableObject {
         networkService = NetworkService()
         
         do {
-            if let sessionList = try await networkService?.fetchSessionList() {
+            if let sessionList = try await networkService?.fetchSessionList(treatmentID: treatmentID) {
                 fetchedSessionList = sessionList
                 print("Session List: \(fetchedSessionList)")
                 return true // Return true if session list is fetched successfully
