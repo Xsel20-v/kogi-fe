@@ -65,15 +65,16 @@
 		3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87D2BFE159A0050161D /* PusatBantuanView.swift */; };
 		3D97B8802BFE15BB0050161D /* KeluarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B87F2BFE15BB0050161D /* KeluarView.swift */; };
 		3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D97B8812BFEE51A0050161D /* ChatRoomView.swift */; };
-		3D9C20092C01BAA300876E20 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20082C01BAA300876E20 /* Starscream */; };
 		3D9C200B2C01BC6F00876E20 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200A2C01BC6F00876E20 /* LogInView.swift */; };
 		3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200C2C01BF7700876E20 /* SignUpView.swift */; };
 		3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C200E2C01D09200876E20 /* SocketIOManager.swift */; };
-		3D9C20122C01D37F00876E20 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 3D9C20112C01D37F00876E20 /* SocketIO */; };
 		3D9C20182C0245D100876E20 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20172C0245D100876E20 /* Patient.swift */; };
 		3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C20192C02480600876E20 /* PatientViewModel.swift */; };
 		3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201B2C04940700876E20 /* SessionModel.swift */; };
 		3D9C201E2C0494EF00876E20 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */; };
+		3DC419002C05DE3500A2451E /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 3DC418FF2C05DE3500A2451E /* SocketIO */; };
+		3DC419022C05DF1300A2451E /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */; };
+		3DC419042C05F10A00A2451E /* DetailPerawatanPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,6 +145,8 @@
 		3D9C20192C02480600876E20 /* PatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientViewModel.swift; sourceTree = "<group>"; };
 		3D9C201B2C04940700876E20 /* SessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionModel.swift; sourceTree = "<group>"; };
 		3D9C201D2C0494EF00876E20 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
+		3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerawatanPendingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9C20092C01BAA300876E20 /* Starscream in Frameworks */,
-				3D9C20122C01D37F00876E20 /* SocketIO in Frameworks */,
+				3DC419002C05DE3500A2451E /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,6 +187,7 @@
 				3D4A3EBB2C0083D2003FBC8F /* ContainerCariPerawatan.swift */,
 				3566D0A52C039D0300E25115 /* OnGoingTreatmentView.swift */,
 				3566D0B12C044E1500E25115 /* ChatBar.swift */,
+				3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */,
 				3D9C200A2C01BC6F00876E20 /* LogInView.swift */,
 				3D9C200C2C01BF7700876E20 /* SignUpView.swift */,
+				3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,8 +317,7 @@
 			);
 			name = "kogi-fe";
 			packageProductDependencies = (
-				3D9C20082C01BAA300876E20 /* Starscream */,
-				3D9C20112C01D37F00876E20 /* SocketIO */,
+				3DC418FF2C05DE3500A2451E /* SocketIO */,
 			);
 			productName = "kogi-fe";
 			productReference = 35F0B2D52BE9DD88009B3051 /* kogi-fe.app */;
@@ -345,8 +348,7 @@
 			);
 			mainGroup = 35F0B2CC2BE9DD88009B3051;
 			packageReferences = (
-				3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */,
-				3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
+				3DC418FE2C05DE3500A2451E /* XCRemoteSwiftPackageReference "socket.io-client-swift" */,
 			);
 			productRefGroup = 35F0B2D62BE9DD88009B3051 /* Products */;
 			projectDirPath = "";
@@ -384,12 +386,14 @@
 				3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */,
 				359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */,
 				3D9C200D2C01BF7700876E20 /* SignUpView.swift in Sources */,
+				3DC419042C05F10A00A2451E /* DetailPerawatanPendingView.swift in Sources */,
 				351FCBBB2BECD41E00C73E59 /* Treatment.swift in Sources */,
 				3D9C201A2C02480600876E20 /* PatientViewModel.swift in Sources */,
 				35F228922BF5F3820070DC35 /* AnamnesisView.swift in Sources */,
 				3D9C200F2C01D09200876E20 /* SocketIOManager.swift in Sources */,
 				354F321B2BEB571300156436 /* Constant.swift in Sources */,
 				3566D0A82C03A18700E25115 /* UpdateTreatment.swift in Sources */,
+				3DC419022C05DF1300A2451E /* KeyboardAdaptive.swift in Sources */,
 				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
 				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
 				3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */,
@@ -570,7 +574,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -600,7 +604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -646,15 +650,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/daltoniam/Starscream.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.6;
-			};
-		};
-		3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
+		3DC418FE2C05DE3500A2451E /* XCRemoteSwiftPackageReference "socket.io-client-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/socketio/socket.io-client-swift.git";
 			requirement = {
@@ -665,14 +661,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3D9C20082C01BAA300876E20 /* Starscream */ = {
+		3DC418FF2C05DE3500A2451E /* SocketIO */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3D9C20072C01BAA300876E20 /* XCRemoteSwiftPackageReference "Starscream" */;
-			productName = Starscream;
-		};
-		3D9C20112C01D37F00876E20 /* SocketIO */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3D9C20102C01D37F00876E20 /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
+			package = 3DC418FE2C05DE3500A2451E /* XCRemoteSwiftPackageReference "socket.io-client-swift" */;
 			productName = SocketIO;
 		};
 /* End XCSwiftPackageProductDependency section */

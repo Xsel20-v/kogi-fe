@@ -5,10 +5,12 @@ class SocketIOManager: NSObject, ObservableObject {
     private var manager: SocketManager
     private var socket: SocketIOClient
     
-    //    @Published var receivedMessage: String = ""
+    //        @Published var receivedMessage: String = ""
+    @Published var chatRoomList: [ChatRoom] = []
+    @Published var chatHistory: [ChatHistory] = []
+    @Published var isConnected: Bool = false
     
     override init() {
-        // Update this URL to match your server configuration
         let serverURL = URL(string: "https://kogi-ws.onrender.com")!
         self.manager = SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": "azel"])])
         self.socket = manager.defaultSocket
@@ -21,10 +23,12 @@ class SocketIOManager: NSObject, ObservableObject {
     func configureSocketEvents() {
         socket.on(clientEvent: .connect) {data, ack in
             print("Socket connected")
+            self.isConnected = true
         }
         
         socket.on(clientEvent: .disconnect) {data, ack in
             print("Socket disconnected")
+            self.isConnected = false
         }
         
         socket.on(clientEvent: .error) {data, ack in
@@ -35,38 +39,79 @@ class SocketIOManager: NSObject, ObservableObject {
         
         socket.on("chat") { data, ack in
             if let message = data.first as? [String: Any] {
-                if let reciever = message["destination"] as? String, let msg = message["message"] as? String {
-                    print("Received message from \(reciever): \(msg)")
+                if let messageID = message["messageID"] as? String,
+                   let type = message["type"] as? String,
+                   let roomID = message["roomID"] as? String,
+                   let senderID = message["senderID"] as? String,
+                   let timestamp = message["timestamp"] as? String,
+                   let messageBody = message["body"] as? [String] {
+                    let receivedMessage = Message(messageID: messageID, type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
                 }
             }
         }
         
         socket.on("getChatroom") { data, ack in
-            if let chatRoom = data.first as? [String: Any] {
-                if let reciever = chatRoom["roomID"] as? String,
-                   let patientID = chatRoom["patientID"] as? String,
-                   let coassID = chatRoom["coassID"] as? String,
-                   let lastMessage = chatRoom["lastMessage"] as? String {
-                    print("Received chat room data from \(reciever):\n \(patientID), \(coassID), \(lastMessage)")
+            if let chatRoomArray = data.first as? [[String: Any]] {
+                var parsedMessages: [ChatRoom] = []
+                
+                for chatRoom in chatRoomArray {
+                    if let roomID = chatRoom["roomID"] as? String,
+                       let patientID = chatRoom["patientID"] as? String,
+                       let coassID = chatRoom["coassID"] as? String,
+                       let lastMessage = chatRoom["lastMessage"] as? String,
+                       let receiver = chatRoom["receiver"] as? String,
+                       let lastTimestamp = chatRoom["lastTimestamp"] as? String? ?? "null",
+                       let profilePicture = chatRoom["profilePicture"] as? String? ?? "null" {
+                        
+                        let chatRooms = ChatRoom(roomID: roomID, patientID: patientID, cosssID: coassID, lastMessage: lastMessage, receiver: receiver, lastTimestamp: lastTimestamp, profilePicture: profilePicture)
+                        parsedMessages.append(chatRooms)
+                    }
                 }
+                self.chatRoomList = parsedMessages
+                print(parsedMessages)
             }
         }
         
-//        socket.on("getChatroom") { data, ack in
-//            print("Received chat room data: \(data)")
-//        }
+//
+//                socket.on("getChatroom") { data, ack in
+//                    print("Received chat room data: \(data)")
+//                }
+//        
+//                socket.on("getChatHistory") { data, ack in
+//                    print("Received chat history data: \(data)")
+//                }
         
         socket.on("getChatHistory") { data, ack in
-            if let chatHistory = data.first as? [String: Any] {
-                if let messageID = chatHistory["messageID"] as? String,
-                   let senderID = chatHistory["senderID"] as? String,
-                   let roomID = chatHistory["roomID"] as? String,
-                   let timeStamp = chatHistory["timeStamp"] as? String,
-                   let body = chatHistory["body"] as? String {
-                    print("Received chat history:\nMessage ID: \(messageID)\nSender ID: \(senderID)\nRoom ID: \(roomID)\nTimestamp: \(timeStamp)\nBody: \(body)")
+            if let chatHistoryArray = data.first as? [[String: Any]] {
+                var parsedMessages: [ChatHistory] = []
+                
+                for chatHistory in chatHistoryArray {
+                    if let messageID = chatHistory["messageID"] as? String,
+                       let type = chatHistory["type"] as? String,
+                       let roomID = chatHistory["roomID"] as? String,
+                       let senderID = chatHistory["senderID"] as? String,
+                       let timestamp = chatHistory["timestamp"] as? String,
+                       let messageBody = chatHistory["body"] as? String {
+                        
+                        let message = ChatHistory(messageID: messageID,
+                                              type: type,
+                                              roomID: roomID,
+                                              senderID: senderID,
+                                              timestamp: timestamp,
+                                              message: messageBody)
+                        parsedMessages.append(message)
+                    }
                 }
+                self.chatHistory = parsedMessages
+                print(parsedMessages)
             }
         }
+        
+        
+    }
+    
+    func getChatHistory() -> [ChatHistory]{
+        return chatHistory
     }
     
     
@@ -80,9 +125,10 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.disconnect()
     }
     
-    func sendMessage(_ destination: String, _ message: String) {
+    func sendMessage(_ type: String, _ roomID: String, _ message: [String]) {
         let data: [String: Any] = [
-            "destination": destination,
+            "type": type,
+            "roomID": roomID,
             "message": message
         ]
         socket.emit("chat", data)
@@ -92,13 +138,12 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.emit("getChatroom", userID)
     }
     
-    func emitChatHistory(_ userID: String) {
-        socket.emit("getChatHistory", userID)
+    func emitChatHistory(_ roomID: String) {
+        socket.emit("getChatHistory", roomID)
     }
-
+    
 }
 
-// You can extend functionality here as needed
 extension SocketIOManager {
     func joinRoom(_ room: String) {
         socket.emit("join", room)

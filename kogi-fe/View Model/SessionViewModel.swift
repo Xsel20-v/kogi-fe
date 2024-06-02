@@ -20,7 +20,7 @@ class SessionViewModel: ObservableObject {
         }
     }
     
-    @AppStorage("treatmentID") var userID = "T1"
+//    @AppStorage("treatmentID") var userID = "T1"
     
     var networkService: NetworkService?
     

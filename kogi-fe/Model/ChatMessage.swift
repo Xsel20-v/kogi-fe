@@ -7,8 +7,34 @@
 
 import Foundation
 
-struct ChatMessage: Codable, Identifiable {
+struct Message: Identifiable {
     let id = UUID()
-    let destination: String
+    let messageID: String
+    let type: String
+    let roomID: String
+    let senderID: String
+    let timestamp: String
+    let message: [String]
+}
+
+struct ChatHistory: Identifiable {
+    let id = UUID()
+    let messageID: String
+    let type: String
+    let roomID: String
+    let senderID: String
+    let timestamp: String
     let message: String
 }
+
+struct ChatRoom: Identifiable {
+    let id = UUID()
+    let roomID: String
+    let patientID: String
+    let cosssID: String
+    let lastMessage: String
+    let receiver: String
+    let lastTimestamp: String
+    let profilePicture: String
+}
+    

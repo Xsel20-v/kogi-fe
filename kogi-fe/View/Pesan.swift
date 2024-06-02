@@ -11,6 +11,10 @@ struct Pesan: View {
     @Binding var path : NavigationPath
     @Binding var tabSelection: Int
     
+    @StateObject var chatViewModel = ChatViewModel()
+    @ObservedObject var socketIOManager = SocketIOManager()
+    @State private var isConnected = false
+    
     var body: some View {
         ZStack {
             Color("primaryColor")
@@ -23,69 +27,84 @@ struct Pesan: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
                 
-                List {
+                List(chatViewModel.chatRoomList) { room in
                     Button {
                         path.append("Chat Room")
                     } label: {
                         MessageView(
-                            imageName: "person.crop.circle.fill",
-                            name: "Jonathan",
-                            message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
-                            time: "08.13"
-                        )
-                    }
-                    Button {
-                        path.append("Chat Room")
-                    } label: {
-                        MessageView(
-                            imageName: "person.crop.circle.fill",
-                            name: "Jonathan",
-                            message: "Ya, saya tertarik. Gigi saya sangat sakit 😢",
-                            time: "08.13"
+                            imageName: "null",
+                            name: room.receiver,
+                            message: room.lastMessage,
+                            time: room.lastTimestamp
                         )
                     }
                 }
             }
         }
+        .onAppear {
+                        socketIOManager.connect()
+                chatViewModel.loadChatRooms(userID: "P1")
+        }
+        .onChange(of: socketIOManager.isConnected) {
+                    socketIOManager.emitChatRoom("P1")
+                    chatViewModel.loadChatRooms(userID: "P1")
+        }
     }
 }
 
 struct MessageView: View {
-    let imageName: String
+    var imageName: String
     let name: String
     let message: String
     let time: String
     
     var body: some View {
         HStack {
-            Image(systemName: imageName)
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                .foregroundColor(.black)
+            
+            if imageName == "null" {
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    .foregroundColor(.gray)
+            } else {
+                Image(imageName)
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    .foregroundColor(.black)
+            }
             
             VStack(alignment: .leading) {
                 HStack {
                     Text(name)
                         .font(.headline)
                         .foregroundColor(.black)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                     Spacer()
                     Text(time)
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
+                
                 HStack{
                     Text(message)
                         .font(.subheadline)
                         .foregroundColor(.gray)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                     Spacer()
                     Image(systemName: "chevron.right")
                         .foregroundColor(.gray)
                 }
             }
+            .padding(.leading, 7)
         }
         .padding(.vertical, 8)
+        
     }
 }
 
