@@ -9,7 +9,13 @@ import SwiftUI
 
 struct DetailPerawatanView: View {
     
-    var treatment: Treatment
+    @Binding var path: NavigationPath
+    @Binding var tabSelection: Int
+    
+    var treatment : Treatment
+    
+    @StateObject var sessionViewModel = SessionViewModel()
+    @StateObject var treatmentViewModel = TreatmentViewModel()
     
     var body: some View {
         GeometryReader { geometry in
@@ -32,7 +38,7 @@ struct DetailPerawatanView: View {
                             Text("Jonathan")
                                 .font(.system(size: 24))
                                 .fontWeight(.bold)
-                            Text("Sakit Gigi")
+                            Text(treatment.problemCategory)
                                 .foregroundColor(.gray)
                         }
                         Spacer()
@@ -55,66 +61,77 @@ struct DetailPerawatanView: View {
                     
                     Divider()
                     
-                    ScrollView {
-                        VStack {
-                            
-                            // Complaint Details Section
-                            VStack(alignment: .leading, spacing: 15) {
-                                HStack {
-                                    Text("Kategori")
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                    Text(": Sakit Gigi")
-                                }
-                                HStack {
-                                    Text("Posisi Keluhan")
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                    Text(": Geraham atas")
-                                }
-                                HStack {
-                                    Text("Rentang Waktu")
-                                        .fontWeight(.semibold)
-                                    Spacer()
-                                    Text(": 3 Hari")
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("Deskripsi Keluhan")
-                                        .fontWeight(.semibold)
-                                    Text(treatment.symptomsDesc)
-                                        .padding(.top, 5)
-                                }
+                    VStack {
+                        
+                        // Complaint Details Section
+                        VStack(alignment: .leading, spacing: 15) {
+                            HStack {
+                                Text("Kategori")
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Text(": \(treatment.problemCategory)")
                             }
-                            .padding()
-                            .font(.system(size: 12))
-                            
-                            
-                            Divider()
-                            
-                            HStack{
-                                Text("Detil Sesi")
+                            HStack {
+                                Text("Posisi Keluhan")
+                                    .fontWeight(.semibold)
                                 Spacer()
                                 
-                                Button(action:{
-                                    
-                                }) {
-                                    Text("Tambah Sesi +")
-                                        .foregroundColor(.blue)
+                                HStack{
+                                    Text(": ")
+                                    Text("\(treatment.areaOfSymptom?.joined(separator: ", ") ?? "No symptoms")")
                                 }
                             }
-                            .padding()
-                            .font(.system(size: 12))
+                            HStack {
+                                Text("Rentang Waktu")
+                                    .fontWeight(.semibold)
+                                Spacer()
+                                Text(": \(treatment.totalDaysOfSymptom) hari")
+                            }
+                            VStack(alignment: .leading) {
+                                Text("Deskripsi Keluhan")
+                                    .fontWeight(.semibold)
+                                Text(treatment.symptomsDesc)
+                                    .padding(.top, 5)
+                            }
+                        }
+                        .padding()
+                        .font(.system(size: 12))
+                        
+                        
+                        Divider()
+                        
+                        HStack{
+                            Text("Detil Sesi")
+                            Spacer()
                             
-                            
-                            Button(action: {
+                            Button(action:{
                                 
                             }) {
-                                ContainerDetilSesi(status: .done, date: "dece")
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
-                                    .foregroundColor(.black)
+                                Text("Tambah Sesi +")
+                                    .foregroundColor(.blue)
+                            }
+                        }
+                        .padding()
+                        .font(.system(size: 12))
+                        
+                        
+                        ScrollView {
+                            VStack{
+                                ForEach(sessionViewModel.fetchedSessionList, id: \.sessionID) { session in
+                                    VStack() {
+                                        Button(action: {
+                                            path.append("Detil Sesi")
+                                        }) {
+                                            ContainerDetilSesi(status: .done, date: formatDate(session.dateOfSession))
+                                                .foregroundColor(.black)
+                                                .padding(.bottom)
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
+                    
                     
                     Spacer()
                     
@@ -126,6 +143,22 @@ struct DetailPerawatanView: View {
                 }
             }
         }
+        .onAppear {
+            Task {
+                await sessionViewModel.getSessionList()
+            }
+        }
+    }
+    
+    func formatDate(_ date: String) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        if let date = formatter.date(from: date) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM dd, yyyy"
+            return dateFormatter.string(from: date)
+        }
+        return "Invalid date"
     }
 }
 
@@ -145,6 +178,6 @@ struct DetailPerawatanView_Previews: PreviewProvider {
             images: []
         )
         
-        DetailPerawatanView(treatment: sampleTreatment)
+        DetailPerawatanView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatment: sampleTreatment)
     }
 }

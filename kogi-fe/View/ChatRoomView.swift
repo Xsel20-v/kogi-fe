@@ -19,6 +19,7 @@ struct ChatRoomView: View {
         .ignoresSafeArea()
         .onAppear(perform: {
             print(tabSelection)
+            
         })
        
     }
