@@ -64,7 +64,7 @@ class NetworkService {
         }
     }
     
-    func fetchSessionList() async throws -> [SessionModel]? {
+    func fetchSessionList(treatmentID: String) async throws -> [SessionModel]? {
         let endpoint = "https://kogi-api.onrender.com/api/getSession"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
