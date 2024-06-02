@@ -89,6 +89,6 @@ struct Triangle: Shape {
 }
 
 #Preview {
-//    MessageCell(type: "text", message: "Hello my name is Axel", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
-    MessageCell(type: "image", message: "iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
+    MessageCell(type: "text", message: "Hello my name is Axel", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
+//    MessageCell(type: "image", message: "iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC", timeStamp: "2024-05-23T14:52:29", isMyMessage: true)
 }

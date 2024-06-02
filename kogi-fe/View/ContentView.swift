@@ -57,14 +57,16 @@ struct ContentView: View {
                     KeluhanPilihWaktu(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Ringkasan" :
                     Ringkasan(path: $path, treatmentViewModel: treatmentViewModel)
-                case "Chat Room":
-                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
                 case "Ijazah":
                     IjazahView(path: $path, tabSelection: $tabSelection)
                 case "Ganti Sandi":
                     GantiSandiView(path: $path, tabSelection: $tabSelection)
-//                case "Lama Keluhan" :
-//                    LamaKeluhan(path: $path, treatmentViewModel: treatmentViewModel)
+                case "Chat Room":
+                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
+//                case "Detail Perawatan":
+//                    DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatment: $treatmentViewModel.selectedTreatment, treatmentViewModel: treatmentViewModel)
+//                case "Detail Sesi":
+//                    DetilSesiView(path: $path, tabSelection: $tabSelection)
                 default:
                     DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
                 }

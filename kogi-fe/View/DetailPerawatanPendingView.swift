@@ -1,14 +1,13 @@
 //
-//  DetailPerawatanView.swift
+//  DetailPerawatanPendingView.swift
 //  kogi-fe
 //
-//  Created by Azella Mutyara on 23/05/24.
+//  Created by Azella Mutyara on 28/05/24.
 //
 
 import SwiftUI
 
-struct DetailPerawatanView: View {
-    
+struct DetailPerawatanPendingView: View {
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
     
@@ -61,11 +60,9 @@ struct DetailPerawatanView: View {
                     
                     Divider()
                     
-                    
-                    VStack {
                         
                         // Complaint Details Section
-                        VStack(alignment: .leading, spacing: 15) {
+                        VStack(alignment: .leading, spacing: 25) {
                             HStack {
                                 Text("Kategori")
                                     .fontWeight(.semibold)
@@ -94,53 +91,32 @@ struct DetailPerawatanView: View {
                                 Text(treatment.symptomsDesc)
                                     .padding(.top, 5)
                             }
-                        }
-                        .padding()
-                        .font(.system(size: 12))
-                        
-                        
-                        Divider()
-                        
-                        HStack{
-                            Text("Detil Sesi")
-                            Spacer()
                             
-                            Button(action:{
+                            VStack(alignment: .leading) {
+                                Text("Foto Kondisi Awal: ")
+                                    .fontWeight(.semibold)
                                 
-                            }) {
-                                Text("Tambah Sesi +")
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        .padding()
-                        .font(.system(size: 12))
-                        
-                        
-                        ScrollView {
-                            VStack{
-                                ForEach(sessionViewModel.fetchedSessionList, id: \.sessionID) { session in
-                                    VStack() {
-                                        Button(action: {
-                                            path.append("Detil Sesi")
-                                        }) {
-                                            ContainerDetilSesi(status: .done, date: formatDate(session.dateOfSession))
-                                                .foregroundColor(.black)
-                                                .padding(.bottom)
+                                let imagesData = treatment.images
+                                    ScrollView(.horizontal) {
+                                        HStack {
+                                            ForEach(imagesData, id: \.self) { imageData in
+                                                if let uiImage = UIImage(data: Data(base64Encoded: imageData)!) {
+                                                    Image(uiImage: uiImage)
+                                                        .resizable()
+                                                        .frame(width: 80, height: 80)
+                                                        .cornerRadius(15)
+                                                }
+                                            }
                                         }
                                     }
-                                }
                             }
+                            
+                            Spacer()
                         }
-                    }
-                    
+                        .padding()
+                        .font(.system(size: 12))
                     
                     Spacer()
-                    
-                    Button(action: {
-                        
-                    }) {
-                        ButtonComponent(text: "Selesaikan Perawatan", buttonColors: .blue)
-                    }
                 }
             }
         }
@@ -163,7 +139,7 @@ struct DetailPerawatanView: View {
     }
 }
 
-struct DetailPerawatanView_Previews: PreviewProvider {
+struct DetailPerawatanPendingView_Previews: PreviewProvider {
     static var previews: some View {
         let sampleTreatment = Treatment(
             treatmentID: "12345",
@@ -173,12 +149,12 @@ struct DetailPerawatanView_Previews: PreviewProvider {
             areaOfSymptom: ["Taring atas", "Geraham atas", "Taring bawah", "Geraham bawah"],
             symptomsDesc: "Gigi saya terasa sakit sejak beberapa hari lalu, dan semakin parah ketika saya makan atau minum sesuatu yang dingin atau panas. Rasa nyerinya tajam dan berdenyut, menyebar hingga ke rahang dan kadang-kadang membuat kepala saya pusing.",
             totalDaysOfSymptom: 3,
-            dateCreated: "2023-06-20T09:41:00",
-            requestedDate: "2023-06-29T09:41:00",
+            dateCreated: "2023-06-20T09:41:00Z",
+            requestedDate: "2023-06-29T09:41:00Z",
             treatmentStatus: "pending",
             images: []
         )
         
-        DetailPerawatanView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatment: sampleTreatment)
+        DetailPerawatanPendingView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatment: sampleTreatment)
     }
 }
