@@ -88,11 +88,11 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.emit("chat", data)
     }
     
-    func getChatRoom(_ userID: String) {
+    func emitChatRoom(_ userID: String) {
         socket.emit("getChatroom", userID)
     }
     
-    func getChatHistory(_ userID: String) {
+    func emitChatHistory(_ userID: String) {
         socket.emit("getChatHistory", userID)
     }
 

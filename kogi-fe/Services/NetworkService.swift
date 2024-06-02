@@ -36,33 +36,6 @@ class NetworkService {
         }
     }
     
-//    func fetchPatientData() async throws -> [Patient]? {
-//        let endpoint = "https://kogi-api.onrender.com/api/users"
-//        
-//        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
-//        
-//        var request = URLRequest(url: url)
-//        
-//        request.httpMethod = "POST" // Set HTTP method to POST
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
-//        
-//        let bodyData = "{\"uid\": \"\(userID)\"}"
-//        
-//        print(bodyData)
-//        request.httpBody = bodyData.data(using: .utf8)
-//        
-//        let (data, response) = try await URLSession.shared.data(for: request)
-//        
-//        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
-//        
-//        do {
-//            let jsonDecoder = JSONDecoder()
-//            return try jsonDecoder.decode([Patient].self, from: data)
-//        } catch {
-//            throw NError.invalidData
-//        }
-//    }
-    
     func fetchPatientData(userID: String) async throws -> [Patient]? {
         let endpoint = "https://kogi-api.onrender.com/api/users"
         
@@ -75,7 +48,6 @@ class NetworkService {
         
         var request = URLRequest(url: url)
         
-        // Set HTTP method to GET
         request.httpMethod = "GET"
         
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -90,6 +62,36 @@ class NetworkService {
         } catch {
             throw NError.invalidData
         }
+    }
+    
+    func fetchSessionList() async throws -> [SessionModel]? {
+        let endpoint = "https://kogi-api.onrender.com/api/getSession"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        // Create the request body with the treatmentID
+        let parameters = ["treatmentID": treatmentID]
+        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw NError.invalidResponse
+        }
+        
+        // Print the raw response data as a string for debugging
+        if let jsonString = String(data: data, encoding: .utf8) {
+            print("Raw JSON Response: \(jsonString)")
+        } else {
+            print("Unable to convert response data to a string.")
+        }
+        
+        let jsonDecoder = JSONDecoder()
+        return try jsonDecoder.decode([SessionModel].self, from: data)
     }
 
     
