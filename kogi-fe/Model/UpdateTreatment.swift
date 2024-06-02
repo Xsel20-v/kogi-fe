@@ -13,5 +13,5 @@ struct UpdateTreatment: Codable {
     var coassID: String?
     var problemCategory: String
     var status: String
-    var date: String
+    var Date: String
 }

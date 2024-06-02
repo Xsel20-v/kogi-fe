@@ -8,10 +8,8 @@
 import Foundation
 
 class NetworkService {
-    let userID = UserDefaults.standard.string(forKey: "userID") ?? "P2"
-    let treatmentID = UserDefaults.standard.string(forKey: "treatmentID") ?? "T1"
     
-    func fetchOnGoingTreatment() async throws -> [Treatment]? {
+    func fetchOnGoingTreatment(userID: String) async throws -> [Treatment]? {
         let endpoint = "https://kogi-api.onrender.com/api/getTreatmentList"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
@@ -38,7 +36,7 @@ class NetworkService {
         }
     }
     
-    func fetchPatientData() async throws -> [Patient]? {
+    func fetchPatientData(userID: String) async throws -> [Patient]? {
         let endpoint = "https://kogi-api.onrender.com/api/users"
         
         guard var urlComponents = URLComponents(string: endpoint) else { throw NError.invalidURL }
@@ -152,7 +150,7 @@ class NetworkService {
                 coassID: treatment.coassID,
                 problemCategory: treatment.problemCategory,
                 status: treatment.treatmentStatus,
-                date: treatment.requestedDate)
+                Date: treatment.requestedDate)
             
             guard let jsonData = try? JSONEncoder().encode(updateTreatment) else { throw NError.invalidEncodingData }
             
@@ -187,6 +185,167 @@ class NetworkService {
         }
         
     }
+    
+    func createNewPatient(patient: NewPatient) async throws -> Patient {
+        let newPatient = patient
+        
+        guard let jsonData = try? JSONEncoder().encode(newPatient) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/insertPatient"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        do {
+            // Perform the network request
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            if let httpResponse = response as? HTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 201 :
+                    throw NError.emailIsUsed
+                case 200 :
+                    break
+                default :
+                    throw NError.invalidResponse
+                }
+            }
+            
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+            
+            // Decode the response data into a Patient model
+            guard let patient = try? JSONDecoder().decode(Patient.self, from: data) else {
+                throw NError.invalidDecodingData
+            }
+            
+            return patient
+            
+            
+        } catch {
+            // Handle any errors that occurred during the network request
+            print("Error: \(error)")
+            throw error
+        }
+
+    }
+    
+    func createNewCoass(coass: NewCoass) async throws -> Coass {
+        let newCoass = coass
+        
+        guard let jsonData = try? JSONEncoder().encode(newCoass) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/insertcoass"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        do {
+            // Perform the network request
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            if let httpResponse = response as? HTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 201 :
+                    throw NError.emailIsUsed
+                case 200 :
+                    break
+                default :
+                    throw NError.invalidResponse
+                }
+            }
+            
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+            
+            // Decode the response data into a Patient model
+            guard let coass = try? JSONDecoder().decode(Coass.self, from: data) else {
+                throw NError.invalidDecodingData
+            }
+            
+            return coass
+            
+            
+        } catch {
+            // Handle any errors that occurred during the network request
+            print("Error: \(error)")
+            throw error
+        }
+
+    }
+    
+    func logIn<T: Decodable>(loginInfo: LoginInfo) async throws -> T {
+        
+        guard let jsonData = try? JSONEncoder().encode(loginInfo) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/getLogin"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        do {
+            // Perform the network request
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            if let httpResponse = response as? HTTPURLResponse {
+                switch httpResponse.statusCode {
+                case 201 :
+                    throw NError.emailOrPasswordWrong
+                case 200 :
+                    break
+                default :
+                    throw NError.invalidResponse
+                }
+            }
+            
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+            
+            // Decode the response data into a User model
+            if loginInfo.isPatient {
+                let user = try JSONDecoder().decode(Patient.self, from: data)
+                guard let typedUser = user as? T else {
+                    throw NError.invalidDecodingData
+                }
+                return typedUser
+            } else {
+                let user = try JSONDecoder().decode(Coass.self, from: data)
+                guard let typedUser = user as? T else {
+                    throw NError.invalidDecodingData
+                }
+                return typedUser
+            }
+            
+            
+            
+        } catch {
+            // Handle any errors that occurred during the network request
+            print("Error: \(error)")
+            throw error
+        }
+
+    }
 }
 
 enum NError : Error {
@@ -194,4 +353,7 @@ enum NError : Error {
     case invalidResponse
     case invalidData
     case invalidEncodingData
+    case invalidDecodingData
+    case emailIsUsed
+    case emailOrPasswordWrong
 }
