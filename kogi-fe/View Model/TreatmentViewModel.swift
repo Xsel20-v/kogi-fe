@@ -20,6 +20,7 @@ class TreatmentViewModel: ObservableObject {
         }
     }
     
+    
     @AppStorage("userID") var userID = "P2"
     
     var networkService: NetworkService?
@@ -31,7 +32,7 @@ class TreatmentViewModel: ObservableObject {
     func getTreatmentData() async -> Bool {
         networkService = NetworkService()
         do {
-            if let treatment = try await networkService?.fetchOnGoingTreatment()?.first {
+            if let treatment = try await networkService?.fetchOnGoingTreatment(userID: userID)?.first {
                 fetchedTreatmentData = treatment
                 print(fetchedTreatmentData)
                 return true
@@ -150,8 +151,8 @@ class TreatmentViewModel: ObservableObject {
         if treatmentStatus == "pending" {
             fetchedTreatmentData?.treatmentStatus = treatmentStatus
         } else {
+            fetchedTreatmentData?.treatmentStatus = treatmentStatus
             if let treatment = fetchedTreatmentData {
-                fetchedTreatmentData?.treatmentStatus = treatmentStatus
                 do {
                     try await networkService?.updateTreatmentData(treatment: treatment)
                 }catch NError.invalidURL {

@@ -15,6 +15,16 @@ struct Perawatan: View {
     
     @State var images: [UIImage] = []
     
+    @AppStorage("isPatient") var isPatient = false
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("userID") var userID = "P2"
+    @AppStorage("username") var username = "Axel"
+    @AppStorage("dob") var dob = "2002-07-20"
+    @AppStorage("email") var email_ = "1@2.com"
+    @AppStorage("password") var password_ = "123"
+    @AppStorage("profilePicture") var profilePicture: String = ""
+    @AppStorage("certificate") var certificate: String = ""
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -139,9 +149,18 @@ struct Perawatan: View {
 }
 
 struct HomeBackground: View {
-    private var name: String = "Dicky"
     private var homeBackgroundWidth: CGFloat = 393
     private var homeBackgroundHeight: CGFloat = 277.69
+    
+    @AppStorage("isPatient") var isPatient = false
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("userID") var userID = "P2"
+    @AppStorage("username") var username = "Axel"
+    @AppStorage("dob") var dob = "2002-07-20"
+    @AppStorage("email") var email_ = "1@2.com"
+    @AppStorage("password") var password_ = "123"
+    @AppStorage("profilePicture") var profilePicture: String = ""
+    @AppStorage("certificate") var certificate: String = ""
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -151,7 +170,7 @@ struct HomeBackground: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text("Halo, " + name + "!")
+                    Text("Halo, " + username + "!")
                         .bold()
                     Text("Bagaimana kondisi gigi kamu?")
                         .opacity(0.6)

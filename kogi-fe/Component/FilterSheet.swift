@@ -38,7 +38,7 @@ struct FilterSheet: View {
                         Spacer()
                         DatePicker("", selection: $selectedDate, displayedComponents: .date)
                             .datePickerStyle(CompactDatePickerStyle())
-                            .labelsHidden()
+                           
                     }
                     .padding()
                     .padding(.bottom, -5)

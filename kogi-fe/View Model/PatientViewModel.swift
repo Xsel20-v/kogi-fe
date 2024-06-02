@@ -9,7 +9,6 @@ import Foundation
 import _PhotosUI_SwiftUI
 import SwiftUI
 
-@MainActor
 class PatientViewModel: ObservableObject {
     @Published private var patient: Patient
     @Published var fetchedPatientData: Patient?
@@ -47,7 +46,7 @@ class PatientViewModel: ObservableObject {
 //        }
         
         do {
-            if let patient = try await networkService?.fetchPatientData()?.first {
+            if let patient = try await networkService?.fetchPatientData(userID: userID)?.first {
                 fetchedPatientData = patient
                 print("Patient Data Response: \(patient)")
                 return true

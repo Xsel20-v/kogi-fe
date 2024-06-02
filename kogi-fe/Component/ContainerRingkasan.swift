@@ -45,7 +45,7 @@ struct ContainerRingkasan: View {
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
                             .offset(x: 175)
-                        Text(formatTime(treatment.dateCreated))
+                        Text(formatTime(treatment.requestedDate))
                             .font(.system(size: 14))
                             .offset(x: 185)
                     }
@@ -57,11 +57,11 @@ struct ContainerRingkasan: View {
                         Text(": ")
                             .font(.system(size: 14, weight: .semibold))
                             .offset(x: 175)
-//                        Text(treatment.areaOfSymptom?.joined(separator: ", "))
-//                            .font(.system(size: 14))
-//                            .offset(x: 185)
-//                            .frame(maxWidth: 110)
-//                            .multilineTextAlignment(.leading)
+                        Text(treatment.areaOfSymptom?.joined(separator: ", ") ?? "Geraham depan bawah")
+                            .font(.system(size: 14))
+                            .offset(x: 185)
+                            .frame(maxWidth: 110)
+                            .multilineTextAlignment(.leading)
                     }
                     
                     ZStack(alignment: .leading) {

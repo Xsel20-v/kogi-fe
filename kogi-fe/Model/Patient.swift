@@ -13,4 +13,5 @@ struct Patient: Codable {
     var dateOfBirth: String
     var email: String
     var password: String
+    var profilePicture: String?
 }
