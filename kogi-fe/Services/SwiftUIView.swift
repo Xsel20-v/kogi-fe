@@ -10,6 +10,7 @@ import Combine
 
 struct SwiftUIView: View {
     @StateObject private var socketIOManager = SocketIOManager()
+    @ObservedObject var treatmentViewModel = TreatmentViewModel()
     @State private var messageToSend = ""
     @State private var chatMessages: [Message] = []
     

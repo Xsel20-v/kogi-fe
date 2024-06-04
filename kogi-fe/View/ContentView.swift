@@ -13,6 +13,8 @@ struct ContentView: View {
     @State var path = NavigationPath()
     @StateObject var treatmentViewModel = TreatmentViewModel()
     @StateObject var patientViewModel = PatientViewModel()
+    @StateObject var chatViewModel = ChatViewModel()
+    @StateObject var socketIOManager = SocketIOManager()
     
     var body: some View {
         
@@ -23,7 +25,7 @@ struct ContentView: View {
                     .tabItem {
                         Label("Perawatan", systemImage: "heart.text.square")
                     }
-                Pesan(path: $path, tabSelection: $tabSelection)
+                Pesan(path: $path, tabSelection: $tabSelection, socketIOManager: socketIOManager)
                     .tag(1)
                     .tabItem {
                         Label("Pesan", systemImage: "ellipsis.message")
@@ -62,7 +64,7 @@ struct ContentView: View {
                 case "Ganti Sandi":
                     GantiSandiView(path: $path, tabSelection: $tabSelection)
                 case "Chat Room":
-                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
+                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager)
 //                case "Detail Perawatan":
 //                    DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatment: $treatmentViewModel.selectedTreatment, treatmentViewModel: treatmentViewModel)
 //                case "Detail Sesi":
@@ -71,6 +73,9 @@ struct ContentView: View {
                     DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
                 }
             }
+        }
+        .onAppear {
+            socketIOManager.connect()
         }
         
     }

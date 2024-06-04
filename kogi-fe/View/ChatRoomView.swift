@@ -11,45 +11,43 @@ import Combine
 struct ChatRoomView: View {
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
-    @StateObject var treatmentViewModel = TreatmentViewModel()
-    @ObservedObject var socketIOManager = SocketIOManager()
-    @ObservedObject var chatRoomViewModel = ChatRoomViewModel()
+    @ObservedObject var treatmentViewModel : TreatmentViewModel
+    @State private var fetchedTreatment: Treatment?
+    @ObservedObject var socketIOManager : SocketIOManager
+//        @ObservedObject var chatRoomViewModel = ChatRoomViewModel()
     //    var lastDateShown: String = ""
     @State private var currentRoomID: String = "R1"
     
     @State private var shouldScrollToBottom: Bool = true
+    @State private var keyboardHeight: CGFloat = 0
+    @State var isTreatmentSheetPresented : Bool = false
     
-    @State private var messages: [Message] = [] // Define a model for Message if you haven't already
     
     var body: some View {
         ZStack {
-            
-            Rectangle()
-                .frame(height: 40)
-                .foregroundColor(Color("primaryColor"))
-                .offset(y: 395)
-            
             VStack {
+                // Header
+                ChatRoomHeader(name: socketIOManager.currentChatRoom.receiver, imageBase64: socketIOManager.currentChatRoom.profilePicture)
+                    .padding(.top, -100)
+                //                .offset(y: -100)
                 
-//                ChatRoomHeader(name: "", imageBase64: /*<#T##Binding<String>#>*/)
-                
+                // ScrollView in the middle
                 ScrollViewReader { scrollViewProxy in
                     ScrollView {
-                        
                         ForEach(socketIOManager.getChatHistory(), id: \.id) { history in
                             
-//                            if chatRoomViewModel.shouldShowDateHeader(history.timestamp) {
-//                                Text(chatRoomViewModel.getFormattedDate(history.timestamp))
-//                                    .foregroundColor(.gray)
-//                                    .padding(.vertical, 5)
-//                            }
+//                             if chatRoomViewModel.shouldShowDateHeader(history.timestamp) {
+//                                 Text(chatRoomViewModel.getFormattedDate(history.timestamp))
+//                                     .foregroundColor(.gray)
+//                                     .padding(.vertical, 5)
+//                             } JANGAN DI UNCOMMENT INFINITE LOOP
                             if history.type == "treatment" {
-                                
+                                ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history, isAccepted: false)
+                                    .padding(.bottom, 20)
                             } else {
                                 MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != "C1")
                             }
                         }
-                        
                     }
                     .onChange(of: socketIOManager.chatHistory) { _ in
                         shouldScrollToBottom = true
@@ -57,21 +55,48 @@ struct ChatRoomView: View {
                             scrollToBottom(scrollViewProxy)
                         }
                     }
+                    .onChange(of: keyboardHeight) { _ in
+                        shouldScrollToBottom = true
+                        DispatchQueue.main.async {
+                            scrollToBottom(scrollViewProxy)
+                        }
+                    }
+                    .onTapGesture {
+                        hideKeyboard()
+                    }
                 }
-                .frame(height: 650)
-                .offset(y: 20)
+                .frame(height: 595 - keyboardHeight)
+                .background(Color.clear)
+                .onReceive(Publishers.keyboardHeight) { keyboardHeight in
+                    // Update keyboard height
+                    self.keyboardHeight = keyboardHeight - 27
+                }
+                .padding(.vertical, -5)
                 
-                ChatBar(socketIOManager: socketIOManager)
+                ChatBar(isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager)
+                    .background(Color("PrimaryColor"))
+                
             }
+            
+            BottomSheetView(isPresented: $isTreatmentSheetPresented, maxHeight: 250){
+                SheetKonfirmasiPerawatan(tanggal: convertToDate(fetchedTreatment?.requestedDate ?? "2024-06-04T21:39:50") ?? Date(), problemCategory: fetchedTreatment?.problemCategory ?? "", selectedOption: fetchedTreatment?.problemCategory ?? "", isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager, fetchedTreatment: $fetchedTreatment)
+                    .transition(.move(edge: .bottom))
+                    .zIndex(1)
+            }
+            
         }
         .onAppear {
+            socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
             socketIOManager.connect()
+            
+            fetchTreatmentData()
         }
         .onChange(of: socketIOManager.isConnected) { isConnected in
             if isConnected {
                 socketIOManager.emitChatHistory("R1")
             }
         }
+        .animation(.default, value: isTreatmentSheetPresented)
     }
     
     func scrollToBottom(_ scrollViewProxy: ScrollViewProxy) {
@@ -81,7 +106,27 @@ struct ChatRoomView: View {
             }
         }
     }
-
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    func fetchTreatmentData() {
+        Task {
+            if await treatmentViewModel.getTreatmentDataByStatus(userID: "P4", status: "pending") {
+                self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
+                print(fetchedTreatment)
+            } else {
+                print("Cannot get treatment data in chat room")
+            }
+        }
+    }
+    
+    func convertToDate(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.date(from: dateString)
+    }
     
     //    func getFormattedDate(_ timestamp: String) -> String? {
     //        let dateFormatter = DateFormatter()
@@ -108,6 +153,21 @@ struct ChatRoomView: View {
     
 }
 
+extension Publishers {
+    static var keyboardHeight: AnyPublisher<CGFloat, Never> {
+        let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardWillShowNotification)
+            .map { notification -> CGFloat in
+                (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.height ?? 0
+            }
+        
+        let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
+            .map { _ -> CGFloat in 0 }
+        
+        return MergeMany(willShow, willHide)
+            .eraseToAnyPublisher()
+    }
+}
+
 #Preview {
-    ChatRoomView(path: .constant(NavigationPath()), tabSelection: .constant(1))
+    ChatRoomView(path: .constant(NavigationPath()), tabSelection: .constant(1), treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager())
 }
