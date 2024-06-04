@@ -100,7 +100,7 @@ struct Perawatan: View {
                                 .fontWeight(.semibold)
                             Button(action: {
                                 Task {
-                                    dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                                    dataIsRetrieved = await treatmentViewModel.getOnGoingTreatmentData(userID: userID)
                                 }
                             }, label: {
                                 Image(systemName: "arrow.clockwise")
@@ -129,7 +129,7 @@ struct Perawatan: View {
                 .navigationBarHidden(true)
                 .onAppear(perform: {
                     Task {
-                        dataIsRetrieved = await treatmentViewModel.getTreatmentData()
+                        dataIsRetrieved = await treatmentViewModel.getOnGoingTreatmentData(userID: userID)
                         if let images = await treatmentViewModel.getImages() {
                             self.images = images
                             imageIsConverted = true

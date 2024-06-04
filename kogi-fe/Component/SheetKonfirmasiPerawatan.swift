@@ -11,8 +11,7 @@ struct SheetKonfirmasiPerawatan: View {
     
     //passing data tanggal dan problem category dari chat room view
     //data yang dipasing hasil ngambil dari treatmentViewModel dari view sebelumnya
-    
-    @ObservedObject var treatmentViewModel: TreatmentViewModel
+
     @Binding var tanggal: Date
     @Binding var problemCategory: String
     @Binding var selectedOption: String
@@ -56,5 +55,5 @@ struct SheetKonfirmasiPerawatan: View {
 }
 
 #Preview {
-    SheetKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), tanggal: .constant(Date.now), problemCategory: .constant("Sakit Gigi"), selectedOption: .constant("Option 1"))
+    SheetKonfirmasiPerawatan(tanggal: .constant(Date.now), problemCategory: .constant("Sakit Gigi"), selectedOption: .constant("Option 1"))
 }
