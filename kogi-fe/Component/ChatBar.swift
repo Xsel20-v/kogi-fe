@@ -9,7 +9,8 @@ import SwiftUI
 struct ChatBar: View {
     @State private var messageText: String = ""
     @State private var showAlert: Bool = false
-//    @ObservedObject private var keyboardObserver = KeyboardObserver()
+    
+    @ObservedObject var socketIOManager : SocketIOManager
 
     var body: some View {
         VStack {
@@ -41,7 +42,11 @@ struct ChatBar: View {
                     }
                 } else {
                     Button(action: {
-                        self.sendMessage()
+                        let timestamp = getCurrentTimestamp()
+                        socketIOManager.sendMessage("text", "R1", [messageText])
+                        let newMessage = ChatHistory(messageID: "", type: "text", roomID: "R1", senderID: "C1", timestamp: timestamp, message: [messageText])
+                        socketIOManager.chatHistory.append(newMessage)
+                        messageText = ""
                     }) {
                         Image(systemName: "paperplane.fill")
                             .font(.title)
@@ -50,29 +55,26 @@ struct ChatBar: View {
                 }
             }
             .frame(minHeight: 74)
-            .background {
-                Color(Constant.Colors.primaryColor)
-            }
-            .alert(isPresented: $showAlert, content: {
+            .background(Color(Constant.Colors.primaryColor))
+            .alert(isPresented: $showAlert) {
                 Alert(title: Text("Fitur Belum Tersedia"),
                       message: Text("Maaf, fitur ini masih dalam pengembangan dan akan segera tersedia."),
                       dismissButton: .default(Text("Tutup")) {
                           self.showAlert = false
                       })
-            })
+            }
         }
         .animation(.easeOut(duration: 0.16))
     }
 
-    func sendMessage() {
-        // kasih ke view model untuk send message
-
-        // seudah dikirim oleh view model, kosongin textfieldnya
-        messageText = ""
+    func getCurrentTimestamp() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.string(from: Date())
     }
 }
 
 #Preview {
-    ChatBar()
+    ChatBar(socketIOManager: SocketIOManager())
 }
 
