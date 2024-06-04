@@ -11,6 +11,8 @@ struct ChatBar: View {
     @State private var showAlert: Bool = false
     
     @ObservedObject var socketIOManager : SocketIOManager
+    
+    @AppStorage("isPatient") var isPatient = false
 
     var body: some View {
         VStack {
@@ -22,6 +24,17 @@ struct ChatBar: View {
                     .cornerRadius(10)
                     .padding(.horizontal, 8)
 
+                if !isPatient {
+                    Button(action: {
+                        print("fitur masih dikembangkan")
+                        showAlert.toggle()
+                    }) {
+                        Image(systemName: "heart.text.square.fill")
+                            .font(.title)
+                            .foregroundColor(Constant.Colors.baseColor)
+                    }
+                }
+                
                 if messageText.isEmpty {
                     Button(action: {
                         print("fitur masih dikembangkan")
