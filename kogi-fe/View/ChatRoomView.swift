@@ -30,7 +30,8 @@ struct ChatRoomView: View {
                 .offset(y: 395)
             
             VStack {
-                Spacer()
+                
+//                ChatRoomHeader(name: "", imageBase64: /*<#T##Binding<String>#>*/)
                 
                 ScrollViewReader { scrollViewProxy in
                     ScrollView {
@@ -42,8 +43,11 @@ struct ChatRoomView: View {
 //                                    .foregroundColor(.gray)
 //                                    .padding(.vertical, 5)
 //                            }
-                            
-                            MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != "C1")
+                            if history.type == "treatment" {
+                                
+                            } else {
+                                MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != "C1")
+                            }
                         }
                         
                     }
@@ -77,6 +81,7 @@ struct ChatRoomView: View {
             }
         }
     }
+
     
     //    func getFormattedDate(_ timestamp: String) -> String? {
     //        let dateFormatter = DateFormatter()

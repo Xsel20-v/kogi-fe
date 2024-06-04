@@ -55,10 +55,7 @@ struct ChatBar: View {
                     }
                 } else {
                     Button(action: {
-                        let timestamp = getCurrentTimestamp()
                         socketIOManager.sendMessage("text", "R1", [messageText])
-                        let newMessage = ChatHistory(messageID: "", type: "text", roomID: "R1", senderID: "C1", timestamp: timestamp, message: [messageText])
-                        socketIOManager.chatHistory.append(newMessage)
                         messageText = ""
                     }) {
                         Image(systemName: "paperplane.fill")

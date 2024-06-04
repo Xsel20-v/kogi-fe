@@ -10,7 +10,7 @@ import SwiftUI
 struct ContainerKonfirmasiPerawatan: View {
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
-    var message: Message
+    var message: ChatHistory
     
     @State var isAccepted = false
     
@@ -44,21 +44,20 @@ struct ContainerKonfirmasiPerawatan: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
-            Text("Konfirmasi Perawatan")
-                .bold()
+        VStack (alignment: .center) {
+            HStack {
+                Text("Konfirmasi Perawatan")
+                    .bold()
+                Spacer()
+            }
             Divider()
-            VStack(alignment: .leading) {
-                Text("Departemen \(departemen)")
-                    .fontWeight(.medium)
-                    .padding(.bottom, 5)
+            VStack(alignment: .center) {
                 HStack {
-                    Text("KOAS")
+                    Text("Departemen \(departemen)")
+                        .fontWeight(.medium)
+                        .padding(.bottom, 5)
                     Spacer()
-                    Text(message.message[2])
-                        .fontWeight(.light)
                 }
-                .padding(.bottom, 5)
                 HStack {
                     Text("Kategori")
                     Spacer()
@@ -100,7 +99,7 @@ struct ContainerKonfirmasiPerawatan: View {
                     HStack {
                         Spacer()
                         Text("Terima")
-                            .frame(width: 352, height: 30)
+                            .frame(width: 318, height: 30)
                             .background(isAccepted ? Constant.Colors.notMyMessage :  Constant.Colors.primaryColor)
                             .foregroundStyle(Constant.Colors.baseColor)
                             .cornerRadius(10)
@@ -110,12 +109,14 @@ struct ContainerKonfirmasiPerawatan: View {
                 })
                 .padding(.bottom, 5)
             }
+            .padding(.horizontal, 5)
+            .frame(maxWidth: 349)
         }
-        .padding(.horizontal, 10)
         .shadow(radius: 10)
+        .frame(maxWidth: 349)
     }
 }
 
 #Preview {
-    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: Message(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-06-24T09:01:24", "Sakit Gigi", "Azella"]))
+    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: ChatHistory(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-06-24T09:01:24", "Sakit Gigi", "Azella"]))
 }

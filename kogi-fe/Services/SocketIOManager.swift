@@ -9,8 +9,9 @@ class SocketIOManager: NSObject, ObservableObject {
     @Published var chatRoomList: [ChatRoom] = []
     @Published var chatHistory: [ChatHistory] = []
     @Published var isConnected: Bool = false
+    @Published var newChatRoomID: String = ""
     
-    var currentRoomID: String?
+    var currentRoomID: String = "R1"
     
     override init() {
         let serverURL = URL(string: "https://kogi-ws.onrender.com")!
@@ -44,21 +45,24 @@ class SocketIOManager: NSObject, ObservableObject {
             print("just received message")
             
             if let message = data.first as? [String: Any] {
-                if let messageID = message["messageID"] as? String,
-                   let type = message["type"] as? String,
+                if let type = message["type"] as? String,
                    let roomID = message["roomID"] as? String,
                    let senderID = message["senderID"] as? String,
                    let timestamp = message["timestamp"] as? String,
                    let messageBody = message["message"] as? [String] {
-                    let newMessage = ChatHistory(messageID: messageID, type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
+                    print("masuk sini")
+                    let newMessage = ChatHistory(messageID: "a", type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
                     
                     if roomID == self.currentRoomID {
                         DispatchQueue.main.async {
                             self.chatHistory.append(newMessage)
+                    print(newMessage)
                         }
                     }
                 }
             }
+            
+//            print("Received chat data: \(data)")
         }
         
         socket.on("getChatroom") { data, ack in
@@ -118,6 +122,12 @@ class SocketIOManager: NSObject, ObservableObject {
             }
         }
         
+        socket.on("newChatRoom") { data, ack in
+            if let roomID = data.first as? String {
+                self.newChatRoomID = roomID
+            }
+        }
+        
         
     }
     
@@ -153,6 +163,9 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.emit("getChatHistory", roomID)
     }
     
+    func emitForNewChatRoomID(patientID: String, coassID: String) {
+        socket.emit("newChatRoom", patientID, coassID)
+    }
 }
 
 extension SocketIOManager {
