@@ -20,19 +20,36 @@ class TreatmentViewModel: ObservableObject {
         }
     }
     
-    
-    @AppStorage("userID") var userID = "P2"
-    
     var networkService: NetworkService?
     
     init() {
         treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
     }
     
-    func getTreatmentData() async -> Bool {
+    func getOnGoingTreatmentData(userID: String) async -> Bool {
         networkService = NetworkService()
         do {
             if let treatment = try await networkService?.fetchOnGoingTreatment(userID: userID)?.first {
+                fetchedTreatmentData = treatment
+                print(fetchedTreatmentData)
+                return true
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return false
+    }
+    
+    func getTreatmentDataByStatus(userID: String, status: String) async -> Bool {
+        networkService = NetworkService()
+        do {
+            if let treatment = try await networkService?.fetchTreatmentByStatus(userID: userID, status: status)?.first {
                 fetchedTreatmentData = treatment
                 print(fetchedTreatmentData)
                 return true
