@@ -11,8 +11,8 @@ struct Pesan: View {
     @Binding var path : NavigationPath
     @Binding var tabSelection: Int
     
-    @StateObject var chatViewModel = ChatViewModel()
-    @ObservedObject var socketIOManager = SocketIOManager()
+//    @StateObject var chatViewModel = ChatViewModel()
+    @ObservedObject var socketIOManager : SocketIOManager
     @State private var isConnected = false
     
     var body: some View {
@@ -27,12 +27,14 @@ struct Pesan: View {
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
                 
-                List(chatViewModel.chatRoomList) { room in
+                List(socketIOManager.chatRoomList) { room in
                     Button {
+                        socketIOManager.currentChatRoom = ChatRoom(roomID: room.roomID, patientID: room.patientID, cosssID: room.cosssID, lastMessage: room.lastMessage, receiver: room.receiver, lastTimestamp: room.lastTimestamp, profilePicture: room.profilePicture)
+                        print(socketIOManager.currentChatRoom)
                         path.append("Chat Room")
                     } label: {
                         MessageView(
-                            imageName: "null",
+                            imageName: room.profilePicture,
                             name: room.receiver,
                             message: room.lastMessage,
                             time: room.lastTimestamp
@@ -42,12 +44,11 @@ struct Pesan: View {
             }
         }
         .onAppear {
-                        socketIOManager.connect()
-                chatViewModel.loadChatRooms(userID: "P1")
+            socketIOManager.connect()
         }
         .onChange(of: socketIOManager.isConnected) {
-                    socketIOManager.emitChatRoom("P1")
-                    chatViewModel.loadChatRooms(userID: "P1")
+            socketIOManager.emitChatRoom("C1")
+//                    chatViewModel.loadChatRooms(userID: "P1")
         }
     }
 }
@@ -109,5 +110,5 @@ struct MessageView: View {
 }
 
 #Preview {
-    Pesan(path: .constant(NavigationPath()), tabSelection: .constant(1))
+    Pesan(path: .constant(NavigationPath()), tabSelection: .constant(1), socketIOManager: SocketIOManager())
 }

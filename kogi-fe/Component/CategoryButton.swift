@@ -29,7 +29,7 @@ struct CategoryButton: View {
         .foregroundColor(textColor)
         .background(backgroundColor)
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 2)
+        .shadow(color: Color.black.opacity(0.7), radius: 5, x: 0, y: 2)
     }
 }
 
