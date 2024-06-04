@@ -8,6 +8,7 @@ class SocketIOManager: NSObject, ObservableObject {
     //        @Published var receivedMessage: String = ""
     @Published var chatRoomList: [ChatRoom] = []
     @Published var chatHistory: [ChatHistory] = []
+    @Published var currentChatRoom: ChatRoom = ChatRoom(roomID: "", patientID: "", cosssID: "", lastMessage: "", receiver: "", lastTimestamp: "", profilePicture: "")
     @Published var isConnected: Bool = false
     @Published var newChatRoomID: String = ""
     
@@ -66,6 +67,8 @@ class SocketIOManager: NSObject, ObservableObject {
         }
         
         socket.on("getChatroom") { data, ack in
+            
+            print("-------000\(data)000--------")
             if let chatRoomArray = data.first as? [[String: Any]] {
                 var parsedMessages: [ChatRoom] = []
                 

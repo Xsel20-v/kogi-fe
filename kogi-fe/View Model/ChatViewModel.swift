@@ -6,6 +6,7 @@ class ChatViewModel: ObservableObject {
     @Published var chatHistory: [ChatHistory] = []
     @Published var isConnected: Bool = false 
     
+    
     private var socketManager = SocketIOManager()
     private var cancellables = Set<AnyCancellable>()
     
