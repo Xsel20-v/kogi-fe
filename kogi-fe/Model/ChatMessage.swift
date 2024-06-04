@@ -17,14 +17,14 @@ struct Message: Identifiable {
     let message: [String]
 }
 
-struct ChatHistory: Identifiable {
+struct ChatHistory: Identifiable, Equatable {
     let id = UUID()
     let messageID: String
     let type: String
     let roomID: String
     let senderID: String
     let timestamp: String
-    let message: String
+    let message: [String]
 }
 
 struct ChatRoom: Identifiable {

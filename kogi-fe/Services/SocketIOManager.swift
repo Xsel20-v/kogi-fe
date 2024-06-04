@@ -10,9 +10,11 @@ class SocketIOManager: NSObject, ObservableObject {
     @Published var chatHistory: [ChatHistory] = []
     @Published var isConnected: Bool = false
     
+    var currentRoomID: String?
+    
     override init() {
         let serverURL = URL(string: "https://kogi-ws.onrender.com")!
-        self.manager = SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": "azel"])])
+        self.manager = SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": "C1"])])
         self.socket = manager.defaultSocket
         
         super.init()
@@ -38,14 +40,23 @@ class SocketIOManager: NSObject, ObservableObject {
         }
         
         socket.on("chat") { data, ack in
+            
+            print("just received message")
+            
             if let message = data.first as? [String: Any] {
                 if let messageID = message["messageID"] as? String,
                    let type = message["type"] as? String,
                    let roomID = message["roomID"] as? String,
                    let senderID = message["senderID"] as? String,
                    let timestamp = message["timestamp"] as? String,
-                   let messageBody = message["body"] as? [String] {
-                    let receivedMessage = Message(messageID: messageID, type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
+                   let messageBody = message["message"] as? [String] {
+                    let newMessage = ChatHistory(messageID: messageID, type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
+                    
+                    if roomID == self.currentRoomID {
+                        DispatchQueue.main.async {
+                            self.chatHistory.append(newMessage)
+                        }
+                    }
                 }
             }
         }
@@ -91,7 +102,7 @@ class SocketIOManager: NSObject, ObservableObject {
                        let roomID = chatHistory["roomID"] as? String,
                        let senderID = chatHistory["senderID"] as? String,
                        let timestamp = chatHistory["timestamp"] as? String,
-                       let messageBody = chatHistory["body"] as? String {
+                       let messageBody = chatHistory["body"] as? [String] {
                         
                         let message = ChatHistory(messageID: messageID,
                                               type: type,
