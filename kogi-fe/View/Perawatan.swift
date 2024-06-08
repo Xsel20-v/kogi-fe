@@ -172,7 +172,7 @@ struct HomeBackground: View {
                 VStack(alignment: .leading) {
                     Text("Halo, " + username + "!")
                         .bold()
-                    Text("Bagaimana kondisi gigi kamu?")
+                    Text(isPatient ? "Bagaimana kondisi gigi kamu?" : "Semangat melayani pasien ya!")
                         .opacity(0.6)
                 }
                 Spacer()
