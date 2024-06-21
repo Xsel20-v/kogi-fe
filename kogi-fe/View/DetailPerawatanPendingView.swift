@@ -11,7 +11,7 @@ struct DetailPerawatanPendingView: View {
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
     
-    var treatment : Treatment
+    var treatment : FetchedTreatmentData
     
     @StateObject var sessionViewModel = SessionViewModel()
     @StateObject var treatmentViewModel = TreatmentViewModel()
@@ -23,18 +23,26 @@ struct DetailPerawatanPendingView: View {
                     .ignoresSafeArea()
                 VStack {
                     HeaderViewComponent()
-                        .padding(.top, -60)
                     
                     Spacer()
                     
                     HStack {
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .frame(width: 73, height: 73)
-                            .clipShape(Circle())
-                            .padding(.trailing, 10)
+                        if let uiImage = UIImage(data: Data(base64Encoded: treatment.patientProfilePicture ?? "")!) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .frame(width: 73, height: 73)
+                                .clipShape(Circle())
+                                .padding(.trailing, 10)
+                        } else {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .frame(width: 73, height: 73)
+                                .clipShape(Circle())
+                                .padding(.trailing, 10)
+                        }
+                       
                         VStack(alignment: .leading) {
-                            Text("Jonathan")
+                            Text(treatment.patientName ?? "No Name")
                                 .font(.system(size: 24))
                                 .fontWeight(.bold)
                             Text(treatment.problemCategory)
@@ -118,11 +126,7 @@ struct DetailPerawatanPendingView: View {
                     
                     Spacer()
                 }
-            }
-        }
-        .onAppear {
-            Task {
-                await sessionViewModel.getSessionList()
+                .ignoresSafeArea()
             }
         }
     }
@@ -141,7 +145,7 @@ struct DetailPerawatanPendingView: View {
 
 struct DetailPerawatanPendingView_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleTreatment = Treatment(
+        let sampleTreatment = FetchedTreatmentData(
             treatmentID: "12345",
             patientID: "patient123",
             coassID: "coass123",
@@ -152,7 +156,7 @@ struct DetailPerawatanPendingView_Previews: PreviewProvider {
             dateCreated: "2023-06-20T09:41:00Z",
             requestedDate: "2023-06-29T09:41:00Z",
             treatmentStatus: "pending",
-            images: []
+            images: ["iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC"]
         )
         
         DetailPerawatanPendingView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatment: sampleTreatment)

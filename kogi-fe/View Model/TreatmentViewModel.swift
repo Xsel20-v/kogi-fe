@@ -12,7 +12,9 @@ import SwiftUI
 @MainActor
 class TreatmentViewModel: ObservableObject {
     @Published private var treatment: Treatment
-    @Published var fetchedTreatmentData: Treatment?
+    @Published var fetchedTreatmentData: FetchedTreatmentData?
+    @Published var treatmentList: [FetchedTreatmentData]?
+    @Published var selectedTreatment: FetchedTreatmentData?
     @Published var selectedImages : [UIImage] = []
     @Published var imageSelections : [PhotosPickerItem] = [] {
         didSet {
@@ -24,6 +26,26 @@ class TreatmentViewModel: ObservableObject {
     
     init() {
         treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
+    }
+    
+    func getTreatmentListByCategory(category: String) async -> Bool {
+        networkService = NetworkService()
+        do {
+            if let treatments = try await networkService?.fetchTreatmentList(category: category) {
+                treatmentList = treatments
+                print(treatments)
+                return true
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return false
     }
     
     func getOnGoingTreatmentData(userID: String) async -> Bool {
@@ -67,8 +89,18 @@ class TreatmentViewModel: ObservableObject {
     }
     
     
-    func getAnamnesisData() -> Treatment {
-        return treatment
+    func getAnamnesisData() -> FetchedTreatmentData {
+        let anamnesisData =
+        FetchedTreatmentData(
+            patientID: treatment.patientID,
+            problemCategory: treatment.problemCategory,
+            symptomsDesc: treatment.symptomsDesc,
+            totalDaysOfSymptom: treatment.totalDaysOfSymptom,
+            dateCreated: treatment.dateCreated,
+            requestedDate: treatment.requestedDate,
+            treatmentStatus: treatment.treatmentStatus,
+            images: treatment.images)
+        return anamnesisData
     }
     
     func getTreatmentCategory() -> String {
@@ -246,6 +278,5 @@ class TreatmentViewModel: ObservableObject {
     func clearTreatmentData() {
         treatment = Treatment(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
     }
-
 }
 

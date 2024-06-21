@@ -22,6 +22,8 @@ struct Ringkasan: View {
 //    @ObservedObject var treatmentViewModel: TreatmentViewModel
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     
+    @AppStorage("hasTreatment") var hasTreatment = false
+    
     var body: some View {
         ZStack {
             Color(Constant.Colors.baseColor)
@@ -58,6 +60,7 @@ struct Ringkasan: View {
                     Button(action: {
                         treatmentViewModel.updateDateCreated(dateCreated: Date.now)
                         treatmentViewModel.setTreatmentStatus(treatmentStatus: "pending")
+                        hasTreatment = true
                         print(treatmentViewModel.getAnamnesisData())
                         Task {
                             await treatmentViewModel.postTreatmentData()

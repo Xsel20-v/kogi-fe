@@ -11,6 +11,14 @@ struct CariPerawatanView: View {
     
     @State private var searchText = ""
     @State var isFilterSheetPresented = false
+    @State var dataIsRetrieved = false
+    
+    @Binding var path: NavigationPath
+    
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    
+    var category: String
+    var treatments : [FetchedTreatmentData] = []
     
     var body: some View {
         ZStack {
@@ -18,7 +26,6 @@ struct CariPerawatanView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderViewWithTitle(title: "Cari Perawatan")
-                    .padding(.top, -60)
                 
                 HStack {
                     SearchBar(text: $searchText)
@@ -42,22 +49,38 @@ struct CariPerawatanView: View {
                     
                     Spacer()
                 }
-                    
-                ScrollView {
-                    ForEach(0..<2) { _ in
-                        ContainerCariPerawatan()
-                            .padding(.vertical, 10)
+                
+                if dataIsRetrieved {
+                    ScrollView {
+                        LazyVStack {
+                            ForEach(treatmentViewModel.treatmentList ?? treatments, id: \.treatmentID) { treatment in
+                                ContainerCariPerawatan(treatment: treatment, treatmentViewModel: treatmentViewModel, path: $path)
+                                    .padding(.vertical, 10)
+                            }
+                        }
                     }
+                } else {
+                    Text("Tidak ada perawatan tersedia saat ini")
+                        .opacity(0.5)
+                        .padding(.top, 50)
                 }
+                    
+                Spacer()
             }
+            .ignoresSafeArea()
             
             BottomSheetView(isPresented: $isFilterSheetPresented, maxHeight: 500) {
                 FilterSheet()
             }
         }
+        .onAppear(perform: {
+            Task {
+                dataIsRetrieved = await treatmentViewModel.getTreatmentListByCategory(category: category)
+            }
+        })
     }
 }
 
 #Preview {
-    CariPerawatanView()
+    CariPerawatanView(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel(), category: "Konservasi Gigi")
 }

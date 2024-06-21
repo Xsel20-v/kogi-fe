@@ -8,6 +8,21 @@
 import SwiftUI
 
 struct Constant {
+    
+    static let sampleTreatment = FetchedTreatmentData(
+        treatmentID: "12345",
+        patientID: "patient123",
+        coassID: "coass123",
+        problemCategory: "Sakit Gigi",
+        areaOfSymptom: ["Taring atas", "Geraham atas", "Taring bawah", "Geraham bawah"],
+        symptomsDesc: "Gigi saya terasa sakit sejak beberapa hari lalu, dan semakin parah ketika saya makan atau minum sesuatu yang dingin atau panas. Rasa nyerinya tajam dan berdenyut, menyebar hingga ke rahang dan kadang-kadang membuat kepala saya pusing.",
+        totalDaysOfSymptom: 3,
+        dateCreated: "2023-06-20T09:41:00Z",
+        requestedDate: "2023-06-29T09:41:00Z",
+        treatmentStatus: "pending",
+        images: []
+    )
+    
     struct Colors{
         static let primaryColor = Color("primaryColor")
         static let secondaryColor = Color("secondaryColor")
@@ -26,6 +41,7 @@ struct Constant {
         static let sakitGigi = "Sakit Gigi"
         static let sariawan = "Sariawan"
         static let karangGigi = "Karang Gigi"
+        static let pedodonsia = "Pedodonsia"
         static let homeBackground = "Home Background"
     }
     
@@ -37,6 +53,13 @@ struct Constant {
         static let sakitGigi = "Sakit Gigi"
         static let sariawan = "Sariawan"
         static let karangGigi = "Karang Gigi"
+        static let konservasiGigi = "Konservasi Gigi"
+        static let periodonsia = "Periodonsia"
+        static let bedahMulut = "Bedah Mulut"
+        static let pedodonsia = "Pedodonsia"
+        static let penyakitMulut = "Penyakit Mulut"
+        static let prostodonsia = "Prostodonti"
+        static let orthodonsia = "Orthodonsia"
     }
     
     struct Description{
