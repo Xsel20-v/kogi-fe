@@ -12,9 +12,13 @@ struct SheetKonfirmasiPerawatan: View {
     //passing data tanggal dan problem category dari chat room view
     //data yang dipasing hasil ngambil dari treatmentViewModel dari view sebelumnya
 
-    @Binding var tanggal: Date
-    @Binding var problemCategory: String
-    @Binding var selectedOption: String
+    @State var tanggal: Date
+    @State var problemCategory: String
+    @State var selectedOption: String
+    @Binding var isTreatmentSheetPresented : Bool
+    @ObservedObject var socketIOManager : SocketIOManager
+    @Binding var fetchedTreatment: Treatment?
+    
     let options = [
         Constant.Categories.cabutGigi,
         Constant.Categories.gigiTiruan,
@@ -43,17 +47,18 @@ struct SheetKonfirmasiPerawatan: View {
             }
             .padding(.bottom, 20)
             Button(action: {
-                //send message in type of "treatment
-                
+                socketIOManager.sendMessage("treatment", socketIOManager.currentRoomID, ["", "", selectedOption, fetchedTreatment?.treatmentID ?? "null"])
+                isTreatmentSheetPresented = false
             }, label: {
                 ButtonComponent(text: "Kirim Konfirmasi", buttonColors: .blue)
             })
             .padding(.bottom, 20)
 
         }
+        .padding()
     }
 }
 
 #Preview {
-    SheetKonfirmasiPerawatan(tanggal: .constant(Date.now), problemCategory: .constant("Sakit Gigi"), selectedOption: .constant("Option 1"))
+    SheetKonfirmasiPerawatan(tanggal: Date(), problemCategory: "Sakit Gigi", selectedOption: "Option 1", isTreatmentSheetPresented: .constant(true), socketIOManager: SocketIOManager(), fetchedTreatment: .constant(Treatment(patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])))
 }

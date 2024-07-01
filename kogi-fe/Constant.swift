@@ -153,7 +153,7 @@ extension String {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         if let date = formatter.date(from: self) {
             let timeFormatter = DateFormatter()
-            timeFormatter.dateFormat = "h:mm a"
+            timeFormatter.dateFormat = "h:mm"
             return timeFormatter.string(from: date)
         }
         return "Invalid time"
