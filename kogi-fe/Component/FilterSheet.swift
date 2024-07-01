@@ -13,6 +13,12 @@ struct FilterSheet: View {
     @State private var startTime = Date()
     @State private var endTime = Date()
     @State private var selectedCaseVariants: Set<String> = []
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    
+    @Binding var dataIsRetrieved: Bool
+    var category: String
+    
+    @Binding var isPresented: Bool
     
     let caseVariants = ["Seri Atas", "Seri Bawah", "Taring Atas", "Taring Bawah", "Geraham Depan Atas", "Geraham Depan Bawah", "Geraham Belakang Atas", "Geraham Belakang Bawah"]
     
@@ -91,7 +97,19 @@ struct FilterSheet: View {
             }
             
             Button(action: {
-                //action here
+//                print(selectedDate.toString())
+//                print(startTime.timeToString())
+//                print(endTime.timeToString())
+//                print(selectedCaseVariants)
+                isPresented = false
+                Task {
+                    dataIsRetrieved = await treatmentViewModel.getTreatmentUsingFilter(category: category, date: selectedDate.toString(), start: startTime.timeToString(), end: endTime.timeToString(), variants: [String](selectedCaseVariants))
+                    
+                    if !dataIsRetrieved {
+                        treatmentViewModel.treatmentList?.removeAll()
+                    }
+                }
+                
             }) {
                 ButtonComponent(text: "Terapkan Filter", buttonColors: .blue)
                     .padding()
@@ -125,7 +143,7 @@ struct SheetView: View {
             .blur(radius: isFilterSheetPresented ? 5 : 0)
             
             BottomSheetView(isPresented: $isFilterSheetPresented, maxHeight: 500) {
-                FilterSheet()
+                FilterSheet(treatmentViewModel: TreatmentViewModel(), dataIsRetrieved: .constant(false), category: "Sakit Gigi", isPresented: .constant(true))
             }
         }
         .animation(.default, value: isFilterSheetPresented)
@@ -135,5 +153,5 @@ struct SheetView: View {
 
 
 #Preview {
-    FilterSheet()
+    FilterSheet(treatmentViewModel: TreatmentViewModel(), dataIsRetrieved: .constant(false), category: "Sakit Gigi", isPresented: .constant(true))
 }

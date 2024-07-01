@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContainerCariPerawatan: View {
+    
+    var treatment: FetchedTreatmentData
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    @Binding var path: NavigationPath
+    
     var body: some View {
         
         ZStack(alignment: .leading) {
@@ -28,25 +33,30 @@ struct ContainerCariPerawatan: View {
             
             VStack(alignment: .leading, spacing: -10) {
                 HStack {
-                    Text("Taring Gigi")
+                    Text(treatment.areaOfSymptom?.joined(separator: ", ") ?? "")
                         .fontWeight(.semibold)
                     Spacer()
-                    Image(systemName: "chevron.right")
+                    Button(action: {
+                        treatmentViewModel.selectedTreatment = treatment
+                        path.append("Detail Perawatan Pending View")
+                    }, label: {
+                        Image(systemName: "chevron.right")
+                    })
+                    
                 }
                 .padding()
                 
-                HStack(spacing: 15) {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                    
-                    Image(systemName: "photo")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                    
-                    Image(systemName: "photo")
-                        .resizable()
-                        .frame(width: 80, height: 80)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(treatment.images, id: \.self) { imageData in
+                            if let uiImage = UIImage(data: Data(base64Encoded: imageData)!) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                    .cornerRadius(20)
+                            }
+                        }
+                    }
                 }
                 .padding()
                 .offset(y: 5)
@@ -57,7 +67,7 @@ struct ContainerCariPerawatan: View {
                         .frame(width: 16, height: 16)
                         .foregroundColor(Color("primaryColor"))
                     
-                    Text("24 Jun 2024 (11.00)")
+                    Text("\(treatment.requestedDate.dateToString()) (\(treatment.requestedDate.timeToString()))")
                         .font(.system(size: 12))
                 }
                 .padding()
@@ -68,5 +78,8 @@ struct ContainerCariPerawatan: View {
 }
 
 #Preview {
-    ContainerCariPerawatan()
+    ContainerCariPerawatan(treatment: .init(patientID: "P1", problemCategory: "Sakit Gigi", symptomsDesc: "Walawe sakit betul a", totalDaysOfSymptom: 3, dateCreated: "2024-06-20T09:41:00", requestedDate: "2024-06-29T09:41:00", treatmentStatus: "ongoing", images: [
+        "iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC",
+        "iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC"
+    ]), treatmentViewModel: TreatmentViewModel(), path: .constant(NavigationPath()))
 }

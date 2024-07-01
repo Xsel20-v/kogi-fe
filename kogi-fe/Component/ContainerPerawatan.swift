@@ -15,8 +15,9 @@ struct ContainerPerawatan: View {
         case pending, ongoing, done
     }
     
+    @AppStorage("isPatient") var isPatient = false
     @State var status: Status = .pending
-    var treatment: Treatment
+    var treatment: FetchedTreatmentData
     
     var shadowRadius : CGFloat = 4
     var shadowY : CGFloat = 4
@@ -150,7 +151,7 @@ struct ContainerPerawatan: View {
                                 .frame(width: geometry.size.width * 0.187)
                             
                             VStack(alignment: .leading) {
-                                Text(nama)
+                                Text((isPatient ? treatment.coassName : treatment.patientName) ?? "No Name")
                                     .font(.system(size: fontSize16, weight: .semibold))
                                 Text("Departemen \(fetchDepartment())")
                                     .font(.system(size: fontSize12))
@@ -298,7 +299,7 @@ struct ContainerPerawatan: View {
 
 struct ContainerPerawatan_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleTreatment = Treatment(
+        let sampleTreatment = FetchedTreatmentData(
             treatmentID: "12345",
             patientID: "patient123",
             coassID: "coass123",
@@ -308,7 +309,7 @@ struct ContainerPerawatan_Previews: PreviewProvider {
             totalDaysOfSymptom: 3,
             dateCreated: "2023-06-20T09:41:00",
             requestedDate: "2023-06-29T09:41:00",
-            treatmentStatus: "pending",
+            treatmentStatus: "ongoing",
             images: []
         )
         

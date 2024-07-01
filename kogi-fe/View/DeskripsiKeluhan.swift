@@ -12,6 +12,9 @@ struct DeskripsiKeluhan: View {
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     @AppStorage("userID") var userID = "P2"
+    @AppStorage("hasTreatment") var hasTreatment = false
+    
+    @State var showAlert = false
     
     var category: String
     @Binding var path : NavigationPath
@@ -34,18 +37,31 @@ struct DeskripsiKeluhan: View {
                 BodyView(category: category)
                     .padding(.bottom,30)
                 Button(action: {
-                    treatmentViewModel.updateProblemCategory(problemCategory: category)
-                    treatmentViewModel.updateUserID(userID: userID )
-                    treatmentViewModel.updateDateCreated(dateCreated: Date())
-                    path.append(needExtraQuestion ? "Lokasi Keluhan" : "Keluhan Pilih Waktu")
+                    if hasTreatment {
+                        showAlert = true
+                    } else {
+                        treatmentViewModel.updateProblemCategory(problemCategory: category)
+                        treatmentViewModel.updateUserID(userID: userID )
+                        treatmentViewModel.updateDateCreated(dateCreated: Date())
+                        path.append(needExtraQuestion ? "Lokasi Keluhan" : "Keluhan Pilih Waktu")
+                    }
                 }, label: {
-                    ButtonComponent(text: "Selanjutnya", buttonColors: .blue)
+                    ButtonComponent(text: "Selanjutnya", buttonColors: hasTreatment ? .gray : .blue)
                 })
                 Spacer()
             
             }
         }
         .ignoresSafeArea()
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Mohon Maaf"),
+                message: Text("Anda harus menyelesaikan perawatan Anda terlebih dahulu"),
+                dismissButton: .default(Text("Tutup")) {
+                    self.showAlert = false
+                }
+            )
+        }
         
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkService {
     
-    func fetchOnGoingTreatment(userID: String) async throws -> [Treatment]? {
+    func fetchOnGoingTreatment(userID: String) async throws -> [FetchedTreatmentData]? {
         let endpoint = "https://kogi-api.onrender.com/api/getCurrentTreatment"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
@@ -30,13 +30,40 @@ class NetworkService {
         
         do {
             let jsonDecoder = JSONDecoder()
-            return try jsonDecoder.decode([Treatment].self, from: data)
+            return try jsonDecoder.decode([FetchedTreatmentData].self, from: data)
         } catch {
             throw NError.invalidData
         }
     }
     
-    func fetchTreatmentByStatus(userID: String, status: String) async throws -> [Treatment]? {
+    func fetchTreatmentByFilter(problemCategory: String, selectedDate: String, startTime: String, endTime : String, selectedVariants: [String]?) async throws -> [FetchedTreatmentData]? {
+        let endpoint = "https://kogi-api.onrender.com/api/getTreatmentFilter"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST" // Set HTTP method to POST
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
+        
+        let bodyData = "{\"problemCategory\": \"\(problemCategory)\", \"selectedDate\": \"\(selectedDate)\", \"startTime\": \"\(startTime)\", \"endTime\": \"\(endTime)\", \"selectedCaseVariants\": \(selectedVariants ?? [""])}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+        
+        do {
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode([FetchedTreatmentData].self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+    }
+    
+    func fetchTreatmentByStatus(userID: String, status: String) async throws -> [FetchedTreatmentData]? {
         let endpoint = "https://kogi-api.onrender.com/api/getTreatmentList"
         
         guard let url = URL(string: endpoint) else { throw NError.invalidURL }
@@ -57,7 +84,7 @@ class NetworkService {
         
         do {
             let jsonDecoder = JSONDecoder()
-            return try jsonDecoder.decode([Treatment].self, from: data)
+            return try jsonDecoder.decode([FetchedTreatmentData].self, from: data)
         } catch {
             throw NError.invalidData
         }
@@ -86,6 +113,33 @@ class NetworkService {
         do {
             let jsonDecoder = JSONDecoder()
             return try jsonDecoder.decode([Patient].self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+    }
+    
+    func fetchTreatmentList(category: String) async throws -> [FetchedTreatmentData]? {
+        let endpoint = "https://kogi-api.onrender.com/api/getTreatment"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST" // Set HTTP method to POST
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
+        
+        let bodyData = "{\"problemCategory\": \"\(category)\"}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+        
+        do {
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode([FetchedTreatmentData].self, from: data)
         } catch {
             throw NError.invalidData
         }
@@ -169,7 +223,7 @@ class NetworkService {
         }
     }
     
-    func updateTreatmentData(treatment: Treatment) async throws {
+    func updateTreatmentData(treatment: FetchedTreatmentData) async throws {
         
         if let treatmentID = treatment.treatmentID {
             var updateTreatment = UpdateTreatment(

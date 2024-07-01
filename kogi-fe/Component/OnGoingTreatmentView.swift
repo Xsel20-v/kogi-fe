@@ -21,7 +21,7 @@ struct OnGoingTreatmentView: View {
                 Image("swipeDownIndicator")
                     .padding(.bottom, 20)
                 Spacer()
-                ContainerRingkasan(treatment: treatmentViewModel.fetchedTreatmentData ?? Treatment(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: []))
+                ContainerRingkasan(treatment: treatmentViewModel.fetchedTreatmentData ?? FetchedTreatmentData(treatmentID: "", patientID: "", problemCategory: "", symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "", images: []))
                     .padding(.bottom, 50)
                 Spacer()
                 Button(action: {

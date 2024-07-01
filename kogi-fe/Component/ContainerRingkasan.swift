@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContainerRingkasan: View {
     
-    var treatment: Treatment
+    var treatment: FetchedTreatmentData
     
     var body: some View {
         ZStack {
@@ -50,19 +50,23 @@ struct ContainerRingkasan: View {
                             .offset(x: 185)
                     }
                     
-                    ZStack(alignment: .leading) {
-                        Text("Posisi Keluhan")
-                            .font(.system(size: 14, weight: .semibold))
-                            .padding(.trailing, 70)
-                        Text(": ")
-                            .font(.system(size: 14, weight: .semibold))
-                            .offset(x: 175)
-                        Text(treatment.areaOfSymptom?.joined(separator: ", ") ?? "Geraham depan bawah")
-                            .font(.system(size: 14))
-                            .offset(x: 185)
-                            .frame(maxWidth: 110)
-                            .multilineTextAlignment(.leading)
+                    if treatment.problemCategory == Constant.Categories.sakitGigi || treatment.problemCategory == Constant.Categories.gigiTiruan || treatment.problemCategory == Constant.Categories.cabutGigi {
+                        ZStack(alignment: .leading) {
+                            Text("Posisi Keluhan")
+                                .font(.system(size: 14, weight: .semibold))
+                                .padding(.trailing, 70)
+                            Text(": ")
+                                .font(.system(size: 14, weight: .semibold))
+                                .offset(x: 175)
+                            Text(treatment.areaOfSymptom?.joined(separator: ", ") ?? "Geraham depan bawah")
+                                .font(.system(size: 14))
+                                .offset(x: 185)
+                                .frame(maxWidth: 110)
+                                .multilineTextAlignment(.leading)
+                        }
                     }
+                    
+                   
                     
                     ZStack(alignment: .leading) {
                         Text("Rentang Waktu")
@@ -157,7 +161,7 @@ struct ContainerRingkasan: View {
 //}
 struct ContainerRingkasan_Previews: PreviewProvider {
     static var previews: some View {
-        let sampleTreatment = Treatment(
+        let sampleTreatment = FetchedTreatmentData(
             treatmentID: "12345",
             patientID: "patient123",
             coassID: "coass123",

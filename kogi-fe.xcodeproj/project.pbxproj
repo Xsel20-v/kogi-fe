@@ -36,6 +36,7 @@
 		3566D0C82C0604C900E25115 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C72C0604C900E25115 /* Message.swift */; };
 		3566D0CA2C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */; };
 		3566D0CC2C06203000E25115 /* SheetTambahSesi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */; };
+		357E40F02C2481980086C1B6 /* FetchedTreatmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357E40EF2C2481980086C1B6 /* FetchedTreatmentData.swift */; };
 		359537712BF3483E00FAB58F /* LokasiKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537702BF3483E00FAB58F /* LokasiKeluhan.swift */; };
 		359537732BF3485B00FAB58F /* LamaKeluhan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537722BF3485B00FAB58F /* LamaKeluhan.swift */; };
 		359537752BF3488600FAB58F /* KeluhanPilihWaktu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */; };
@@ -120,6 +121,7 @@
 		3566D0C72C0604C900E25115 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetKonfirmasiPerawatan.swift; sourceTree = "<group>"; };
 		3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetTambahSesi.swift; sourceTree = "<group>"; };
+		357E40EF2C2481980086C1B6 /* FetchedTreatmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedTreatmentData.swift; sourceTree = "<group>"; };
 		359537702BF3483E00FAB58F /* LokasiKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LokasiKeluhan.swift; sourceTree = "<group>"; };
 		359537722BF3485B00FAB58F /* LamaKeluhan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LamaKeluhan.swift; sourceTree = "<group>"; };
 		359537742BF3488600FAB58F /* KeluhanPilihWaktu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeluhanPilihWaktu.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				3566D0C12C05D98000E25115 /* LoginInfo.swift */,
 				3566D0C32C05EB5C00E25115 /* NewCoass.swift */,
 				3566D0C72C0604C900E25115 /* Message.swift */,
+				357E40EF2C2481980086C1B6 /* FetchedTreatmentData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				3D9A985B2C0E14BB0036DD65 /* ChatRoomViewModel.swift in Sources */,
 				3D3BE4CC2BEBEFDD000771A2 /* ContainerDetilSesi.swift in Sources */,
 				3D97B87E2BFE159A0050161D /* PusatBantuanView.swift in Sources */,
+				357E40F02C2481980086C1B6 /* FetchedTreatmentData.swift in Sources */,
 				3566D0AE2C04486E00E25115 /* FullScreenImageView.swift in Sources */,
 				3D97B8822BFEE51A0050161D /* ChatRoomView.swift in Sources */,
 				3D4A3F352C00AD99003FBC8F /* WebSocketManager.swift in Sources */,

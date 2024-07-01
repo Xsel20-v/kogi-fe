@@ -194,7 +194,15 @@ struct SignUpView: View {
                                 showAlert = true
                             }
                         } else {
-                            
+                            if let coass = await loginViewModel.signUpNewCoass(nama: fullName, email: email, password: createPassword) {
+                                self.userID = coass.coassID
+                                self.username = coass.name
+                                self.email_ = coass.email
+                                self.password = coass.password
+                                self.isLoggedIn = true
+                            } else {
+                                showAlert = true
+                            }
                         }
                         
                         
@@ -241,18 +249,34 @@ struct SignUpView: View {
     }
     
     func isFilled() -> Bool {
-        if !fullName.isEmpty && birthDate != Date.now && !createPassword.isEmpty && !verifyPassword.isEmpty {
-            
-            if createPassword == verifyPassword {
-                return true
+        if isPatient {
+            if !fullName.isEmpty && birthDate != Date.now && !createPassword.isEmpty && !verifyPassword.isEmpty {
+                
+                if createPassword == verifyPassword {
+                    return true
+                } else {
+                    loginViewModel.alertMessage = "Password tidak sama"
+                    return false
+                }
             } else {
-                loginViewModel.alertMessage = "Password tidak sama"
+                loginViewModel.alertMessage = "Pastikan anda mengisi seluruh data yang diperlukan"
                 return false
             }
         } else {
-            loginViewModel.alertMessage = "Pastikan anda mengisi seluruh data yang diperlukan"
-            return false
+            if !fullName.isEmpty && !createPassword.isEmpty && !verifyPassword.isEmpty {
+                
+                if createPassword == verifyPassword {
+                    return true
+                } else {
+                    loginViewModel.alertMessage = "Password tidak sama"
+                    return false
+                }
+            } else {
+                loginViewModel.alertMessage = "Pastikan anda mengisi seluruh data yang diperlukan"
+                return false
+            }
         }
+        
     }
 }
 

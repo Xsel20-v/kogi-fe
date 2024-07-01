@@ -16,6 +16,8 @@ struct ContentView: View {
     @StateObject var chatViewModel = ChatViewModel()
     @StateObject var socketIOManager = SocketIOManager()
     
+    @AppStorage("hasTreatment") var hasTreatment = false
+    
     var body: some View {
         
         NavigationStack(path: $path) {
@@ -64,9 +66,26 @@ struct ContentView: View {
                 case "Ganti Sandi":
                     GantiSandiView(path: $path, tabSelection: $tabSelection)
                 case "Chat Room":
-                    ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager)
+                     ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager)
+                case Constant.Categories.konservasiGigi :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi)
+                case Constant.Categories.periodonsia :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.periodonsia)
+                case Constant.Categories.bedahMulut :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.cabutGigi)
+                case Constant.Categories.pedodonsia :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.pedodonsia)
+                case Constant.Categories.penyakitMulut :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.sariawan)
+                case Constant.Categories.prostodonsia :
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.gigiTiruan)
+                case Constant.Categories.orthodonsia:
+                    CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.kawatLepasan)
+                case "Detail Perawatan Pending View" :
+                    DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)          
 //                case "Detail Perawatan":
 //                    DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatment: $treatmentViewModel.selectedTreatment, treatmentViewModel: treatmentViewModel)
+
 //                case "Detail Sesi":
 //                    DetilSesiView(path: $path, tabSelection: $tabSelection)
                 default:

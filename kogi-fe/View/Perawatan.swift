@@ -38,59 +38,116 @@ struct Perawatan: View {
                             Spacer()
                         }
                         .padding(.leading, 30)
-                        HStack {
-                            Button(action: {
-                                path.append(Constant.Categories.sakitGigi)
-                            }, label: {
+                        if isPatient {
+                            HStack {
+                                Button(action: {
+                                    path.append(Constant.Categories.sakitGigi)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.karangGigi)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.cabutGigi)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.cabutGigi, image: Constant.Images.cabutGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.gigiTiruan)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.gigiTiruan, image: Constant.Images.gigiTiruan)
+                                })
+                            }
+                            .padding(.leading, 30)
+                            .padding(.trailing, 30)
+                            
+                            HStack {
+                                Button(action: {
+                                    path.append(Constant.Categories.kawatLepasan)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.kawatLepasan, image: Constant.Images.kawatLepasan)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.gusiBengkak)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.gusiBengkak, image: Constant.Images.gusiBengkak)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.sariawan)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.sariawan, image: Constant.Images.sariawan)
+                                })
+                                Spacer()
                                 CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
-                            })
-                            Spacer()
-                            Button(action: {
-                                path.append(Constant.Categories.karangGigi)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.karangGigi, image: Constant.Images.karangGigi)
-                            })
-                            Spacer()
-                            Button(action: {
-                                path.append(Constant.Categories.cabutGigi)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.cabutGigi, image: Constant.Images.cabutGigi)
-                            })
-                            Spacer()
-                            Button(action: {
-                                path.append(Constant.Categories.gigiTiruan)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.gigiTiruan, image: Constant.Images.gigiTiruan)
-                            })
+                                    .disabled(true)
+                                    .opacity(0)
+                            }
+                            .padding(.leading, 30)
+                            .padding(.trailing, 30)
+                        } else {
+                            HStack {
+                                Button(action: {
+                                    path.append(Constant.Categories.konservasiGigi)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.konservasiGigi, image: Constant.Images.sakitGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.periodonsia)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.periodonsia, image: Constant.Images.karangGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.bedahMulut)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.bedahMulut, image: Constant.Images.cabutGigi)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.pedodonsia)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.pedodonsia, image: Constant.Images.pedodonsia)
+                                })
+                            }
+                            .padding(.leading, 30)
+                            .padding(.trailing, 30)
+                            
+                            HStack {
+                                Button(action: {
+                                    path.append(Constant.Categories.penyakitMulut)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.penyakitMulut, image: Constant.Images.sariawan)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.prostodonsia)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.prostodonsia, image: Constant.Images.gigiTiruan)
+                                })
+                                Spacer()
+                                Button(action: {
+                                    path.append(Constant.Categories.orthodonsia)
+                                }, label: {
+                                    CategoryButton(text: Constant.Categories.orthodonsia, image: Constant.Images.kawatLepasan)
+                                })
+                                Spacer()
+                                CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
+                                    .disabled(true)
+                                    .opacity(0)
+                            }
+                            .padding(.leading, 30)
+                            .padding(.trailing, 30)
                         }
-                        .padding(.leading, 30)
-                        .padding(.trailing, 30)
-                        
-                        HStack {
-                            Button(action: {
-                                path.append(Constant.Categories.kawatLepasan)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.kawatLepasan, image: Constant.Images.kawatLepasan)
-                            })
-                            Spacer()
-                            Button(action: {
-                                path.append(Constant.Categories.gusiBengkak)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.gusiBengkak, image: Constant.Images.gusiBengkak)
-                            })
-                            Spacer()
-                            Button(action: {
-                                path.append(Constant.Categories.sariawan)
-                            }, label: {
-                                CategoryButton(text: Constant.Categories.sariawan, image: Constant.Images.sariawan)
-                            })
-                            Spacer()
-                            CategoryButton(text: Constant.Categories.sakitGigi, image: Constant.Images.sakitGigi)
-                                .disabled(true)
-                                .opacity(0)
-                        }
-                        .padding(.leading, 30)
-                        .padding(.trailing, 30)
+
                     }
                     .padding(.bottom, 15)
                     
@@ -172,7 +229,7 @@ struct HomeBackground: View {
                 VStack(alignment: .leading) {
                     Text("Halo, " + username + "!")
                         .bold()
-                    Text("Bagaimana kondisi gigi kamu?")
+                    Text(isPatient ? "Bagaimana kondisi gigi kamu?" : "Semangat melayani pasien ya!")
                         .opacity(0.6)
                 }
                 Spacer()
