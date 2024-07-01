@@ -32,7 +32,8 @@ struct SheetKonfirmasiPerawatan: View {
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short // Customize the date style as needed
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        formatter.timeZone = TimeZone.current
         return formatter
     }
     
@@ -55,6 +56,7 @@ struct SheetKonfirmasiPerawatan: View {
             .padding(.bottom, 20)
             Button(action: {
                 let tanggalString = dateFormatter.string(from: tanggal)
+                print(tanggalString)
                 socketIOManager.sendMessage("treatment", socketIOManager.currentChatRoom.roomID, [tanggalString, selectedOption, treatmentViewModel.fetchedTreatmentData?.treatmentID ?? "null"])
                 isTreatmentSheetPresented = false
             }) {

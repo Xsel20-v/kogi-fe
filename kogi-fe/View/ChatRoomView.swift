@@ -14,44 +14,46 @@ struct ChatRoomView: View {
     @ObservedObject var treatmentViewModel : TreatmentViewModel
     @State private var fetchedTreatment: FetchedTreatmentData? = nil
     @ObservedObject var socketIOManager : SocketIOManager
-//        @ObservedObject var chatRoomViewModel = ChatRoomViewModel()
-    //    var lastDateShown: String = ""
-//    @State private var currentRoomID: String = "R1"
+    
+    @State var historyTimestamps: [String] = []
     
     @State private var shouldScrollToBottom: Bool = true
     @State private var keyboardHeight: CGFloat = 0
     @State var isTreatmentSheetPresented : Bool = false
     
-    @AppStorage("userID") var userID = "C7"
+    @State var index = 0
     
+    @AppStorage("userID") var userID = "C7"
     
     var body: some View {
         ZStack {
             VStack {
                 // Header
                 ChatRoomHeader(name: socketIOManager.currentChatRoom.receiver, imageBase64: socketIOManager.currentChatRoom.profilePicture)
-                    .padding(.top, -100)
-                //                .offset(y: -100)
+                    .padding(.top, -90)
                 
-                // ScrollView in the middle
                 ScrollViewReader { scrollViewProxy in
                     ScrollView {
-                        ForEach(socketIOManager.getChatHistory(), id: \.id) { history in
+                        ForEach(socketIOManager.getChatHistory().indices, id: \.self) { index in
+                            let history = socketIOManager.getChatHistory()[index]
                             
-//                             if chatRoomViewModel.shouldShowDateHeader(history.timestamp) {
-//                                 Text(chatRoomViewModel.getFormattedDate(history.timestamp))
-//                                     .foregroundColor(.gray)
-//                                     .padding(.vertical, 5)
-//                             } JANGAN DI UNCOMMENT INFINITE LOOP
-                            if history.type == "treatment" {
-                                ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history)
-                                    .padding(.bottom, 20)
-                            } else {
-                                MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != userID)
+                            VStack {
+                                if !history.timestamp.isEmpty && index < historyTimestamps.count {
+                                    Text(historyTimestamps[index])
+                                        .foregroundColor(.gray)
+                                }
+                                if history.type == "treatment" {
+                                    ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history)
+                                        .padding(.bottom, 20)
+                                } else {
+                                    MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != userID)
+                                }
                             }
                         }
                     }
                     .onChange(of: socketIOManager.chatHistory) { _ in
+                        
+                        updateHistoryTimestamps()
                         shouldScrollToBottom = true
                         DispatchQueue.main.async {
                             scrollToBottom(scrollViewProxy)
@@ -63,6 +65,11 @@ struct ChatRoomView: View {
                             scrollToBottom(scrollViewProxy)
                         }
                     }
+                    .onAppear {
+                        DispatchQueue.main.async {
+                            scrollToBottom(scrollViewProxy)
+                        }
+                    }
                     .onTapGesture {
                         hideKeyboard()
                     }
@@ -70,7 +77,6 @@ struct ChatRoomView: View {
                 .frame(height: 595 - keyboardHeight)
                 .background(Color.clear)
                 .onReceive(Publishers.keyboardHeight) { keyboardHeight in
-                    // Update keyboard height
                     self.keyboardHeight = keyboardHeight - 27
                 }
                 .padding(.vertical, -5)
@@ -80,7 +86,7 @@ struct ChatRoomView: View {
                 
             }
             
-            BottomSheetView(isPresented: $isTreatmentSheetPresented, maxHeight: 250){
+            BottomSheetView(isPresented: $isTreatmentSheetPresented, maxHeight: 250) {
                 SheetKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, tanggal: convertToDate(fetchedTreatment?.requestedDate ?? "2024-06-04T21:39:50") ?? Date(), problemCategory: fetchedTreatment?.problemCategory ?? "", selectedOption: fetchedTreatment?.problemCategory ?? "", isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager)
                     .transition(.move(edge: .bottom))
                     .zIndex(1)
@@ -92,6 +98,7 @@ struct ChatRoomView: View {
             socketIOManager.connect()
             
             fetchTreatmentData()
+            updateHistoryTimestamps()
         }
         .onChange(of: socketIOManager.isConnected) { isConnected in
             if isConnected {
@@ -102,19 +109,19 @@ struct ChatRoomView: View {
     }
     
     func scrollToBottom(_ scrollViewProxy: ScrollViewProxy) {
-        withAnimation {
-            if let lastMessageID = socketIOManager.chatHistory.last?.id {
-                scrollViewProxy.scrollTo(lastMessageID, anchor: .bottom)
-            }
-        }
-    }
+           withAnimation {
+               if shouldScrollToBottom {
+                   scrollViewProxy.scrollTo(socketIOManager.getChatHistory().count - 1, anchor: .bottom)
+                   shouldScrollToBottom = false
+               }
+           }
+       }
     
     func hideKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
     func fetchTreatmentData() {
-        print(treatmentViewModel.fetchedTreatmentData?.patientID)
         Task {
             if await treatmentViewModel.getTreatmentDataByStatus(userID: socketIOManager.currentChatRoom.patientID, status: "pending") {
                 self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
@@ -131,27 +138,61 @@ struct ChatRoomView: View {
         return dateFormatter.date(from: dateString)
     }
     
-    //    func getFormattedDate(_ timestamp: String) -> String? {
-    //        let dateFormatter = DateFormatter()
-    //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    //
-    //        guard let messageDate = dateFormatter.date(from: timestamp) else {
-    //            return nil // Return nil if parsing fails
-    //        }
-    //
-    //        let currentDate = Date()
-    //        let calendar = Calendar.current
-    //
-    //        if calendar.isDate(messageDate, inSameDayAs: currentDate) {
-    //            return "Today"
-    //        } else if calendar.isDate(messageDate, inSameDayAs: calendar.date(byAdding: .day, value: -1, to: currentDate)!) {
-    //            return "Yesterday"
-    //        } else {
-    //            let displayFormatter = DateFormatter()
-    //            displayFormatter.dateFormat = "dd MMM YY"
-    //            return displayFormatter.string(from: messageDate)
-    //        }
-    //    }
+    func getFormattedDate(_ timestamp: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        guard let messageDate = dateFormatter.date(from: timestamp) else {
+            return nil // Return nil if parsing fails
+        }
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        if calendar.isDate(messageDate, inSameDayAs: currentDate) {
+            return "Today"
+        } else if calendar.isDate(messageDate, inSameDayAs: calendar.date(byAdding: .day, value: -1, to: currentDate)!) {
+            return "Yesterday"
+        } else {
+            let displayFormatter = DateFormatter()
+            displayFormatter.dateFormat = "dd MMM YY"
+            return displayFormatter.string(from: messageDate)
+        }
+    }
+    
+    
+    func updateHistoryTimestamps() {
+        guard !socketIOManager.chatHistory.isEmpty else {
+            print("Chat history is empty.")
+            return
+        }
+        
+        historyTimestamps = socketIOManager.chatHistory.map { $0.timestamp }
+        print("Original historyTimestamps: \(historyTimestamps)")
+        
+        var modifiedTimestamps: [String] = []
+        var lastDate: Date? = nil
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        for time in historyTimestamps {
+            guard let currentDate = dateFormatter.date(from: time) else {
+                modifiedTimestamps.append(time)
+                continue
+            }
+            
+            if let lastDate = lastDate, Calendar.current.isDate(currentDate, inSameDayAs: lastDate) {
+                modifiedTimestamps.append("")
+            } else {
+                modifiedTimestamps.append(getFormattedDate(time)!)
+                lastDate = currentDate
+            }
+        }
+        
+        historyTimestamps = modifiedTimestamps
+        print("Updated historyTimestamps: \(historyTimestamps)")
+    }
     
     
 }
