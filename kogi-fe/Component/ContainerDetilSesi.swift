@@ -15,8 +15,18 @@ struct ContainerDetilSesi: View {
         case ongoing, done
     }
     
-    var status: Status
-    var date: String
+    var session: SessionModel
+    var index: Int
+    var status: Status {
+        switch session.sessionStatus {
+        case "ongoing" :
+            return Status.ongoing
+        case "done" :
+            return Status.done
+        default :
+            return Status.ongoing
+        }
+    }
     
     var body: some View {
         
@@ -35,7 +45,7 @@ struct ContainerDetilSesi: View {
                 VStack(alignment: .leading) {
                     
                     HStack(){
-                        Text("Sesi 1")
+                        Text("Sesi \(index)")
                             .font(.system(size: 12, weight: .semibold))
                         
                         Spacer()
@@ -75,7 +85,7 @@ struct ContainerDetilSesi: View {
                             .frame(width: imageIconFrame, height: imageIconFrame)
                             .foregroundColor(Color("primaryColor"))
                         
-                        Text(date)
+                        Text("\(session.dateOfSession.dateToString()) (\(session.dateOfSession.timeToString()))")
                             .font(.system(size: 12))
                     }
                 }
@@ -105,5 +115,5 @@ struct ContainerDetilSesi: View {
 }
 
 #Preview {
-    ContainerDetilSesi(status: .done, date: "24 Jun 2024 (11.00)")
+    ContainerDetilSesi(session: SessionModel(sessionID: "S1", treatmentID: "T1", dateOfSession: "2023-06-20T09:41:00"), index: 1)
 }

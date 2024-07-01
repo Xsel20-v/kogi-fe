@@ -171,7 +171,12 @@ struct Perawatan: View {
                             ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!)
                                 .frame(width: geometry.size.width, height: geometry.size.height)
                                 .onTapGesture {
-                                    showSheet = true
+                                    if treatmentViewModel.fetchedTreatmentData?.treatmentStatus == "pending" {
+                                        showSheet = true
+                                    } else {
+                                        path.append("Detail Perawatan")
+                                    }
+                                    
                                 }
                         } else {
                             Text("Tidak ada perawatan")

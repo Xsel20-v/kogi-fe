@@ -248,7 +248,9 @@ struct ContainerPerawatan: View {
             return "Prostodonsia"
         } else if category == "Gigi Tiruan" {
             return "Bedah Mulut"
-        } else {
+        } else if category == "Periodonsia" {
+            return "Periodonsia"
+        }else {
             return "Tidak Ditemukan"
         }
     }

@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct ReportFormView: View {
+    
     @State var catatan : String = ""
+    @State var imageBefore: [Data] = []
+    @State var imageAfter: [Data] = []
+    @State var dataIsRetrieved = false
+    
+    @Binding var path: NavigationPath
+    
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    var index: Int
     
     var body: some View {
         ZStack{
@@ -16,7 +25,6 @@ struct ReportFormView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderViewComponent()
-                    .padding(.top, -60)
                 
                 Spacer()
                 
@@ -24,7 +32,7 @@ struct ReportFormView: View {
                     VStack(alignment: .leading, spacing: 20){
                         
                         VStack(alignment:.leading) {
-                            Text("Sesi 1: \nPembersihan Karang Gigi & Penambalan")
+                            Text("Sesi \(index + 1)")
                                 .font(.system(size: 14, weight: .bold))
                             
                             HStack{
@@ -83,7 +91,7 @@ struct ReportFormView: View {
                             }
                             .fontWeight(.semibold)
                             
-                            ImagePicker(placeholder: "Masukkan Foto Kondisi Awal")
+                            ImagePicker(imagesData: $imageBefore, placeholder: "Masukkan Foto Kondisi Awal")
                         }
                         
                         
@@ -96,20 +104,58 @@ struct ReportFormView: View {
                             .fontWeight(.semibold)
                             
                             
-                            ImagePicker(placeholder: "Masukkan Foto Kondisi Akhir")
+                            ImagePicker(imagesData: $imageAfter, placeholder: "Masukkan Foto Kondisi Akhir")
                         }
                         
                     }
                     .padding()
                 }
-                
-                ButtonComponent(text: "Selesaikan Sesi", buttonColors: .blue)
+                Button(action: {
+                    treatmentViewModel.fetchedSession.reportText = catatan
+                    treatmentViewModel.fetchedSession.imageBefore = convertDataArrayToStringArray(imageBefore)
+                    treatmentViewModel.fetchedSession.imageAfter = convertDataArrayToStringArray(imageAfter)
+                    if checkCompletion() {
+                        treatmentViewModel.fetchedSession.sessionStatus = "done"
+                    }
+                    Task {
+                        await treatmentViewModel.updateSession()
+                        dataIsRetrieved = await treatmentViewModel.getSessionList()
+                        if dataIsRetrieved {
+                            path.removeLast()
+                        }
+                    }
+                }, label: {
+                    ButtonComponent(text: checkCompletion() ? "Selesaikan Sesi" : "Simpan Perubahan", buttonColors: .blue)
+                        .padding(.bottom, 50)
+                })
+            }
+            .ignoresSafeArea()
+            .onTapGesture {
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }
         }
         .font(.system(size: 14))
     }
+    
+    func checkCompletion() -> Bool {
+        if !catatan.isEmpty && !imageBefore.isEmpty && !imageAfter.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func convertDataArrayToStringArray(_ dataArray: [Data]) -> [String] {
+        var stringArray: [String] = []
+        
+        for data in dataArray {
+            stringArray.append(data.base64EncodedString())
+        }
+        
+        return stringArray
+    }
 }
 
 #Preview {
-    ReportFormView()
+    ReportFormView(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel(), index: 0)
 }
