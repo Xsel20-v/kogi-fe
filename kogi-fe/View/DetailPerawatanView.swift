@@ -151,13 +151,13 @@ struct DetailPerawatanView: View {
                                                         isFinishAlert = false
                                                         showAlert = true
                                                     } else {
-                                                        path.append("Detail Sesi")
+                                                        path.append("Detail Sesi \(index)")
                                                     }
                                                 } else {
                                                     if session.sessionStatus != "done" {
                                                         
                                                     } else {
-                                                        path.append("Detail Sesi")
+                                                        path.append("Detail Sesi \(index)")
                                                     }
                                                 }
                                                 

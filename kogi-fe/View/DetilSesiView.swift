@@ -10,6 +10,7 @@ import SwiftUI
 struct DetilSesiView: View {
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
+    var index: Int
     
     var body: some View {
         ZStack {
@@ -17,7 +18,6 @@ struct DetilSesiView: View {
                 .ignoresSafeArea()
             VStack {
                 HeaderViewComponent()
-                    .padding(.top, -60)
                 
                 Spacer()
                 
@@ -28,7 +28,7 @@ struct DetilSesiView: View {
                                 .foregroundColor(Color.white)
                             
                             VStack(alignment:.leading) {
-                                Text("Sesi 1")
+                                Text("Sesi \(index + 1)")
                                     .font(.system(size: 18, weight: .bold))
                                 
                                 HStack{
@@ -134,11 +134,12 @@ struct DetilSesiView: View {
                     }
                 }
             }
+            .ignoresSafeArea()
         }
 
     }
 }
 
 #Preview {
-    DetilSesiView(treatmentViewModel: TreatmentViewModel())
+    DetilSesiView(treatmentViewModel: TreatmentViewModel(), index: 0)
 }

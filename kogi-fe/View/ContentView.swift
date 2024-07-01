@@ -85,10 +85,16 @@ struct ContentView: View {
                     DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)          
                 case "Detail Perawatan":
                     DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
-                case "Detail Sesi":
-                    DetilSesiView(treatmentViewModel: treatmentViewModel)
                 default:
-                    DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
+                    if value.hasPrefix("Detail Sesi") {
+                        if let index = Int(value.components(separatedBy: " ").last ?? "") {
+                            DetilSesiView(treatmentViewModel: treatmentViewModel, index: index)
+                        } else {
+                            DetilSesiView(treatmentViewModel: treatmentViewModel, index: 0)
+                        }
+                    } else {
+                        DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
+                    }
                 }
             }
         }
