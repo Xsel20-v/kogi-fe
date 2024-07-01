@@ -18,6 +18,8 @@ struct SignUpView: View {
     @State private var isPasswordVisible: Bool = false
     @State private var isVerifyPasswordVisible: Bool = false
     @State private var showAlert: Bool = false
+    @State private var isChecked: Bool = false
+    @State private var showTermsOverlay = false
     
     @ObservedObject var loginViewModel: LoginViewModel
     
@@ -169,42 +171,66 @@ struct SignUpView: View {
                     .padding(.horizontal, 16)
                     
                     
-                    
-//                    ImagePicker(placeholder: "Masukkan Foto Ijazah")
+                    if isPatient {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Foto Ijazah")
+                                .frame(alignment: .leading)
+                            ImagePicker(placeholder: "Masukkan Foto Ijazah")
+                        }
+                        .padding(.horizontal, 16)
+                    }
                 }
-                
             }
             
+            //Terms and Agreement
+            HStack {
+                Image(systemName: isChecked ? "checkmark.square" : "square")
+                    .foregroundColor(isChecked ? .blue : .gray)
+                    .onTapGesture {
+                        isChecked.toggle()
+                    }
+                Text("Saya setuju dengan")
+                Text("Syarat dan Ketentuan")
+                    .foregroundColor(Color("primaryColor"))
+                    .onTapGesture {
+                        showTermsOverlay = true
+                    }
+            }
             
             // Create Account Button
             Button(action: {
                 // Handle create account action
-                
-                if isFilled() {
-                    Task {
-                        if isPatient {
-                            if let patient = await loginViewModel.signUpNewPatient(nama: fullName, birthDate: birthDate.toString(), email: email, password: createPassword) {
-                                self.userID = patient.patientID
-                                self.username = patient.name
-                                self.dob = patient.dateOfBirth
-                                self.email_ = patient.email
-                                self.password = patient.password
-                                self.isLoggedIn = true
+                if isChecked {
+                    if isFilled() {
+                        Task {
+                            if isPatient {
+                                if let patient = await loginViewModel.signUpNewPatient(nama: fullName, birthDate: birthDate.toString(), email: email, password: createPassword) {
+                                    self.userID = patient.patientID
+                                    self.username = patient.name
+                                    self.dob = patient.dateOfBirth
+                                    self.email_ = patient.email
+                                    self.password = patient.password
+                                    self.isLoggedIn = true
+                                } else {
+                                    showAlert = true
+                                }
                             } else {
-                                showAlert = true
+                                
                             }
-                        } else {
+                            
                             
                         }
-                        
-                        
+                    } else {
+                        showAlert = true
                     }
-                } else {
-                    showAlert = true
+                    print("     Account button tapped")
                 }
-                print("Create Account button tapped")
             }) {
-                ButtonComponent(text: "Buat Akun", buttonColors: .blue)
+                if isChecked {
+                    ButtonComponent(text: "Buat Akun", buttonColors: .blue)
+                } else {
+                    ButtonComponent(text: "Buat Akun", buttonColors: .gray)
+                }
             }
             .padding(.horizontal, 16)
             
@@ -222,7 +248,6 @@ struct SignUpView: View {
                 }
             }
             .padding(.top, 8)
-            .padding(.bottom, 16)
             .padding(.horizontal, 16)
             
             Spacer()
@@ -238,6 +263,9 @@ struct SignUpView: View {
                 }
             )
         }
+        .overlay(
+            showTermsOverlay ? AnyView(termsAndAgreementOverlay(showOverlay: $showTermsOverlay)) : AnyView(EmptyView())
+        )
     }
     
     func isFilled() -> Bool {
