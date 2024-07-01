@@ -279,6 +279,8 @@ class TreatmentViewModel: ObservableObject {
             print("invalid Data")
         }catch {
             print("unexpected error")
+        }
+    }
 
     func updateTreatmentConfirmation(date: String, category: String, status: String) async{
         fetchedTreatmentData?.requestedDate = date
