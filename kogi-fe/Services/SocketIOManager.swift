@@ -1,9 +1,22 @@
 import Foundation
 import SocketIO
+import SwiftUI
 
 class SocketIOManager: NSObject, ObservableObject {
-    private var manager: SocketManager
-    private var socket: SocketIOClient
+    //    private var manager: SocketManager
+    //    private var socket: SocketIOClient
+    
+    private lazy var manager: SocketManager = {
+        let serverURL = URL(string: "https://kogi-ws.onrender.com")!
+        return SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": userID])])
+    }()
+    
+    private lazy var socket: SocketIOClient = {
+        return manager.defaultSocket
+    }()
+    
+    
+//    var currentRoomID: String = "R1"
     
     //        @Published var receivedMessage: String = ""
     @Published var chatRoomList: [ChatRoom] = []
@@ -12,15 +25,14 @@ class SocketIOManager: NSObject, ObservableObject {
     @Published var isConnected: Bool = false
     @Published var newChatRoomID: String = ""
     
-    var currentRoomID: String = "R1"
+    @AppStorage("userID") var userID = "C1"
     
     override init() {
-        let serverURL = URL(string: "https://kogi-ws.onrender.com")!
-        self.manager = SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": "C1"])])
-        self.socket = manager.defaultSocket
+        //        let serverURL = URL(string: "https://kogi-ws.onrender.com")!
+        //        self.manager = SocketManager(socketURL: serverURL, config: [.log(true), .compress, .connectParams(["userID": "C1"])])
+        //        self.socket = manager.defaultSocket
         
         super.init()
-        
         configureSocketEvents()
     }
     
@@ -54,16 +66,16 @@ class SocketIOManager: NSObject, ObservableObject {
                     print("masuk sini")
                     let newMessage = ChatHistory(messageID: "a", type: type, roomID: roomID, senderID: senderID, timestamp: timestamp, message: messageBody)
                     
-                    if roomID == self.currentRoomID {
+                    if roomID == self.currentChatRoom.roomID {
                         DispatchQueue.main.async {
                             self.chatHistory.append(newMessage)
-                    print(newMessage)
+                            print(newMessage)
                         }
                     }
                 }
             }
             
-//            print("Received chat data: \(data)")
+            //            print("Received chat data: \(data)")
         }
         
         socket.on("getChatroom") { data, ack in
@@ -90,14 +102,14 @@ class SocketIOManager: NSObject, ObservableObject {
             }
         }
         
-//
-//                socket.on("getChatroom") { data, ack in
-//                    print("Received chat room data: \(data)")
-//                }
-//        
-//                socket.on("getChatHistory") { data, ack in
-//                    print("Received chat history data: \(data)")
-//                }
+        //
+        //                socket.on("getChatroom") { data, ack in
+        //                    print("Received chat room data: \(data)")
+        //                }
+        //
+        //                socket.on("getChatHistory") { data, ack in
+        //                    print("Received chat history data: \(data)")
+        //                }
         
         socket.on("getChatHistory") { data, ack in
             if let chatHistoryArray = data.first as? [[String: Any]] {
@@ -112,16 +124,16 @@ class SocketIOManager: NSObject, ObservableObject {
                        let messageBody = chatHistory["body"] as? [String] {
                         
                         let message = ChatHistory(messageID: messageID,
-                                              type: type,
-                                              roomID: roomID,
-                                              senderID: senderID,
-                                              timestamp: timestamp,
-                                              message: messageBody)
+                                                  type: type,
+                                                  roomID: roomID,
+                                                  senderID: senderID,
+                                                  timestamp: timestamp,
+                                                  message: messageBody)
                         parsedMessages.append(message)
                     }
                 }
                 self.chatHistory = parsedMessages
-                print(parsedMessages)
+//                print(parsedMessages)
             }
         }
         

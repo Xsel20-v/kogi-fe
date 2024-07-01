@@ -15,6 +15,8 @@ struct Pesan: View {
     @ObservedObject var socketIOManager : SocketIOManager
     @State private var isConnected = false
     
+    @AppStorage("userID") var userID = "C1"
+    
     var body: some View {
         ZStack {
             Color("primaryColor")
@@ -47,7 +49,7 @@ struct Pesan: View {
             socketIOManager.connect()
         }
         .onChange(of: socketIOManager.isConnected) {
-            socketIOManager.emitChatRoom("C1")
+            socketIOManager.emitChatRoom(userID)
 //                    chatViewModel.loadChatRooms(userID: "P1")
         }
     }

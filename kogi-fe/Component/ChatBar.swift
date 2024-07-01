@@ -10,10 +10,13 @@ struct ChatBar: View {
     @State private var messageText: String = ""
     @State private var showAlert: Bool = false
     @Binding var isTreatmentSheetPresented: Bool
+    @Binding var fetchedTreatment: FetchedTreatmentData?
+    @State var showTreatmentAlert: Bool = false
     
     @ObservedObject var socketIOManager : SocketIOManager
     
     @AppStorage("isPatient") var isPatient = false
+    @AppStorage("userID") var userID = "C1"
     
     var body: some View {
         ZStack {
@@ -28,8 +31,11 @@ struct ChatBar: View {
                     
                     if !isPatient {
                         Button(action: {
-                            
-                            isTreatmentSheetPresented = true
+                            if(fetchedTreatment?.problemCategory == nil){
+                                showTreatmentAlert = true
+                            } else {
+                                isTreatmentSheetPresented = true
+                            }
                         }) {
                             Image(systemName: "heart.text.square.fill")
                                 .font(.title)
@@ -77,12 +83,22 @@ struct ChatBar: View {
             }
             .animation(.easeOut(duration: 0.16))
         }
+        .alert(isPresented: $showTreatmentAlert) {
+            Alert(
+                title: Text("Tidak ada permintaan perawatan"),
+                message: Text(""),
+                dismissButton: .cancel(Text("Ok")) {
+                    showTreatmentAlert = false
+                }
+            )
+        }
+
         //        .animation(.default, value: isTreatmentSheetPresented)
     }
     
     func sendMessage() {
         guard !messageText.isEmpty else { return }
-        socketIOManager.sendMessage("text", "R1", [messageText])
+        socketIOManager.sendMessage("text", socketIOManager.currentChatRoom.roomID, [messageText])
         messageText = ""
     }
     
@@ -94,6 +110,6 @@ struct ChatBar: View {
 }
 
 #Preview {
-    ChatBar(isTreatmentSheetPresented: .constant(false), socketIOManager: SocketIOManager())
+    ChatBar(isTreatmentSheetPresented: .constant(false), fetchedTreatment: .constant(nil), socketIOManager: SocketIOManager())
 }
 
