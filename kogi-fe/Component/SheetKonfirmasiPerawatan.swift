@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct SheetKonfirmasiPerawatan: View {
     
     //passing data tanggal dan problem category dari chat room view
     //data yang dipasing hasil ngambil dari treatmentViewModel dari view sebelumnya
-
+    
+    @ObservedObject var treatmentViewModel : TreatmentViewModel
     @State var tanggal: Date
     @State var problemCategory: String
     @State var selectedOption: String
     @Binding var isTreatmentSheetPresented : Bool
     @ObservedObject var socketIOManager : SocketIOManager
-    @Binding var fetchedTreatment: Treatment?
     
     let options = [
         Constant.Categories.cabutGigi,
@@ -28,6 +29,12 @@ struct SheetKonfirmasiPerawatan: View {
         Constant.Categories.sariawan,
         Constant.Categories.karangGigi
     ]
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short // Customize the date style as needed
+        return formatter
+    }
     
     var body: some View {
         VStack {
@@ -47,18 +54,19 @@ struct SheetKonfirmasiPerawatan: View {
             }
             .padding(.bottom, 20)
             Button(action: {
-                socketIOManager.sendMessage("treatment", socketIOManager.currentRoomID, ["", "", selectedOption, fetchedTreatment?.treatmentID ?? "null"])
+                let tanggalString = dateFormatter.string(from: tanggal)
+                socketIOManager.sendMessage("treatment", socketIOManager.currentChatRoom.roomID, [tanggalString, selectedOption, treatmentViewModel.fetchedTreatmentData?.treatmentID ?? "null"])
                 isTreatmentSheetPresented = false
-            }, label: {
+            }) {
                 ButtonComponent(text: "Kirim Konfirmasi", buttonColors: .blue)
-            })
+            }
             .padding(.bottom, 20)
-
+            
         }
         .padding()
     }
 }
 
 #Preview {
-    SheetKonfirmasiPerawatan(tanggal: Date(), problemCategory: "Sakit Gigi", selectedOption: "Option 1", isTreatmentSheetPresented: .constant(true), socketIOManager: SocketIOManager(), fetchedTreatment: .constant(Treatment(patientID: "", problemCategory: "", symptomsDesc: "", dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])))
+    SheetKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), tanggal: Date(), problemCategory: "Sakit Gigi", selectedOption: "Option 1", isTreatmentSheetPresented: .constant(true), socketIOManager: SocketIOManager())
 }

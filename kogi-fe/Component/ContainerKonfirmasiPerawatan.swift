@@ -14,6 +14,8 @@ struct ContainerKonfirmasiPerawatan: View {
     
     @State var isAccepted = false
     
+    @AppStorage("isPatient") var isPatient = false
+    
 //    var formattedTimestamp: String {
 //        let formatter = DateFormatter()
 //        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -30,7 +32,7 @@ struct ContainerKonfirmasiPerawatan: View {
             return "Periodonsia"
         } else if message.message[2] == "Sakit Gigi" {
             return "Konservasi Gigi"
-        } else if message.message[2] == "Sariwan"{
+        } else if message.message[2] == "Sariawan"{
             return "Ilmu Penyakit Mulut"
         } else if message.message[2] == "Kawat Lepasan" {
             return "Orthodonsia"
@@ -91,39 +93,60 @@ struct ContainerKonfirmasiPerawatan: View {
                                 .frame(width: 12, height: 12)
                                 .aspectRatio(contentMode: .fit)
                             
-                            Text("\(formatDateString(message.message[0])) (\(message.message[1]))")
+//                            Text("\(formatDateString(message.message[0])) (\(message.message[1]))")
+//                                .font(.system(size: 12))
+                            Text(message.message[0])
                                 .font(.system(size: 12))
                         }
                     }
                     .padding(.bottom, 5)
-                    Button(action: {
-                        Task {
-                            //Kyknya method updatenya harus diganti
-                            await treatmentViewModel.updateTreatmentStatus(treatmentStatus: "ongoing")
-                            isAccepted = true
-                        }
-                        
-                    }, label: {
+                    
+                    if isPatient {
+                        Button(action: {
+                            Task {
+                                //Kyknya method updatenya harus diganti
+                                await treatmentViewModel.updateTreatmentStatus(treatmentStatus: "ongoing")
+                                isAccepted = true
+                            }
+                            
+                        }, label: {
+                            HStack {
+                                Spacer()
+                                Text(isAccepted ? "Diterima" : "Terima")
+                                    .frame(width: 318, height: 30)
+                                    .background(isAccepted ? Constant.Colors.notMyMessage :  Constant.Colors.primaryColor)
+                                    .foregroundStyle(isAccepted ? Color.black : Constant.Colors.baseColor)
+                                    .cornerRadius(20)
+                                Spacer()
+                            }
+                            .shadow(color: .black.opacity(0.4), radius: 1, y:2)
+                            
+                        })
+                        .padding(.bottom, 5)
+                    } else {
                         HStack {
                             Spacer()
-                            Text("Terima")
+                            Text(isAccepted ? "Diterima" : "Menunggu Diterima")
                                 .frame(width: 318, height: 30)
                                 .background(isAccepted ? Constant.Colors.notMyMessage :  Constant.Colors.primaryColor)
-                                .foregroundStyle(Constant.Colors.baseColor)
+                                .foregroundStyle(isAccepted ? Color.black : Constant.Colors.baseColor)
                                 .cornerRadius(20)
                             Spacer()
                         }
-                        .shadow(color: .black.opacity(0.3), radius: 2)
-                        
-                    })
-                    .padding(.bottom, 5)
+                    }
                 }
                 .padding(.horizontal, 5)
                 .frame(maxWidth: 340)
             }
             .padding(10)
-            .shadow(radius: 10, y: 4)
             .frame(maxWidth: 349)
+        }
+        .onAppear {
+            if treatmentViewModel.fetchedTreatmentData?.treatmentStatus == "pending" {
+                isAccepted = false
+            } else {
+                isAccepted = true
+            }
         }
     }
 }

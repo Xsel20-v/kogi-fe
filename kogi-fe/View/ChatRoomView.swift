@@ -12,15 +12,17 @@ struct ChatRoomView: View {
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
     @ObservedObject var treatmentViewModel : TreatmentViewModel
-    @State private var fetchedTreatment: Treatment?
+    @State private var fetchedTreatment: FetchedTreatmentData? = nil
     @ObservedObject var socketIOManager : SocketIOManager
 //        @ObservedObject var chatRoomViewModel = ChatRoomViewModel()
     //    var lastDateShown: String = ""
-    @State private var currentRoomID: String = "R1"
+//    @State private var currentRoomID: String = "R1"
     
     @State private var shouldScrollToBottom: Bool = true
     @State private var keyboardHeight: CGFloat = 0
     @State var isTreatmentSheetPresented : Bool = false
+    
+    @AppStorage("userID") var userID = "C7"
     
     
     var body: some View {
@@ -42,10 +44,10 @@ struct ChatRoomView: View {
 //                                     .padding(.vertical, 5)
 //                             } JANGAN DI UNCOMMENT INFINITE LOOP
                             if history.type == "treatment" {
-                                ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history, isAccepted: false)
+                                ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history)
                                     .padding(.bottom, 20)
                             } else {
-                                MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != "C1")
+                                MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != userID)
                             }
                         }
                     }
@@ -73,13 +75,13 @@ struct ChatRoomView: View {
                 }
                 .padding(.vertical, -5)
                 
-                ChatBar(isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager)
+                ChatBar(isTreatmentSheetPresented: $isTreatmentSheetPresented, fetchedTreatment: $fetchedTreatment, socketIOManager: socketIOManager)
                     .background(Color("PrimaryColor"))
                 
             }
             
             BottomSheetView(isPresented: $isTreatmentSheetPresented, maxHeight: 250){
-                SheetKonfirmasiPerawatan(tanggal: convertToDate(fetchedTreatment?.requestedDate ?? "2024-06-04T21:39:50") ?? Date(), problemCategory: fetchedTreatment?.problemCategory ?? "", selectedOption: fetchedTreatment?.problemCategory ?? "", isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager, fetchedTreatment: $fetchedTreatment)
+                SheetKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, tanggal: convertToDate(fetchedTreatment?.requestedDate ?? "2024-06-04T21:39:50") ?? Date(), problemCategory: fetchedTreatment?.problemCategory ?? "", selectedOption: fetchedTreatment?.problemCategory ?? "", isTreatmentSheetPresented: $isTreatmentSheetPresented, socketIOManager: socketIOManager)
                     .transition(.move(edge: .bottom))
                     .zIndex(1)
             }
@@ -93,7 +95,7 @@ struct ChatRoomView: View {
         }
         .onChange(of: socketIOManager.isConnected) { isConnected in
             if isConnected {
-                socketIOManager.emitChatHistory("R1")
+                socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
             }
         }
         .animation(.default, value: isTreatmentSheetPresented)
@@ -112,8 +114,9 @@ struct ChatRoomView: View {
     }
     
     func fetchTreatmentData() {
+        print(treatmentViewModel.fetchedTreatmentData?.patientID)
         Task {
-            if await treatmentViewModel.getTreatmentDataByStatus(userID: "P4", status: "pending") {
+            if await treatmentViewModel.getTreatmentDataByStatus(userID: socketIOManager.currentChatRoom.patientID, status: "pending") {
                 self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
                 print(fetchedTreatment)
             } else {
