@@ -53,7 +53,27 @@ class TreatmentViewModel: ObservableObject {
         do {
             if let treatment = try await networkService?.fetchOnGoingTreatment(userID: userID)?.first {
                 fetchedTreatmentData = treatment
-                print(fetchedTreatmentData)
+                print(fetchedTreatmentData as Any)
+                return true
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return false
+    }
+    
+    func getTreatmentUsingFilter(category: String, date: String, start: String, end: String, variants: [String]?) async -> Bool {
+        networkService = NetworkService()
+        do {
+            if let treatments = try await networkService?.fetchTreatmentByFilter(problemCategory: category, selectedDate: date, startTime: start, endTime: end, selectedVariants: variants) {
+                treatmentList = treatments
+                print(treatmentList as Any)
                 return true
             }
         }catch NError.invalidURL {
@@ -73,7 +93,7 @@ class TreatmentViewModel: ObservableObject {
         do {
             if let treatment = try await networkService?.fetchTreatmentByStatus(userID: userID, status: status)?.first {
                 fetchedTreatmentData = treatment
-                print(fetchedTreatmentData)
+                print(fetchedTreatmentData as Any)
                 return true
             }
         }catch NError.invalidURL {

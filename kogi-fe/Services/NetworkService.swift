@@ -36,6 +36,33 @@ class NetworkService {
         }
     }
     
+    func fetchTreatmentByFilter(problemCategory: String, selectedDate: String, startTime: String, endTime : String, selectedVariants: [String]?) async throws -> [FetchedTreatmentData]? {
+        let endpoint = "https://kogi-api.onrender.com/api/getTreatmentFilter"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST" // Set HTTP method to POST
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
+        
+        let bodyData = "{\"problemCategory\": \"\(problemCategory)\", \"selectedDate\": \"\(selectedDate)\", \"startTime\": \"\(startTime)\", \"endTime\": \"\(endTime)\", \"selectedCaseVariants\": \(selectedVariants ?? [""])}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+        
+        do {
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode([FetchedTreatmentData].self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+    }
+    
     func fetchTreatmentByStatus(userID: String, status: String) async throws -> [FetchedTreatmentData]? {
         let endpoint = "https://kogi-api.onrender.com/api/getTreatmentList"
         

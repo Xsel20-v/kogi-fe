@@ -46,6 +46,14 @@ struct CariPerawatanView: View {
                     Text("Recommended Perawatan")
                         .font(.headline)
                         .padding([.top, .horizontal])
+                    Button(action: {
+                        Task {
+                            dataIsRetrieved = await treatmentViewModel.getTreatmentListByCategory(category: category)
+                        }
+                    }, label: {
+                        Image(systemName: "arrow.clockwise")
+                            .foregroundColor(Constant.Colors.primaryColor)
+                    })
                     
                     Spacer()
                 }
@@ -70,7 +78,7 @@ struct CariPerawatanView: View {
             .ignoresSafeArea()
             
             BottomSheetView(isPresented: $isFilterSheetPresented, maxHeight: 500) {
-                FilterSheet()
+                FilterSheet(treatmentViewModel: treatmentViewModel, dataIsRetrieved: $dataIsRetrieved, category: category, isPresented: $isFilterSheetPresented)
             }
         }
         .onAppear(perform: {

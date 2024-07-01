@@ -127,6 +127,12 @@ extension Date {
         formatter.dateFormat = format
         return formatter.string(from: self)
     }
+    
+    func timeToString(format: String = "HH:mm") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 }
 
 extension String {
