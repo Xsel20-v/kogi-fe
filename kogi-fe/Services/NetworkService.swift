@@ -266,6 +266,42 @@ class NetworkService {
         
     }
     
+    func updateSessionData(session: SessionModel) async throws {
+            
+            guard let jsonData = try? JSONEncoder().encode(session) else { throw NError.invalidEncodingData }
+            
+            let endpoint = "https://kogi-api.onrender.com/api/UpdateSesion"
+            
+            guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+        
+//        print("BODY : \(request.httpBody?.base64EncodedString())")
+            
+            do {
+                // Perform the network request
+                let (data, response) = try await URLSession.shared.data(for: request)
+                
+                // Ensure the response is an HTTPURLResponse and has a status code of 200
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                    throw NError.invalidResponse
+                }
+                
+                // Print the response data if it can be converted to a string
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response: \(responseString)")
+                }
+            } catch {
+                // Handle any errors that occurred during the network request
+                print("Error: \(error)")
+                throw error
+            }
+        
+    }
+    
     func createNewPatient(patient: NewPatient) async throws -> Patient {
         let newPatient = patient
         

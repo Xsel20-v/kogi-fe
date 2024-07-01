@@ -13,9 +13,6 @@ struct DetailPerawatanPendingView: View {
     
     var treatment : FetchedTreatmentData
     
-    @StateObject var sessionViewModel = SessionViewModel()
-    @StateObject var treatmentViewModel = TreatmentViewModel()
-    
     var body: some View {
         GeometryReader { geometry in
             ZStack {

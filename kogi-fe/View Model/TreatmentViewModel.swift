@@ -23,12 +23,13 @@ class TreatmentViewModel: ObservableObject {
     }
     
     @Published var fetchedSessionList: [SessionModel]?
-    @Published var fetchedSession: SessionModel?
+    @Published var fetchedSession: SessionModel
     
     var networkService: NetworkService?
     
     init() {
         treatment = Treatment(patientID: "", problemCategory: "", areaOfSymptom: [], symptomsDesc: "", totalDaysOfSymptom: 0, dateCreated: "", requestedDate: "", treatmentStatus: "", images: [])
+        fetchedSession = SessionModel(sessionID: "", treatmentID: "", dateOfSession: "")
     }
     
     func getTreatmentListByCategory(category: String) async -> Bool {
@@ -244,6 +245,7 @@ class TreatmentViewModel: ObservableObject {
     }
     
     func updateTreatmentStatus(treatmentStatus: String) async{
+        networkService = NetworkService()
         if treatmentStatus == "pending" {
             fetchedTreatmentData?.treatmentStatus = treatmentStatus
         } else {
@@ -262,6 +264,21 @@ class TreatmentViewModel: ObservableObject {
                 }
             }
             
+        }
+    }
+    
+    func updateSession() async {
+        networkService = NetworkService()
+        do {
+            try await networkService?.updateSessionData(session: fetchedSession)
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
         }
     }
     

@@ -155,7 +155,7 @@ struct DetailPerawatanView: View {
                                                     }
                                                 } else {
                                                     if session.sessionStatus != "done" {
-                                                        
+                                                        path.append("Report Form \(index)")
                                                     } else {
                                                         path.append("Detail Sesi \(index)")
                                                     }
@@ -225,10 +225,10 @@ struct DetailPerawatanView: View {
                 }
                 
             })
-        }
-        .onAppear {
-            Task {
-                hasSession = await treatmentViewModel.getSessionList()
+            .onAppear {
+                Task {
+                    hasSession = await treatmentViewModel.getSessionList()
+                }
             }
         }
     }

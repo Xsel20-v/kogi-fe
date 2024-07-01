@@ -41,7 +41,7 @@ struct DetilSesiView: View {
                                     Image(systemName: "clock.fill")
                                         .foregroundColor(Constant.Colors.primaryColor)
 
-                                    Text("\(treatmentViewModel.fetchedSession?.dateOfSession.dateToString()) \(treatmentViewModel.fetchedSession?.dateOfSession.timeToString())")
+                                    Text("\(treatmentViewModel.fetchedSession.dateOfSession.dateToString()) \(treatmentViewModel.fetchedSession.dateOfSession.timeToString())")
                                 }
                             }
                             .padding(.horizontal, 20)
@@ -59,7 +59,7 @@ struct DetilSesiView: View {
                                 }
                                 .fontWeight(.semibold)
                                 
-                                Text(treatmentViewModel.fetchedSession?.reportText ?? "")
+                                Text(treatmentViewModel.fetchedSession.reportText ?? "")
                                     .padding(.top, 5)
                             }
                             .padding(.horizontal, 20)
@@ -78,8 +78,8 @@ struct DetilSesiView: View {
                                 .fontWeight(.semibold)
                                 
                                 HStack {
-                                    if let imageBefore = treatmentViewModel.fetchedSession?.imageBefore {
-                                        ForEach(treatmentViewModel.fetchedSession?.imageBefore ?? [] , id: \.self) { image in
+                                    if let imageBefore = treatmentViewModel.fetchedSession.imageBefore {
+                                        ForEach(treatmentViewModel.fetchedSession.imageBefore ?? [] , id: \.self) { image in
                                             if let uiImage = UIImage(data: Data(base64Encoded: image)!) {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
@@ -111,8 +111,8 @@ struct DetilSesiView: View {
                                     .fontWeight(.semibold)
                                     
                                     HStack {
-                                        if let imageAfter = treatmentViewModel.fetchedSession?.imageAfter {
-                                            ForEach(treatmentViewModel.fetchedSession?.imageAfter ?? [] , id: \.self) { image in
+                                        if let imageAfter = treatmentViewModel.fetchedSession.imageAfter {
+                                            ForEach(treatmentViewModel.fetchedSession.imageAfter ?? [] , id: \.self) { image in
                                                 if let uiImage = UIImage(data: Data(base64Encoded: image)!) {
                                                     Image(uiImage: uiImage)
                                                         .resizable()

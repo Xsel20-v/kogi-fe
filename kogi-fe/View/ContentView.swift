@@ -83,13 +83,19 @@ struct ContentView: View {
                 case Constant.Categories.orthodonsia:
                     CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.kawatLepasan)
                 case "Detail Perawatan Pending View" :
-                    DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)          
+                    DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)
                 case "Detail Perawatan":
                     DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
                 default:
                     if value.hasPrefix("Detail Sesi") {
                         if let index = Int(value.components(separatedBy: " ").last ?? "") {
                             DetilSesiView(treatmentViewModel: treatmentViewModel, index: index)
+                        } else {
+                            DetilSesiView(treatmentViewModel: treatmentViewModel, index: 0)
+                        }
+                    } else if value.hasPrefix("Report Form"){
+                        if let index = Int(value.components(separatedBy: " ").last ?? "") {
+                            ReportFormView(path: $path, treatmentViewModel: treatmentViewModel, index: index)
                         } else {
                             DetilSesiView(treatmentViewModel: treatmentViewModel, index: 0)
                         }

@@ -11,7 +11,7 @@ import SwiftUI
 struct ImagePicker: View {
     
     @State var selectedItems: [PhotosPickerItem] = []
-    @State private var imagesData: [Data] = []
+    @Binding var imagesData: [Data]
     
     var placeholder: String
     
@@ -65,6 +65,7 @@ struct ImagePicker: View {
             do {
                 if let data = try await item.loadTransferable(type: Data.self) {
                     newImagesData.append(data)
+                    print(data.base64EncodedString())
                 } else {
                     print("Data is nil for item \(item)")
                 }
@@ -77,5 +78,5 @@ struct ImagePicker: View {
 }
 
 #Preview {
-    ImagePicker(placeholder: "Ambil foto gigi anda")
+    ImagePicker(imagesData: .constant([]), placeholder: "Ambil Foto Gigi Anda")
 }
