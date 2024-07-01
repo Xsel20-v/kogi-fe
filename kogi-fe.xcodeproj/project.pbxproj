@@ -91,6 +91,8 @@
 		3DA422402C32C21E0021F02D /* ReportFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA4223F2C32C21D0021F02D /* ReportFormView.swift */; };
 		3DC419022C05DF1300A2451E /* KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */; };
 		3DC419042C05F10A00A2451E /* DetailPerawatanPendingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */; };
+		3DE7FF112C16E38600801169 /* termsAndAgreementOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7FF102C16E38600801169 /* termsAndAgreementOverlay.swift */; };
+		3DE7FF132C18157D00801169 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DE7FF122C18157D00801169 /* FAQView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +181,8 @@
 		3DA4223F2C32C21D0021F02D /* ReportFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportFormView.swift; sourceTree = "<group>"; };
 		3DC419012C05DF1300A2451E /* KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAdaptive.swift; sourceTree = "<group>"; };
 		3DC419032C05F10A00A2451E /* DetailPerawatanPendingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPerawatanPendingView.swift; sourceTree = "<group>"; };
+		3DE7FF102C16E38600801169 /* termsAndAgreementOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = termsAndAgreementOverlay.swift; sourceTree = "<group>"; };
+		3DE7FF122C18157D00801169 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,7 @@
 				3566D0C92C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift */,
 				3566D0CB2C06203000E25115 /* SheetTambahSesi.swift */,
 				350197ED2C0CAC6A00AE30C4 /* ChatRoomHeader.swift */,
+				3DE7FF102C16E38600801169 /* termsAndAgreementOverlay.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				3566D0B52C04BC5400E25115 /* OnBoardingView.swift */,
 				3566D0B92C04BF7D00E25115 /* OnBoardingPage.swift */,
 				3DA4223F2C32C21D0021F02D /* ReportFormView.swift */,
+				3DE7FF122C18157D00801169 /* FAQView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,6 +454,7 @@
 				3566D0A82C03A18700E25115 /* UpdateTreatment.swift in Sources */,
 				3DC419022C05DF1300A2451E /* KeyboardAdaptive.swift in Sources */,
 				35CFF9992BFEFBE300F4ABB9 /* ChatViewModel.swift in Sources */,
+				3DE7FF132C18157D00801169 /* FAQView.swift in Sources */,
 				35CFF9942BFEF62F00F4ABB9 /* SocketHelper.swift in Sources */,
 				3D79F4352BF49497003F0E36 /* ImagePicker.swift in Sources */,
 				3D79F4332BEDF704003F0E36 /* AnamnesisTextField.swift in Sources */,
@@ -491,6 +498,7 @@
 				3566D0CA2C0614EC00E25115 /* SheetKonfirmasiPerawatan.swift in Sources */,
 				3D3BE4C82BEBE81A000771A2 /* AnamnesisProgressBar.swift in Sources */,
 				35F0B2D92BE9DD88009B3051 /* kogi_feApp.swift in Sources */,
+				3DE7FF112C16E38600801169 /* termsAndAgreementOverlay.swift in Sources */,
 				3566D0C82C0604C900E25115 /* Message.swift in Sources */,
 				3566D0C62C05FF0800E25115 /* ContainerKonfirmasiPerawatan.swift in Sources */,
 				3566D0C42C05EB5C00E25115 /* NewCoass.swift in Sources */,
