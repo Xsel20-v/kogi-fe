@@ -17,6 +17,7 @@ struct ContentView: View {
     @StateObject var socketIOManager = SocketIOManager()
     
     @AppStorage("hasTreatment") var hasTreatment = false
+    @AppStorage("userID") var userID = "C1"
     
     var body: some View {
         
@@ -106,5 +107,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(treatmentViewModel: TreatmentViewModel())
+    ContentView(treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager())
 }
