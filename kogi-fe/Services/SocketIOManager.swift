@@ -23,7 +23,7 @@ class SocketIOManager: NSObject, ObservableObject {
     @Published var chatHistory: [ChatHistory] = []
     @Published var currentChatRoom: ChatRoom = ChatRoom(roomID: "", patientID: "", cosssID: "", lastMessage: "", receiver: "", lastTimestamp: "", profilePicture: "")
     @Published var isConnected: Bool = false
-    @Published var newChatRoomID: String = ""
+    @Published var getRoomID: String = ""
     
     @AppStorage("userID") var userID = "C1"
     
@@ -137,9 +137,9 @@ class SocketIOManager: NSObject, ObservableObject {
             }
         }
         
-        socket.on("newChatRoom") { data, ack in
+        socket.on("getRoomID") { data, ack in
             if let roomID = data.first as? String {
-                self.newChatRoomID = roomID
+                self.getRoomID = roomID
             }
         }
         
@@ -178,8 +178,8 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.emit("getChatHistory", roomID)
     }
     
-    func emitForNewChatRoomID(patientID: String, coassID: String) {
-        socket.emit("newChatRoom", patientID, coassID)
+    func emitToGetRoomID(patientID: String, coassID: String) {
+        socket.emit("getRoomID", patientID, coassID)
     }
 }
 

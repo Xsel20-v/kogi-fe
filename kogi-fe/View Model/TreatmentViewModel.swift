@@ -279,6 +279,23 @@ class TreatmentViewModel: ObservableObject {
             print("invalid Data")
         }catch {
             print("unexpected error")
+
+    func updateTreatmentConfirmation(date: String, category: String, status: String) async{
+        fetchedTreatmentData?.requestedDate = date
+        fetchedTreatmentData?.problemCategory = category
+        fetchedTreatmentData?.treatmentStatus = status
+        if let treatment = fetchedTreatmentData {
+            do {
+                try await networkService?.updateTreatmentData(treatment: treatment)
+            }catch NError.invalidURL {
+                print("invalid URL")
+            }catch NError.invalidResponse {
+                print("invalid Response")
+            }catch NError.invalidData {
+                print("invalid Data")
+            }catch {
+                print("unexpected error")
+            }
         }
     }
     

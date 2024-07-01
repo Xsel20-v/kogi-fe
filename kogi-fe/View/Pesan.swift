@@ -61,6 +61,15 @@ struct MessageView: View {
     let message: String
     let time: String
     
+    private var image: Image {
+        if let dataImage = Data(base64Encoded: imageName) {
+            if let uiImage = UIImage(data: dataImage) {
+                return Image(uiImage: uiImage)
+            }
+        }
+        return Image(systemName: "person.circle")
+    }
+    
     var body: some View {
         HStack {
             
@@ -72,7 +81,7 @@ struct MessageView: View {
                     .overlay(Circle().stroke(Color.gray, lineWidth: 1))
                     .foregroundColor(.gray)
             } else {
-                Image(imageName)
+                image
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())

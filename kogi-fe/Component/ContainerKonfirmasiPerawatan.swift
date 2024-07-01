@@ -12,37 +12,44 @@ struct ContainerKonfirmasiPerawatan: View {
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     var message: ChatHistory
     
-    @State var isAccepted = false
+    @State var treatmentStatus = "pending"
+    @State var buttonText = "Terima"
+    @State var buttonColor: Color = .black
+    @State var buttonTextColor: Color = .black
     
     @AppStorage("isPatient") var isPatient = false
-    
-//    var formattedTimestamp: String {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//        if let date = formatter.date(from: message.timestamp) {
-//            let timeFormatter = DateFormatter()
-//            timeFormatter.dateFormat = "h:mm a"
-//            return timeFormatter.string(from: date)
-//        }
-//        return "Invalid time"
-//    }
-//    
+
     private var departemen: String {
-        if message.message[2] == "Karang Gigi" || message.message[2] == "Gusi Bengkak" {
+        if message.message[1] == "Karang Gigi" || message.message[1] == "Gusi Bengkak" {
             return "Periodonsia"
-        } else if message.message[2] == "Sakit Gigi" {
+        } else if message.message[1] == "Sakit Gigi" {
             return "Konservasi Gigi"
-        } else if message.message[2] == "Sariawan"{
+        } else if message.message[1] == "Sariawan"{
             return "Ilmu Penyakit Mulut"
-        } else if message.message[2] == "Kawat Lepasan" {
+        } else if message.message[1] == "Kawat Lepasan" {
             return "Orthodonsia"
-        } else if message.message[2] == "Gigi Palsu" {
+        } else if message.message[1] == "Gigi Palsu" {
             return "Prostodonsia"
-        } else if message.message[2] == "Gigi Tiruan" {
+        } else if message.message[1] == "Gigi Tiruan" {
             return "Bedah Mulut"
         } else {
             return "Tidak Ditemukan"
         }
+    }
+    
+    private func formatDateString(_ dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        inputFormatter.timeZone = TimeZone.current
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd MMM yy (HH:mm)"
+        outputFormatter.timeZone = TimeZone.current
+        
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        }
+        return "Invalid date"
     }
     
     var body: some View {
@@ -70,7 +77,7 @@ struct ContainerKonfirmasiPerawatan: View {
                     HStack {
                         Text("Kategori")
                         Spacer()
-                        Text(message.message[2])
+                        Text(message.message[1])
                             .fontWeight(.light)
                     }
                     .padding(.bottom, 5)
@@ -93,9 +100,9 @@ struct ContainerKonfirmasiPerawatan: View {
                                 .frame(width: 12, height: 12)
                                 .aspectRatio(contentMode: .fit)
                             
-//                            Text("\(formatDateString(message.message[0])) (\(message.message[1]))")
-//                                .font(.system(size: 12))
-                            Text(message.message[0])
+                            //                            Text("\(formatDateString(message.message[0])) (\(message.message[1]))")
+                            //                                .font(.system(size: 12))
+                            Text(formatDateString(message.message[0]))
                                 .font(.system(size: 12))
                         }
                     }
@@ -104,18 +111,17 @@ struct ContainerKonfirmasiPerawatan: View {
                     if isPatient {
                         Button(action: {
                             Task {
-                                //Kyknya method updatenya harus diganti
-                                await treatmentViewModel.updateTreatmentStatus(treatmentStatus: "ongoing")
-                                isAccepted = true
+                                await treatmentViewModel.updateTreatmentConfirmation(date: message.message[0],category:message.message[2],status:"ongoing")
+                                treatmentStatus = "ongoing"
                             }
                             
                         }, label: {
                             HStack {
                                 Spacer()
-                                Text(isAccepted ? "Diterima" : "Terima")
+                                Text(buttonText)
                                     .frame(width: 318, height: 30)
-                                    .background(isAccepted ? Constant.Colors.notMyMessage :  Constant.Colors.primaryColor)
-                                    .foregroundStyle(isAccepted ? Color.black : Constant.Colors.baseColor)
+                                    .background(buttonColor)
+                                    .foregroundStyle(buttonTextColor)
                                     .cornerRadius(20)
                                 Spacer()
                             }
@@ -126,10 +132,10 @@ struct ContainerKonfirmasiPerawatan: View {
                     } else {
                         HStack {
                             Spacer()
-                            Text(isAccepted ? "Diterima" : "Menunggu Diterima")
+                            Text(buttonText)
                                 .frame(width: 318, height: 30)
-                                .background(isAccepted ? Constant.Colors.notMyMessage :  Constant.Colors.primaryColor)
-                                .foregroundStyle(isAccepted ? Color.black : Constant.Colors.baseColor)
+                                .background(buttonColor)
+                                .foregroundStyle(buttonTextColor)
                                 .cornerRadius(20)
                             Spacer()
                         }
@@ -142,10 +148,33 @@ struct ContainerKonfirmasiPerawatan: View {
             .frame(maxWidth: 349)
         }
         .onAppear {
-            if treatmentViewModel.fetchedTreatmentData?.treatmentStatus == "pending" {
-                isAccepted = false
-            } else {
-                isAccepted = true
+            treatmentStatus = message.message[2]
+            
+            switch treatmentStatus{
+            case "pending":
+                if isPatient {
+                    buttonText = "Terima"
+                } else {
+                    buttonText = "Menunggu Diterima"
+                }
+                buttonColor = Constant.Colors.primaryColor
+                buttonTextColor = .white
+                
+            case "expired":
+                buttonText = "Expired"
+                buttonColor = Constant.Colors.notMyMessage
+                buttonTextColor = .white
+                
+            case "ongoing":
+                buttonText = "Diterima"
+                buttonColor = Constant.Colors.notMyMessage
+                buttonTextColor = .white
+                
+            default:
+                buttonText = "Terima"
+                buttonColor = Constant.Colors.primaryColor
+                buttonTextColor = .white
+                
             }
         }
     }
@@ -169,5 +198,5 @@ func formatDateString(_ dateString: String) -> String {
 }
 
 #Preview {
-    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: ChatHistory(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-06-24", "09:01", "Sakit Gigi", "pending"]))
+    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: ChatHistory(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-05-29T12:12:12", "Sakit Gigi", "pending"]))
 }
