@@ -154,25 +154,24 @@ class NetworkService {
         request.httpMethod = "POST"
         
         // Create the request body with the treatmentID
-        let parameters = ["treatmentID": treatmentID]
-        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST" // Set HTTP method to POST
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type") // Specify content type
+        
+        let bodyData = "{\"treatmentID\": \"\(treatmentID)\"}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw NError.invalidResponse
-        }
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
         
-        // Print the raw response data as a string for debugging
-        if let jsonString = String(data: data, encoding: .utf8) {
-            print("Raw JSON Response: \(jsonString)")
-        } else {
-            print("Unable to convert response data to a string.")
+        do {
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode([SessionModel].self, from: data)
+        } catch {
+            throw NError.invalidData
         }
-        
-        let jsonDecoder = JSONDecoder()
-        return try jsonDecoder.decode([SessionModel].self, from: data)
     }
 
     
@@ -367,6 +366,37 @@ class NetworkService {
             throw error
         }
 
+    }
+    
+    func createNewSession(treatmentID: String, date: String) async throws -> SessionModel? {
+        
+        // Define the endpoint URL
+        let endpoint = "https://kogi-api.onrender.com/api/newSession"
+        
+        // Ensure the URL is valid
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        // Create and configure the URLRequest
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let bodyData = "{\"treatmentID\": \"\(treatmentID)\", \"date\": \"\(date)\"}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+        
+        do {
+            let jsonDecoder = JSONDecoder()
+            print(String(data: data, encoding: .utf8))
+            return try jsonDecoder.decode(SessionModel.self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
     }
     
     func logIn<T: Decodable>(loginInfo: LoginInfo) async throws -> T {

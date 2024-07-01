@@ -89,7 +89,7 @@ struct ChatRoomView: View {
             socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
             socketIOManager.connect()
             
-            fetchTreatmentData()
+//            fetchTreatmentData()
         }
         .onChange(of: socketIOManager.isConnected) { isConnected in
             if isConnected {
@@ -111,16 +111,16 @@ struct ChatRoomView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
-    func fetchTreatmentData() {
-        Task {
-            if await treatmentViewModel.getTreatmentDataByStatus(userID: "P4", status: "pending") {
-                self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
-                print(fetchedTreatment)
-            } else {
-                print("Cannot get treatment data in chat room")
-            }
-        }
-    }
+//    func fetchTreatmentData() {
+//        Task {
+//            if await treatmentViewModel.getTreatmentDataByStatus(userID: "P4", status: "pending") {
+//                self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
+//                print(fetchedTreatment)
+//            } else {
+//                print("Cannot get treatment data in chat room")
+//            }
+//        }
+//    }
     
     func convertToDate(_ dateString: String) -> Date? {
         let dateFormatter = DateFormatter()

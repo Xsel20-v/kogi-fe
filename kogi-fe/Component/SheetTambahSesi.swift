@@ -10,6 +10,9 @@ import SwiftUI
 struct SheetTambahSesi: View {
     
     @State private var tanggal = Date.now
+    @Binding var showSheet: Bool
+    @Binding var hasSession: Bool
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     var body: some View {
         VStack {
@@ -18,16 +21,20 @@ struct SheetTambahSesi: View {
             DatePicker("Tanggal & Waktu", selection: $tanggal)
                 .padding(.bottom, 20)
             Button(action: {
-                //add new session
-                
+                Task {
+                    await treatmentViewModel.createSession(date: tanggal.currentDateString())
+                    hasSession = await treatmentViewModel.getSessionList()
+                }
+                showSheet = false
             }, label: {
                 ButtonComponent(text: "Buat Sesi", buttonColors: .blue)
             })
             .padding(.bottom, 20)
         }
+        .padding()
     }
 }
 
 #Preview {
-    SheetTambahSesi()
+    SheetTambahSesi(showSheet: .constant(true), hasSession: .constant(true), treatmentViewModel: TreatmentViewModel())
 }

@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DetilSesiView: View {
     
-    @State var fotoAwal : [Data]? = nil
-    @State var fotoAkhir : [Data]? = nil
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     var body: some View {
         ZStack {
@@ -29,7 +28,7 @@ struct DetilSesiView: View {
                                 .foregroundColor(Color.white)
                             
                             VStack(alignment:.leading) {
-                                Text("Sesi 1: \nPembersihan Karang Gigi & Penambalan")
+                                Text("Sesi 1")
                                     .font(.system(size: 18, weight: .bold))
                                 
                                 HStack{
@@ -42,7 +41,7 @@ struct DetilSesiView: View {
                                     Image(systemName: "clock.fill")
                                         .foregroundColor(Constant.Colors.primaryColor)
 
-                                    Text("24 Jun 2024 (11.00)")
+                                    Text("\(treatmentViewModel.fetchedSession?.dateOfSession.dateToString()) \(treatmentViewModel.fetchedSession?.dateOfSession.timeToString())")
                                 }
                             }
                             .padding(.horizontal, 20)
@@ -60,7 +59,7 @@ struct DetilSesiView: View {
                                 }
                                 .fontWeight(.semibold)
                                 
-                                Text("deskripsi catatan")
+                                Text(treatmentViewModel.fetchedSession?.reportText ?? "")
                                     .padding(.top, 5)
                             }
                             .padding(.horizontal, 20)
@@ -79,11 +78,19 @@ struct DetilSesiView: View {
                                 .fontWeight(.semibold)
                                 
                                 HStack {
-                                    if (fotoAwal != nil) {
+                                    if let imageBefore = treatmentViewModel.fetchedSession?.imageBefore {
+                                        ForEach(treatmentViewModel.fetchedSession?.imageBefore ?? [] , id: \.self) { image in
+                                            if let uiImage = UIImage(data: Data(base64Encoded: image)!) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .frame(width: 80, height: 80)
+                                            }
+                                        }
                                         
                                     } else {
                                         Text("Foto tidak tersedia...")
                                             .frame(height: 70)
+                                            .opacity(0.3)
                                     }
                                 }
                                 .padding(.top, 5)
@@ -104,11 +111,18 @@ struct DetilSesiView: View {
                                     .fontWeight(.semibold)
                                     
                                     HStack {
-                                        if (fotoAkhir != nil) {
-                                            
+                                        if let imageAfter = treatmentViewModel.fetchedSession?.imageAfter {
+                                            ForEach(treatmentViewModel.fetchedSession?.imageAfter ?? [] , id: \.self) { image in
+                                                if let uiImage = UIImage(data: Data(base64Encoded: image)!) {
+                                                    Image(uiImage: uiImage)
+                                                        .resizable()
+                                                        .frame(width: 80, height: 80)
+                                                }
+                                            }
                                         } else {
                                             Text("Foto tidak tersedia...")
                                                 .frame(height: 70)
+                                                .opacity(0.3)
                                         }
                                         
                                     }
@@ -126,5 +140,5 @@ struct DetilSesiView: View {
 }
 
 #Preview {
-    DetilSesiView()
+    DetilSesiView(treatmentViewModel: TreatmentViewModel())
 }

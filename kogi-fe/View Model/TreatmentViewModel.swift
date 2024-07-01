@@ -22,6 +22,9 @@ class TreatmentViewModel: ObservableObject {
         }
     }
     
+    @Published var fetchedSessionList: [SessionModel]?
+    @Published var fetchedSession: SessionModel?
+    
     var networkService: NetworkService?
     
     init() {
@@ -121,6 +124,30 @@ class TreatmentViewModel: ObservableObject {
             treatmentStatus: treatment.treatmentStatus,
             images: treatment.images)
         return anamnesisData
+    }
+    
+    func getSessionList() async -> Bool {
+        networkService = NetworkService()
+        
+        do {
+            if let sessionList = try await networkService?.fetchSessionList(treatmentID: fetchedTreatmentData?.treatmentID ?? "T1") {
+                fetchedSessionList = sessionList
+                print(fetchedSessionList)
+                return true // Return true if session list is fetched successfully
+            } else {
+                print("Failed to fetch session list.")
+                return false // Return false if session list is not fetched successfully
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return false
     }
     
     func getTreatmentCategory() -> String {
@@ -282,6 +309,24 @@ class TreatmentViewModel: ObservableObject {
         networkService = NetworkService()
         do {
             try await networkService?.sendPostTreatment(treatment: treatment)
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch NError.invalidEncodingData {
+            print("invalid Encoding Data")
+        }catch {
+            print("unexpected error.")
+        }
+    }
+    
+    func createSession(date: String) async {
+        networkService = NetworkService()
+        do {
+            let session = try await networkService?.createNewSession(treatmentID: fetchedTreatmentData?.treatmentID ?? "", date: date)
+            print(session as Any)
         }catch NError.invalidURL {
             print("invalid URL")
         }catch NError.invalidResponse {

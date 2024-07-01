@@ -83,11 +83,10 @@ struct ContentView: View {
                     CariPerawatanView(path: $path, treatmentViewModel: treatmentViewModel, category: Constant.Categories.kawatLepasan)
                 case "Detail Perawatan Pending View" :
                     DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)          
-//                case "Detail Perawatan":
-//                    DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatment: $treatmentViewModel.selectedTreatment, treatmentViewModel: treatmentViewModel)
-
-//                case "Detail Sesi":
-//                    DetilSesiView(path: $path, tabSelection: $tabSelection)
+                case "Detail Perawatan":
+                    DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
+                case "Detail Sesi":
+                    DetilSesiView(treatmentViewModel: treatmentViewModel)
                 default:
                     DeskripsiKeluhan(treatmentViewModel: treatmentViewModel, category: Constant.Categories.sakitGigi, path: $path)
                 }
