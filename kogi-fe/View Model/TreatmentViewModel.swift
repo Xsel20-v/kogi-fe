@@ -311,10 +311,11 @@ class TreatmentViewModel: ObservableObject {
         }
     }
 
-    func updateTreatmentConfirmation(date: String, category: String, status: String) async{
+    func updateTreatmentConfirmation(date: String, category: String, status: String, coassID: String) async{
         fetchedTreatmentData?.requestedDate = date
         fetchedTreatmentData?.problemCategory = category
         fetchedTreatmentData?.treatmentStatus = status
+        fetchedTreatmentData?.coassID = coassID
         if let treatment = fetchedTreatmentData {
             do {
                 try await networkService?.updateTreatmentData(treatment: treatment)
