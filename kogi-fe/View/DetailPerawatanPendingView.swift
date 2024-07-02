@@ -11,6 +11,10 @@ struct DetailPerawatanPendingView: View {
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
     
+    @AppStorage("userID") var userID = "C7"
+    
+    @ObservedObject var socketIOManager : SocketIOManager
+    
     var treatment : FetchedTreatmentData
     
     var body: some View {
@@ -50,6 +54,9 @@ struct DetailPerawatanPendingView: View {
                     .overlay(alignment: .bottomTrailing) {
                         Button(action: {
                             
+                            socketIOManager.emitToGetRoomData(patientID: treatment.patientID, coassID: userID)
+//                            socketIOManager.emitToGetRoomData(patientID: "P1", coassID: "C7")
+                            path.append("Chat Room")
                         }) {
                             Text("Chat")
                                 .foregroundColor(.white)
@@ -119,11 +126,14 @@ struct DetailPerawatanPendingView: View {
                             Spacer()
                         }
                         .padding()
-                        .font(.system(size: 12))
+                        .font(.system(size: 14))
                     
                     Spacer()
                 }
                 .ignoresSafeArea()
+            }
+            .onAppear {
+                socketIOManager.connect()
             }
         }
     }
@@ -156,6 +166,6 @@ struct DetailPerawatanPendingView_Previews: PreviewProvider {
             images: ["iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABiSURBVGhD7c+xEYAwEMCwDyuQO/aflDRMIazGtde9n3d+4PrKa1TTqKZRTaOaRjWNahrVNKppVNOoplFNo5pGNY1qGtU0qmlU06imUU2jmkY1jWoa1TSqaVTTqKZRTaOWmQOItwGxNvzd9QAAAA5lWElmTU0AKgAAAAgAAAAAAAAA0lOTAAAAAElFTkSuQmCC"]
         )
         
-        DetailPerawatanPendingView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatment: sampleTreatment)
+        DetailPerawatanPendingView(path: .constant(NavigationPath()), tabSelection: .constant(0), socketIOManager: SocketIOManager(), treatment: sampleTreatment)
     }
 }

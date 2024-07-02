@@ -105,7 +105,7 @@ struct Pengaturan: View {
                     Section {
                         
                         Button(action: {
-                            path.append("")
+                            path.append("FAQ View")
                         }, label: {
                             HStack{
                                 Image(systemName: "questionmark.circle")

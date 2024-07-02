@@ -79,8 +79,6 @@ class SocketIOManager: NSObject, ObservableObject {
         }
         
         socket.on("getChatroom") { data, ack in
-            
-            print("-------000\(data)000--------")
             if let chatRoomArray = data.first as? [[String: Any]] {
                 var parsedMessages: [ChatRoom] = []
                 
@@ -98,15 +96,10 @@ class SocketIOManager: NSObject, ObservableObject {
                     }
                 }
                 self.chatRoomList = parsedMessages
-                print(parsedMessages)
+//                print(parsedMessages)
             }
         }
         
-        //
-        //                socket.on("getChatroom") { data, ack in
-        //                    print("Received chat room data: \(data)")
-        //                }
-        //
         //                socket.on("getChatHistory") { data, ack in
         //                    print("Received chat history data: \(data)")
         //                }
@@ -137,13 +130,25 @@ class SocketIOManager: NSObject, ObservableObject {
             }
         }
         
-        socket.on("getRoomID") { data, ack in
-            if let roomID = data.first as? String {
-                self.getRoomID = roomID
+        socket.on("getRoomData") { data, ack in
+            if let chatRoomData = data.first as? [String:Any] {
+                var parsedMessages: ChatRoom
+                
+                if let roomID = chatRoomData["roomID"] as? String,
+                   let patientID = chatRoomData["patientID"] as? String,
+                   let coassID = chatRoomData["coassID"] as? String,
+                   let lastMessage = chatRoomData["lastMessage"] as? String,
+                   let receiver = chatRoomData["receiver"] as? String,
+                   let lastTimestamp = chatRoomData["lastTimestamp"] as? String? ?? "null",
+                   let profilePicture = chatRoomData["profilePicture"] as? String? ?? "null" {
+                    
+                    let roomData = ChatRoom(roomID: roomID, patientID: patientID, cosssID: coassID, lastMessage: lastMessage, receiver: receiver, lastTimestamp: lastTimestamp, profilePicture: profilePicture)
+                    
+                    self.currentChatRoom = roomData
+                    print(roomData)
+                }
             }
         }
-        
-        
     }
     
     func getChatHistory() -> [ChatHistory]{
@@ -178,8 +183,12 @@ class SocketIOManager: NSObject, ObservableObject {
         socket.emit("getChatHistory", roomID)
     }
     
-    func emitToGetRoomID(patientID: String, coassID: String) {
-        socket.emit("getRoomID", patientID, coassID)
+    func emitToGetRoomData(patientID: String, coassID: String) {
+        let data: [String: Any] = [
+            "patientID": patientID,
+            "coassID": coassID
+        ]
+        socket.emit("getRoomData", data)
     }
 }
 

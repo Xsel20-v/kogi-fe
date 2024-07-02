@@ -24,6 +24,9 @@ struct DetailPerawatanView: View {
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     
     @AppStorage("isPatient") var isPatient = false
+    @AppStorage("userID") var userID = "C7"
+    
+    @ObservedObject var socketIOManager : SocketIOManager
     
     var body: some View {
         GeometryReader { geometry in
@@ -58,6 +61,14 @@ struct DetailPerawatanView: View {
                     }
                     .overlay(alignment: .bottomTrailing) {
                         Button(action: {
+                            if isPatient {
+                                socketIOManager.emitToGetRoomData(patientID: userID, coassID: treatmentViewModel.fetchedTreatmentData?.coassID ?? "C1")
+                            } else {
+                                socketIOManager.emitToGetRoomData(patientID: treatmentViewModel.fetchedTreatmentData?.patientID ?? "P1", coassID: userID)
+                            }
+                            
+                            
+                            path.append("Chat Room")
                             
                         }) {
                             Text("Chat")
@@ -109,7 +120,7 @@ struct DetailPerawatanView: View {
                             }
                         }
                         .padding()
-                        .font(.system(size: 12))
+                        .font(.system(size: 14))
                         
                         
                         Divider()
@@ -135,7 +146,7 @@ struct DetailPerawatanView: View {
                             }
                         }
                         .padding()
-                        .font(.system(size: 12))
+                        .font(.system(size: 14))
                         
                         if hasSession {
                             ScrollView {
@@ -173,7 +184,7 @@ struct DetailPerawatanView: View {
                         } else {
                             Text("Anda tidak memiliki jadwal sesi")
                                 .opacity(0.3)
-                                .font(.system(size: 12))
+                                .font(.system(size: 14))
                                 .padding(.top, 30)
                         }
                         
@@ -200,6 +211,9 @@ struct DetailPerawatanView: View {
                         .zIndex(1.0)
                 }
                 
+            }
+            .onAppear {
+                socketIOManager.connect()
             }
             .alert(isPresented: $showAlert, content: {
                 if !isFinishAlert {
@@ -261,6 +275,6 @@ struct DetailPerawatanView_Previews: PreviewProvider {
             images: []
         )
         
-        DetailPerawatanView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatmentViewModel: TreatmentViewModel())
+        DetailPerawatanView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager())
     }
 }

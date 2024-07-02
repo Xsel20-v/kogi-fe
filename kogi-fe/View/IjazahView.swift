@@ -13,6 +13,7 @@ struct IjazahView: View {
     
     @State private var selectedImage: String?
     
+    
     var body: some View {
         ZStack {
             Color(Constant.Colors.baseColor)
