@@ -20,6 +20,7 @@ struct ChatRoomView: View {
     @State private var shouldScrollToBottom: Bool = true
     @State private var keyboardHeight: CGFloat = 0
     @State var isTreatmentSheetPresented : Bool = false
+    @State var isTreatmentAccepted : Bool = false
     
     @State var index = 0
     
@@ -43,7 +44,7 @@ struct ChatRoomView: View {
                                         .foregroundColor(.gray)
                                 }
                                 if history.type == "treatment" {
-                                    ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, message: history)
+                                    ContainerKonfirmasiPerawatan(treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager,message: history, coassID: socketIOManager.currentChatRoom.cosssID)
                                         .padding(.bottom, 20)
                                 } else {
                                     MessageCell(type: history.type, message: history.message[0], timeStamp: history.timestamp, isMyMessage: history.senderID != userID)
@@ -98,10 +99,17 @@ struct ChatRoomView: View {
             socketIOManager.connect()
             fetchTreatmentData()
             updateHistoryTimestamps()
+            
+            isTreatmentAccepted = false
         }
         .onChange(of: socketIOManager.isConnected) { isConnected in
             if isConnected {
                 socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
+            }
+        }
+        .onChange(of: isTreatmentAccepted) {
+            if isTreatmentAccepted {
+                path.removeLast()
             }
         }
         .animation(.default, value: isTreatmentSheetPresented)
