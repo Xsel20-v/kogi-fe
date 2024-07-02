@@ -169,12 +169,12 @@ struct ContainerKonfirmasiPerawatan: View {
             case "expired":
                 buttonText = "Expired"
                 buttonColor = Constant.Colors.notMyMessage
-                buttonTextColor = .white
+                buttonTextColor = .black
                 
-            case "ongoing":
+            case "accepted":
                 buttonText = "Diterima"
                 buttonColor = Constant.Colors.notMyMessage
-                buttonTextColor = .white
+                buttonTextColor = .black
                 
             default:
                 buttonText = "Terima"
@@ -198,12 +198,12 @@ struct ContainerKonfirmasiPerawatan: View {
             case "expired":
                 buttonText = "Expired"
                 buttonColor = Constant.Colors.notMyMessage
-                buttonTextColor = .white
+                buttonTextColor = .black
                 
             case "ongoing":
                 buttonText = "Diterima"
                 buttonColor = Constant.Colors.notMyMessage
-                buttonTextColor = .white
+                buttonTextColor = .black
                 
             default:
                 buttonText = "Terima"
