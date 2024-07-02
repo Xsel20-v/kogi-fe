@@ -126,7 +126,7 @@ class SocketIOManager: NSObject, ObservableObject {
                     }
                 }
                 self.chatHistory = parsedMessages
-//                print(parsedMessages)
+                print(parsedMessages)
             }
         }
         

@@ -10,12 +10,15 @@ import SwiftUI
 struct ContainerKonfirmasiPerawatan: View {
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
+    @ObservedObject var socketIOManager: SocketIOManager
     var message: ChatHistory
     
     @State var treatmentStatus = "pending"
     @State var buttonText = "Terima"
     @State var buttonColor: Color = .black
     @State var buttonTextColor: Color = .black
+    
+    var coassID : String
     
     @AppStorage("isPatient") var isPatient = false
 
@@ -111,8 +114,9 @@ struct ContainerKonfirmasiPerawatan: View {
                     if isPatient {
                         Button(action: {
                             Task {
-                                await treatmentViewModel.updateTreatmentConfirmation(date: message.message[0],category:message.message[2],status:"ongoing")
+                                await treatmentViewModel.updateTreatmentConfirmation(date: message.message[0],category:message.message[1],status:"ongoing", coassID: coassID)
                                 treatmentStatus = "ongoing"
+                                socketIOManager.emitChatHistory("R1")
                             }
                             
                         }, label: {
@@ -148,7 +152,38 @@ struct ContainerKonfirmasiPerawatan: View {
             .frame(maxWidth: 349)
         }
         .onAppear {
+            socketIOManager.connect()
+            
             treatmentStatus = message.message[2]
+            
+            switch treatmentStatus{
+            case "pending":
+                if isPatient {
+                    buttonText = "Terima"
+                } else {
+                    buttonText = "Menunggu Diterima"
+                }
+                buttonColor = Constant.Colors.primaryColor
+                buttonTextColor = .white
+                
+            case "expired":
+                buttonText = "Expired"
+                buttonColor = Constant.Colors.notMyMessage
+                buttonTextColor = .white
+                
+            case "ongoing":
+                buttonText = "Diterima"
+                buttonColor = Constant.Colors.notMyMessage
+                buttonTextColor = .white
+                
+            default:
+                buttonText = "Terima"
+                buttonColor = Constant.Colors.primaryColor
+                buttonTextColor = .white
+                
+            }
+        }
+        .onChange(of: treatmentStatus) {
             
             switch treatmentStatus{
             case "pending":
@@ -198,5 +233,5 @@ func formatDateString(_ dateString: String) -> String {
 }
 
 #Preview {
-    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), message: ChatHistory(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-05-29T12:12:12", "Sakit Gigi", "pending"]))
+    ContainerKonfirmasiPerawatan(treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager(), message: ChatHistory(messageID: "M1", type: "treatment", roomID: "R1", senderID: "C1", timestamp: "2024-05-29T12:12:12", message: ["2024-05-29T12:12:12", "Sakit Gigi", "pending"]), coassID: "C7")
 }
