@@ -171,11 +171,13 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal, 16)
                     
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Foto Ijazah")
-                        ImagePicker(imagesData: $certificate, maxSelectionCount: 1, placeholder: "Masukkan Foto Ijazah")
+                    if !isPatient {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Foto Ijazah")
+                            ImagePicker(imagesData: $certificate, maxSelectionCount: 1, placeholder: "Masukkan Foto Ijazah")
+                        }
+                        .padding(.horizontal, 16)
                     }
-                    .padding(.horizontal, 16)
                     
                 }
                 

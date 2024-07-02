@@ -28,6 +28,7 @@ struct Perawatan: View {
     @AppStorage("profilePicture") var profilePicture: String = ""
     @AppStorage("certificate") var certificate: String = ""
     @AppStorage("isEligible") var isEligible: Bool = false
+    @AppStorage("hasTreatment") var hasTreatment: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -212,7 +213,7 @@ struct Perawatan: View {
                         
                         if dataIsRetrieved {
                             ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!)
-                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .padding(.bottom, 15)
                                 .onTapGesture {
                                     if treatmentViewModel.fetchedTreatmentData?.treatmentStatus == "pending" {
                                         showSheet = true
@@ -239,6 +240,9 @@ struct Perawatan: View {
                             isEligible_ = isEligible
                         }
                         dataIsRetrieved = await treatmentViewModel.getOnGoingTreatmentData(userID: userID)
+                        if !dataIsRetrieved {
+                            hasTreatment = false
+                        }
                         if let images = await treatmentViewModel.getImages() {
                             self.images = images
                             imageIsConverted = true
