@@ -1,17 +1,16 @@
 //
-//  RiwayatPerawatanView.swift
+//  OnGoingTreatmentView.swift
 //  kogi-fe
 //
-//  Created by Azella Mutyara on 24/05/24.
+//  Created by Jonathan Axel Benaya on 02/07/24.
 //
 
 import SwiftUI
 
-struct RiwayatPerawatanView: View {
-    
+struct OnGoingTreatmentListView: View {
     @Binding var path : NavigationPath
     @Binding var tabSelection: Int
-    @State var dataIsRetrieved = false
+    @State var dataIsRetrieved: Bool = false
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     @AppStorage("userID") var userID = "P1"
@@ -22,10 +21,10 @@ struct RiwayatPerawatanView: View {
                 Color(Constant.Colors.baseColor)
                     .ignoresSafeArea()
                 VStack {
-                    HeaderViewWithTitle(title: "Riwayat Perawatan")
+                    HeaderViewWithTitle(title: "List Perawatan")
                     
                     ScrollView {
-                        if let treatments = treatmentViewModel.treatmentList {
+                        if let treatments = treatmentViewModel.onGoingTreatmentList {
                             ForEach(treatments, id: \.treatmentID) { treatment in
                                 ContainerPerawatan(treatment: treatment)
                                     .frame(width: geometry.size.width, height: geometry.size.height)
@@ -35,7 +34,7 @@ struct RiwayatPerawatanView: View {
                                     }
                             }
                         }else {
-                            Text("Tidak ada perawatan yang telah selesai")
+                            Text("Tidak ada perawatan")
                                 .padding()
                                 .padding(.top, 70)
                                 .opacity(0.3)
@@ -45,16 +44,16 @@ struct RiwayatPerawatanView: View {
                 }
                 .ignoresSafeArea()
             }
-            .onAppear(perform: {
+            .onAppear {
                 Task {
-                    dataIsRetrieved = await treatmentViewModel.getTreatmentDataByStatus(userID: userID, status: "done", isSingle: false)
-                    print(treatmentViewModel.treatmentList)
+                    dataIsRetrieved = await treatmentViewModel.getOnGoingTreatmentList(userID: userID)
+                    print(treatmentViewModel.onGoingTreatmentList)
                 }
-            })
+            }
         }
     }
 }
 
 #Preview {
-    RiwayatPerawatanView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatmentViewModel: TreatmentViewModel())
+    OnGoingTreatmentListView(path: .constant(NavigationPath()), tabSelection: .constant(0), treatmentViewModel: TreatmentViewModel())
 }

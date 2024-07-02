@@ -23,6 +23,7 @@ struct LogInView: View {
     @AppStorage("password") var password_ = "123"
     @AppStorage("profilePicture") var profilePicture: String = ""
     @AppStorage("certificate") var certificate: String = ""
+    @AppStorage("isEligible") var isEligible: Bool = false
     
     @ObservedObject var loginViewModel: LoginViewModel
     
@@ -70,7 +71,7 @@ struct LogInView: View {
                                 username = patient.name
                                 dob = patient.dateOfBirth
                                 email_ = patient.email
-                                password_ = patient.password
+                                password_ = password
                                 if let profilePicture = patient.profilePicture {
                                     self.profilePicture = profilePicture
                                 }
@@ -86,10 +87,10 @@ struct LogInView: View {
                                 userID = coass.coassID
                                 username = coass.name
                                 email_ = coass.email
-                                password_ = coass.password
-                                if let certificate = coass.certificate {
-                                    self.certificate = certificate
-                                }
+                                password_ = password
+                                certificate = coass.certificate
+                                isEligible = coass.isEligible
+                                
                                 if let profilePicture = coass.profilePicture {
                                     self.profilePicture = profilePicture
                                 }

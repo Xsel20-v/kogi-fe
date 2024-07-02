@@ -16,17 +16,17 @@ struct Pengaturan: View {
     @AppStorage("dob") var dob = "2002-07-20"
     @AppStorage("email") var email_ = "1@2.com"
     @AppStorage("password") var password = "123"
+    @AppStorage("isEligible") var isEligible = false
     
     @Binding var path: NavigationPath
     @Binding var tabSelection: Int
-    //    @StateObject var treatmentViewModel = TreatmentViewModel()
     
     @State var patient: Patient?
     @State var showAlert = false
     @State var alertTitle = ""
     @State var alertMessage = ""
     
-    @StateObject var patientViewModel: PatientViewModel
+    @ObservedObject var loginViewModel: LoginViewModel
     
     var body: some View {
         ZStack{
@@ -64,12 +64,15 @@ struct Pengaturan: View {
                             Spacer()
                             Text(username)
                         }
-                        HStack {
-                            Text("Lahir")
-                                .foregroundColor(.gray)
-                            Spacer()
-                            Text(dob)
+                        if isPatient {
+                            HStack {
+                                Text("Lahir")
+                                    .foregroundColor(.gray)
+                                Spacer()
+                                Text(dob)
+                            }
                         }
+                        
                         HStack {
                             Text("Email")
                                 .foregroundColor(.gray)
@@ -77,16 +80,18 @@ struct Pengaturan: View {
                             Text(email_)
                         }
                         
-                        Button(action: {
-                            path.append("Ijazah")
-                        }, label: {
-                            HStack{
-                                Text("Ijazah")
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                            }
-                            .foregroundColor(.black)
-                        })
+                        if !isPatient {
+                            Button(action: {
+                                path.append("Ijazah")
+                            }, label: {
+                                HStack{
+                                    Text("Ijazah")
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                }
+                                .foregroundColor(.black)
+                            })
+                        }
                         
                         Button(action: {
                             path.append("Ganti Sandi")
@@ -105,7 +110,7 @@ struct Pengaturan: View {
                     Section {
                         
                         Button(action: {
-                            path.append("")
+                            path.append("Ganti Sandi")
                         }, label: {
                             HStack{
                                 Image(systemName: "questionmark.circle")
@@ -137,9 +142,6 @@ struct Pengaturan: View {
                 .offset(y: 35)
             }
             .onAppear {
-                Task {
-                    await patientViewModel.getPatientData()
-                }
             }
             .ignoresSafeArea()
             .alert(isPresented: $showAlert) {
@@ -165,5 +167,5 @@ struct Pengaturan: View {
 
 
 #Preview {
-    Pengaturan(path: .constant(NavigationPath()), tabSelection: .constant(2), patientViewModel: PatientViewModel())
+    Pengaturan(path: .constant(NavigationPath()), tabSelection: .constant(2), loginViewModel: LoginViewModel())
 }

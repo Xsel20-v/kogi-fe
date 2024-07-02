@@ -14,6 +14,7 @@ class TreatmentViewModel: ObservableObject {
     @Published private var treatment: Treatment
     @Published var fetchedTreatmentData: FetchedTreatmentData?
     @Published var treatmentList: [FetchedTreatmentData]?
+    @Published var onGoingTreatmentList: [FetchedTreatmentData]?
     @Published var selectedTreatment: FetchedTreatmentData?
     @Published var selectedImages : [UIImage] = []
     @Published var imageSelections : [PhotosPickerItem] = [] {
@@ -72,6 +73,26 @@ class TreatmentViewModel: ObservableObject {
         return false
     }
     
+    func getOnGoingTreatmentList(userID: String) async -> Bool {
+        networkService = NetworkService()
+        do {
+            if let treatments = try await networkService?.fetchOnGoingTreatment(userID: userID) {
+                onGoingTreatmentList = treatments
+                print(onGoingTreatmentList as Any)
+                return true
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return false
+    }
+    
     func getTreatmentUsingFilter(category: String, date: String, start: String, end: String, variants: [String]?) async -> Bool {
         networkService = NetworkService()
         do {
@@ -92,13 +113,21 @@ class TreatmentViewModel: ObservableObject {
         return false
     }
     
-    func getTreatmentDataByStatus(userID: String, status: String) async -> Bool {
+    func getTreatmentDataByStatus(userID: String, status: String, isSingle: Bool) async -> Bool {
         networkService = NetworkService()
         do {
-            if let treatment = try await networkService?.fetchTreatmentByStatus(userID: userID, status: status)?.first {
-                fetchedTreatmentData = treatment
-                print(fetchedTreatmentData as Any)
-                return true
+            if isSingle {
+                if let treatment = try await networkService?.fetchTreatmentByStatus(userID: userID, status: status)?.first {
+                    fetchedTreatmentData = treatment
+                    print(fetchedTreatmentData as Any)
+                    return true
+                }
+            } else {
+                if let treatments = try await networkService?.fetchTreatmentByStatus(userID: userID, status: status) {
+                    treatmentList = treatments
+                    print(treatmentList as Any)
+                    return true
+                }
             }
         }catch NError.invalidURL {
             print("invalid URL")

@@ -91,7 +91,7 @@ struct ReportFormView: View {
                             }
                             .fontWeight(.semibold)
                             
-                            ImagePicker(imagesData: $imageBefore, placeholder: "Masukkan Foto Kondisi Awal")
+                            ImagePicker(imagesData: $imageBefore, maxSelectionCount: 5, placeholder: "Masukkan Foto Kondisi Awal")
                         }
                         
                         
@@ -104,7 +104,7 @@ struct ReportFormView: View {
                             .fontWeight(.semibold)
                             
                             
-                            ImagePicker(imagesData: $imageAfter, placeholder: "Masukkan Foto Kondisi Akhir")
+                            ImagePicker(imagesData: $imageAfter, maxSelectionCount: 5, placeholder: "Masukkan Foto Kondisi Akhir")
                         }
                         
                     }
@@ -112,8 +112,8 @@ struct ReportFormView: View {
                 }
                 Button(action: {
                     treatmentViewModel.fetchedSession.reportText = catatan
-                    treatmentViewModel.fetchedSession.imageBefore = convertDataArrayToStringArray(imageBefore)
-                    treatmentViewModel.fetchedSession.imageAfter = convertDataArrayToStringArray(imageAfter)
+                    treatmentViewModel.fetchedSession.imageBefore = imageBefore.convertDataArrayToStringArray()
+                    treatmentViewModel.fetchedSession.imageAfter = imageAfter.convertDataArrayToStringArray()
                     if checkCompletion() {
                         treatmentViewModel.fetchedSession.sessionStatus = "done"
                     }
@@ -145,15 +145,6 @@ struct ReportFormView: View {
         }
     }
     
-    func convertDataArrayToStringArray(_ dataArray: [Data]) -> [String] {
-        var stringArray: [String] = []
-        
-        for data in dataArray {
-            stringArray.append(data.base64EncodedString())
-        }
-        
-        return stringArray
-    }
 }
 
 #Preview {

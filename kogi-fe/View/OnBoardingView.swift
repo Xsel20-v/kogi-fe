@@ -12,12 +12,12 @@ struct OnBoardingView: View {
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
     @AppStorage("isPatient") var isPatient: Bool = false
     @State private var currentPage = 0
-    private var onBoardingItems = Constant.OnboardingItems.onboardingItems
+    var onBoardingItems = Constant.OnboardingItems.onboardingItems
     @State private var index = 0
     @State private var path = NavigationPath()
     @State private var showAlert = false
     
-    @StateObject var loginViewModel = LoginViewModel()
+    @ObservedObject var loginViewModel: LoginViewModel
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -102,5 +102,5 @@ struct OnBoardingView: View {
 }
 
 #Preview {
-    OnBoardingView()
+    OnBoardingView(loginViewModel: LoginViewModel())
 }

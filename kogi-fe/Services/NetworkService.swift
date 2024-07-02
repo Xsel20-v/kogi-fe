@@ -493,6 +493,97 @@ class NetworkService {
         }
 
     }
+    
+    func checkCoassEligibility(coassID: String) async throws -> Bool? {
+        // Define the endpoint URL
+        let endpoint = "https://kogi-api.onrender.com/api/checkEligibility"
+        
+        // Ensure the URL is valid
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        // Create and configure the URLRequest
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let bodyData = "{\"coassID\": \"\(coassID)\"}"
+        
+        print(bodyData)
+        request.httpBody = bodyData.data(using: .utf8)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+        
+        do {
+            let eligibilityResponse = try JSONDecoder().decode(EligibilityResponse.self, from: data)
+            return eligibilityResponse.isEligible
+        } catch {
+            throw NError.invalidData
+        }
+    }
+    
+    func updateCoassData(coass: Coass) async throws -> Coass? {
+        guard let jsonData = try? JSONEncoder().encode(coass) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/Updatecoass"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Decode the response data into a User model
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode(Coass.self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+        
+    }
+    
+    func updatePatientData(patient: Patient) async throws -> Patient? {
+        guard let jsonData = try? JSONEncoder().encode(patient) else { throw NError.invalidEncodingData }
+        
+        let endpoint = "https://kogi-api.onrender.com/api/UpdatePatient"
+        
+        guard let url = URL(string: endpoint) else { throw NError.invalidURL }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+        
+        // Decode the response data into a User model
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            // Ensure the response is an HTTPURLResponse and has a status code of 200
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw NError.invalidResponse}
+            
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("Response: \(responseString)")
+            }
+            
+            let jsonDecoder = JSONDecoder()
+            return try jsonDecoder.decode(Patient.self, from: data)
+        } catch {
+            throw NError.invalidData
+        }
+        
+    }
 }
 
 enum NError : Error {

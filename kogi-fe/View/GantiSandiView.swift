@@ -19,7 +19,18 @@ struct GantiSandiView: View {
     @State private var isCurrentPasswordVisible: Bool = false
     @State private var isNewPasswordVisible: Bool = false
     @State private var isConfirmPasswordVisible: Bool = false
-    var userPassword = ""
+    @AppStorage("isPatient") var isPatient = false
+    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @AppStorage("userID") var userID = "P2"
+    @AppStorage("username") var username = "Axel"
+    @AppStorage("dob") var dob = "2002-07-20"
+    @AppStorage("email") var email_ = "1@2.com"
+    @AppStorage("password") var password_ = "123"
+    @AppStorage("profilePicture") var profilePicture: String = ""
+    @AppStorage("certificate") var certificate: String = ""
+    @AppStorage("isEligible") var isEligible: Bool = false
+    
+    @ObservedObject var loginViewModel: LoginViewModel
     
     var body: some View {
         
@@ -89,23 +100,44 @@ struct GantiSandiView: View {
                 
                 Button(action: {
                     // Check if the new password and confirm password match
-                    if (currentPassword == userPassword){
+                    if (currentPassword == password_){
                         if newPassword == confirmPassword {
-                            showAlert = true
-                            alertMessage = "Password changed successfully!"
+                            Task {
+                                if !isPatient {
+                                    if let coass = await loginViewModel.updateCoassData(coass: Coass(coassID: userID, name: username, certificate: certificate, email: email_, password: newPassword, isEligible: isEligible)) {
+                                        password_ = newPassword
+                                        alertMessage = "Password berhasil diganti!"
+                                        showAlert = true
+                                    } else {
+                                        alertMessage = "Password tidak berhasil diganti!"
+                                        showAlert = true
+                                    }
+                                } else {
+                                    if let patient = await loginViewModel.updatePatientData(patient: Patient(patientID: userID, name: username, dateOfBirth: dob, email: email_, password: newPassword)) {
+                                        password_ = newPassword
+                                        alertMessage = "Password berhasil diganti!"
+                                        showAlert = true
+                                    } else {
+                                        alertMessage = "Password tidak berhasil diganti!"
+                                        showAlert = true
+                                    }
+                                }
+                            }
                         } else {
+                            alertMessage = "New password and confirm password is not matched!"
                             showAlert = true
-                            alertMessage = "New password and confirm password do not match!"
                         }
                     } else {
-                        showAlert = true
                         alertMessage = "Current Pasword Invalid"
+                        showAlert = true
                     }
                 }) {
                     ButtonComponent(text: "Ganti Sandi", buttonColors: .blue)
                 }
                 .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Ganti Sandi"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    Alert(title: Text("Ganti Sandi"), message: Text(alertMessage), dismissButton: .default(Text("OK")) {
+                        path.removeLast()
+                    })
                 }
             }
         }
@@ -113,5 +145,5 @@ struct GantiSandiView: View {
 }
 
 #Preview {
-    GantiSandiView(path: .constant(NavigationPath()), tabSelection: .constant(2))
+    GantiSandiView(path: .constant(NavigationPath()), tabSelection: .constant(2), loginViewModel: LoginViewModel())
 }
