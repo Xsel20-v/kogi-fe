@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FAQView: View {
+    @Binding var path: NavigationPath
+    @Binding var tabSelection: Int
+    
     @AppStorage("isPatient") var isPatient = false
     
     var body: some View {
@@ -97,7 +100,7 @@ struct FAQDisclosureGroup: View {
 
 struct FAQView_Previews: PreviewProvider {
     static var previews: some View {
-        FAQView()
+        FAQView(path: .constant(NavigationPath()), tabSelection: .constant(2))
     }
 }
 

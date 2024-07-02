@@ -86,7 +86,7 @@ struct MessageView: View {
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                    .foregroundColor(.black)
+                    .foregroundColor(.gray)
             }
             
             VStack(alignment: .leading) {

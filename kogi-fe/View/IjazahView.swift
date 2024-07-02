@@ -13,6 +13,7 @@ struct IjazahView: View {
     @AppStorage("isEligible") var isEligible: Bool = false
     @AppStorage("userID") var userID = ""
     
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
