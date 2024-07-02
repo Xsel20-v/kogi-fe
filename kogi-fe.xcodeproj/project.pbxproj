@@ -14,6 +14,7 @@
 		351FCBBD2BECD8A400C73E59 /* TreatmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */; };
 		353039432BED3E6E000307B4 /* ContainerRingkasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353039412BED3E6E000307B4 /* ContainerRingkasan.swift */; };
 		353039442BED3E6E000307B4 /* AnamnesisRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */; };
+		35388C882C33EBF60016F83F /* OnGoingTreatmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35388C872C33EBF60016F83F /* OnGoingTreatmentListView.swift */; };
 		354F32192BEB546200156436 /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F32182BEB546100156436 /* CategoryButton.swift */; };
 		354F321B2BEB571300156436 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354F321A2BEB571300156436 /* Constant.swift */; };
 		3552BEE92BFBAE0000D1FE85 /* Ringkasan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */; };
@@ -102,6 +103,7 @@
 		351FCBBC2BECD8A400C73E59 /* TreatmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreatmentViewModel.swift; sourceTree = "<group>"; };
 		353039412BED3E6E000307B4 /* ContainerRingkasan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerRingkasan.swift; sourceTree = "<group>"; };
 		353039422BED3E6E000307B4 /* AnamnesisRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnamnesisRadioButton.swift; sourceTree = "<group>"; };
+		35388C872C33EBF60016F83F /* OnGoingTreatmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoingTreatmentListView.swift; sourceTree = "<group>"; };
 		354F32182BEB546100156436 /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		354F321A2BEB571300156436 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3552BEE82BFBAE0000D1FE85 /* Ringkasan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ringkasan.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				3566D0B92C04BF7D00E25115 /* OnBoardingPage.swift */,
 				3DA4223F2C32C21D0021F02D /* ReportFormView.swift */,
 				3DE7FF122C18157D00801169 /* FAQView.swift */,
+				35388C872C33EBF60016F83F /* OnGoingTreatmentListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -467,6 +470,7 @@
 				3D4A3EBE2C00873C003FBC8F /* RiwayatPerawatanView.swift in Sources */,
 				3D9C201C2C04940700876E20 /* SessionModel.swift in Sources */,
 				3566D0AA2C04344600E25115 /* HideTabBarModifier.swift in Sources */,
+				35388C882C33EBF60016F83F /* OnGoingTreatmentListView.swift in Sources */,
 				3D4A3EBC2C0083D2003FBC8F /* ContainerCariPerawatan.swift in Sources */,
 				350197EE2C0CAC6A00AE30C4 /* ChatRoomHeader.swift in Sources */,
 				35CFF9902BFCDC8B00F4ABB9 /* PostTreatment.swift in Sources */,

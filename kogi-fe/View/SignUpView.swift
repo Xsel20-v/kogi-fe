@@ -17,6 +17,7 @@ struct SignUpView: View {
     @State private var verifyPassword: String = ""
     @State private var isPasswordVisible: Bool = false
     @State private var isVerifyPasswordVisible: Bool = false
+    @State private var certificate: [Data] = []
     @State private var showAlert: Bool = false
     
     @ObservedObject var loginViewModel: LoginViewModel
@@ -30,6 +31,8 @@ struct SignUpView: View {
     @AppStorage("dob") var dob = "2002-07-20"
     @AppStorage("email") var email_ = "1@2.com"
     @AppStorage("password") var password = "123"
+    @AppStorage("certificate") var certificate_ = ""
+    @AppStorage("isEligible") var isEligible = false
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -168,9 +171,12 @@ struct SignUpView: View {
                     }
                     .padding(.horizontal, 16)
                     
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("Foto Ijazah")
+                        ImagePicker(imagesData: $certificate, maxSelectionCount: 1, placeholder: "Masukkan Foto Ijazah")
+                    }
+                    .padding(.horizontal, 16)
                     
-                    
-//                    ImagePicker(placeholder: "Masukkan Foto Ijazah")
                 }
                 
             }
@@ -188,17 +194,19 @@ struct SignUpView: View {
                                 self.username = patient.name
                                 self.dob = patient.dateOfBirth
                                 self.email_ = patient.email
-                                self.password = patient.password
+                                self.password = createPassword
                                 self.isLoggedIn = true
                             } else {
                                 showAlert = true
                             }
                         } else {
-                            if let coass = await loginViewModel.signUpNewCoass(nama: fullName, email: email, password: createPassword) {
+                            if let coass = await loginViewModel.signUpNewCoass(nama: fullName, email: email, password: createPassword, certificate: certificate.convertDataArrayToStringArray().first ?? "") {
                                 self.userID = coass.coassID
                                 self.username = coass.name
                                 self.email_ = coass.email
-                                self.password = coass.password
+                                self.password = createPassword
+                                self.certificate_ = coass.certificate
+                                self.isEligible = false
                                 self.isLoggedIn = true
                             } else {
                                 showAlert = true
@@ -263,7 +271,7 @@ struct SignUpView: View {
                 return false
             }
         } else {
-            if !fullName.isEmpty && !createPassword.isEmpty && !verifyPassword.isEmpty {
+            if !fullName.isEmpty && !createPassword.isEmpty && !verifyPassword.isEmpty && !certificate.isEmpty {
                 
                 if createPassword == verifyPassword {
                     return true

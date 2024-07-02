@@ -115,6 +115,18 @@ extension UserDefaults {
     }
 }
 
+extension [Data] {
+    func convertDataArrayToStringArray() -> [String] {
+        var stringArray: [String] = []
+        
+        for data in self {
+            stringArray.append(data.base64EncodedString())
+        }
+        
+        return stringArray
+    }
+}
+
 extension Date {
     func currentDateString(format: String = "yyyy-MM-dd'T'HH:mm:ss") -> String {
         let formatter = DateFormatter()

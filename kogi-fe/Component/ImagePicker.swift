@@ -13,6 +13,8 @@ struct ImagePicker: View {
     @State var selectedItems: [PhotosPickerItem] = []
     @Binding var imagesData: [Data]
     
+    var maxSelectionCount: Int
+    
     var placeholder: String
     
     var body: some View {
@@ -20,7 +22,7 @@ struct ImagePicker: View {
             
             PhotosPicker(
                 selection: $selectedItems,
-                maxSelectionCount: 5,
+                maxSelectionCount: maxSelectionCount,
                 matching: .images
             )
             {
@@ -78,5 +80,5 @@ struct ImagePicker: View {
 }
 
 #Preview {
-    ImagePicker(imagesData: .constant([]), placeholder: "Ambil Foto Gigi Anda")
+    ImagePicker(imagesData: .constant([]), maxSelectionCount: 5, placeholder: "Ambil Foto Gigi Anda")
 }

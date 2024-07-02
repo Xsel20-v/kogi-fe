@@ -9,9 +9,12 @@ struct Perawatan: View {
     @State private var dataIsRetrieved = false
     @State private var imageIsConverted = false
     @State private var showSheet = false
+    @State private var showAlert = false
+    @State private var isEligible_ = false
     
     @Binding var path: NavigationPath
     @ObservedObject var treatmentViewModel: TreatmentViewModel
+    @ObservedObject var loginViewModel: LoginViewModel
     
     @State var images: [UIImage] = []
     
@@ -24,12 +27,13 @@ struct Perawatan: View {
     @AppStorage("password") var password_ = "123"
     @AppStorage("profilePicture") var profilePicture: String = ""
     @AppStorage("certificate") var certificate: String = ""
+    @AppStorage("isEligible") var isEligible: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
             ZStack {
                 VStack(alignment: .leading) {
-                    HomeBackground()
+                    HomeBackground(path: $path)
                         .padding(.bottom, 15)
                     VStack {
                         HStack {
@@ -95,25 +99,42 @@ struct Perawatan: View {
                         } else {
                             HStack {
                                 Button(action: {
-                                    path.append(Constant.Categories.konservasiGigi)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.konservasiGigi)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.konservasiGigi, image: Constant.Images.sakitGigi)
                                 })
                                 Spacer()
                                 Button(action: {
-                                    path.append(Constant.Categories.periodonsia)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.periodonsia)
+                                    } else {
+                                        showAlert = true
+                                    }
+                                    
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.periodonsia, image: Constant.Images.karangGigi)
                                 })
                                 Spacer()
                                 Button(action: {
-                                    path.append(Constant.Categories.bedahMulut)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.bedahMulut)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.bedahMulut, image: Constant.Images.cabutGigi)
                                 })
                                 Spacer()
                                 Button(action: {
-                                    path.append(Constant.Categories.pedodonsia)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.pedodonsia)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.pedodonsia, image: Constant.Images.pedodonsia)
                                 })
@@ -123,19 +144,31 @@ struct Perawatan: View {
                             
                             HStack {
                                 Button(action: {
-                                    path.append(Constant.Categories.penyakitMulut)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.penyakitMulut)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.penyakitMulut, image: Constant.Images.sariawan)
                                 })
                                 Spacer()
                                 Button(action: {
-                                    path.append(Constant.Categories.prostodonsia)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.prostodonsia)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.prostodonsia, image: Constant.Images.gigiTiruan)
                                 })
                                 Spacer()
                                 Button(action: {
-                                    path.append(Constant.Categories.orthodonsia)
+                                    if isEligible_ {
+                                        path.append(Constant.Categories.orthodonsia)
+                                    } else {
+                                        showAlert = true
+                                    }
                                 }, label: {
                                     CategoryButton(text: Constant.Categories.orthodonsia, image: Constant.Images.kawatLepasan)
                                 })
@@ -164,6 +197,16 @@ struct Perawatan: View {
                                     .foregroundColor(Constant.Colors.primaryColor)
                             })
                             Spacer()
+                            if !isPatient {
+                                Button(action:{
+                                    path.append("OnGoing Treatment List")
+                                }) {
+                                    Text("Lihat semua")
+                                        .foregroundColor(.blue)
+                                        .font(.system(size: 12))
+                                }
+                                .padding(.trailing, 30)
+                            }
                         }
                         .padding(.leading, 30)
                         
@@ -191,6 +234,10 @@ struct Perawatan: View {
                 .navigationBarHidden(true)
                 .onAppear(perform: {
                     Task {
+                        if !isPatient {
+                            isEligible = await loginViewModel.checkEligibility(coassID: userID)
+                            isEligible_ = isEligible
+                        }
                         dataIsRetrieved = await treatmentViewModel.getOnGoingTreatmentData(userID: userID)
                         if let images = await treatmentViewModel.getImages() {
                             self.images = images
@@ -206,13 +253,22 @@ struct Perawatan: View {
                 })
 
             }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Anda belum bisa mengakses fitur ini"),
+                    message: Text("Tunggu admin melakukan verifikasi atas ijazah anda"),
+                    dismissButton: .default(Text("Tutup")) {
+                        self.showAlert = false
+                    }
+                )
+            }
         }
     }
 }
 
 struct HomeBackground: View {
-    private var homeBackgroundWidth: CGFloat = 393
-    private var homeBackgroundHeight: CGFloat = 277.69
+    var homeBackgroundWidth: CGFloat = 393
+    var homeBackgroundHeight: CGFloat = 277.69
     
     @AppStorage("isPatient") var isPatient = false
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
@@ -223,6 +279,8 @@ struct HomeBackground: View {
     @AppStorage("password") var password_ = "123"
     @AppStorage("profilePicture") var profilePicture: String = ""
     @AppStorage("certificate") var certificate: String = ""
+    
+    @Binding var path: NavigationPath
     
     var body: some View {
         ZStack(alignment: .topLeading) {
@@ -239,7 +297,7 @@ struct HomeBackground: View {
                 }
                 Spacer()
                 Button(action: {
-                    
+                    path.append("Riwayat Perawatan")
                 }) {
                     Image(systemName: "clock.fill")
                 }
@@ -253,6 +311,6 @@ struct HomeBackground: View {
 }
 
 #Preview {
-    Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel())
+    Perawatan(path: .constant(NavigationPath()), treatmentViewModel: TreatmentViewModel(), loginViewModel: LoginViewModel())
 }
 

@@ -122,7 +122,7 @@ struct ChatRoomView: View {
     
     func fetchTreatmentData() {
         Task {
-            if await treatmentViewModel.getTreatmentDataByStatus(userID: socketIOManager.currentChatRoom.patientID, status: "pending") {
+            if await treatmentViewModel.getTreatmentDataByStatus(userID: socketIOManager.currentChatRoom.patientID, status: "pending", isSingle: true) {
                 self.fetchedTreatment = treatmentViewModel.fetchedTreatmentData
                 print(fetchedTreatment)
             } else {

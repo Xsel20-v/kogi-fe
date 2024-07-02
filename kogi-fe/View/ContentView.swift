@@ -12,18 +12,21 @@ struct ContentView: View {
     @State private var tabSelection = 0
     @State var path = NavigationPath()
     @StateObject var treatmentViewModel = TreatmentViewModel()
-    @StateObject var patientViewModel = PatientViewModel()
+//    @StateObject var patientViewModel = PatientViewModel()
     @StateObject var chatViewModel = ChatViewModel()
     @StateObject var socketIOManager = SocketIOManager()
     
+    @ObservedObject var loginViewModel: LoginViewModel
+    
     @AppStorage("hasTreatment") var hasTreatment = false
     @AppStorage("userID") var userID = "C1"
+    @AppStorage("isEligible") var isEligible = false
     
     var body: some View {
         
         NavigationStack(path: $path) {
             TabView(selection: $tabSelection) {
-                Perawatan(path: $path, treatmentViewModel: treatmentViewModel)
+                Perawatan(path: $path, treatmentViewModel: treatmentViewModel, loginViewModel: loginViewModel)
                     .tag(0)
                     .tabItem {
                         Label("Perawatan", systemImage: "heart.text.square")
@@ -33,7 +36,7 @@ struct ContentView: View {
                     .tabItem {
                         Label("Pesan", systemImage: "ellipsis.message")
                     }
-                Pengaturan(path: $path, tabSelection: $tabSelection, patientViewModel: patientViewModel)
+                Pengaturan(path: $path, tabSelection: $tabSelection, loginViewModel: loginViewModel)
                     .tag(2)
                     .tabItem {
                         Label("Pengaturan", systemImage: "gearshape")
@@ -63,9 +66,9 @@ struct ContentView: View {
                 case "Ringkasan" :
                     Ringkasan(path: $path, treatmentViewModel: treatmentViewModel)
                 case "Ijazah":
-                    IjazahView(path: $path, tabSelection: $tabSelection)
+                    IjazahView(path: $path, tabSelection: $tabSelection, loginViewModel: loginViewModel)
                 case "Ganti Sandi":
-                    GantiSandiView(path: $path, tabSelection: $tabSelection)
+                    GantiSandiView(path: $path, tabSelection: $tabSelection, loginViewModel: loginViewModel)
                 case "Chat Room":
                      ChatRoomView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager)
                 case Constant.Categories.konservasiGigi :
@@ -86,6 +89,10 @@ struct ContentView: View {
                     DetailPerawatanPendingView(path: $path, tabSelection: $tabSelection, socketIOManager: socketIOManager, treatment: treatmentViewModel.selectedTreatment ?? Constant.sampleTreatment)
                 case "Detail Perawatan":
                     DetailPerawatanView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel, socketIOManager: socketIOManager)
+                case "Riwayat Perawatan" :
+                    RiwayatPerawatanView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)
+                case "OnGoing Treatment List" :
+                    OnGoingTreatmentListView(path: $path, tabSelection: $tabSelection, treatmentViewModel: treatmentViewModel)                   
                 case "FAQ View":
                     FAQView(path: $path, tabSelection: $tabSelection)
                 default:
@@ -115,5 +122,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager())
+    ContentView(treatmentViewModel: TreatmentViewModel(), socketIOManager: SocketIOManager(), loginViewModel: LoginViewModel())
 }

@@ -11,4 +11,5 @@ struct NewCoass: Codable {
     var name: String
     var email: String
     var password: String
+    var certificate: String
 }
