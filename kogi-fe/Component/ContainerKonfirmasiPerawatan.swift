@@ -113,22 +113,24 @@ struct ContainerKonfirmasiPerawatan: View {
                     
                     if isPatient {
                         Button(action: {
-                            Task {
-                                do {
-                                    let result = try await treatmentViewModel.updateTreatmentConfirmation(
-                                        date: message.message[0],
-                                        category: message.message[1],
-                                        status: "ongoing",
-                                        coassID: coassID
-                                    )
-                                    
-                                    // Assuming `updateTreatmentConfirmation` returns a result or completion
-                                    treatmentStatus = "ongoing"
-                                    socketIOManager.emitChatHistory("R1")
-                                    
-                                } catch {
-                                    // Handle any errors from `updateTreatmentConfirmation` here
-                                    print("Error updating treatment confirmation: \(error)")
+                            if treatmentStatus == "pending"{
+                                Task {
+                                    do {
+                                        let result = try await treatmentViewModel.updateTreatmentConfirmation(
+                                            date: message.message[0],
+                                            category: message.message[1],
+                                            status: "ongoing",
+                                            coassID: coassID
+                                        )
+                                        
+                                        // Assuming `updateTreatmentConfirmation` returns a result or completion
+                                        treatmentStatus = "ongoing"
+                                        socketIOManager.emitChatHistory("R1")
+                                        
+                                    } catch {
+                                        // Handle any errors from `updateTreatmentConfirmation` here
+                                        print("Error updating treatment confirmation: \(error)")
+                                    }
                                 }
                             }
                         }, label: {
@@ -167,6 +169,7 @@ struct ContainerKonfirmasiPerawatan: View {
             socketIOManager.connect()
             
             treatmentStatus = message.message[2]
+            print("Treatment STATUS:::::\(treatmentStatus)")
             
             switch treatmentStatus{
             case "pending":
@@ -212,7 +215,7 @@ struct ContainerKonfirmasiPerawatan: View {
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
                 
-            case "ongoing":
+            case "accepted":
                 buttonText = "Diterima"
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
