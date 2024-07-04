@@ -21,6 +21,8 @@ struct KeluhanPilihWaktu: View {
     var keluhanWidth : CGFloat = 348
     var keluhanHeight : CGFloat = 200
     
+    let minimumDate = Date.now
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -85,7 +87,7 @@ struct KeluhanPilihWaktu: View {
                             Text("Pilih tanggal dan waktu perawatan")
                                 .fontWeight(.semibold)
                             HStack {
-                                DatePicker(selection: $tanggalWaktu) {
+                                DatePicker(selection: $tanggalWaktu, in: minimumDate...) {
                                     Text("")
                                 }
                                 .labelsHidden()

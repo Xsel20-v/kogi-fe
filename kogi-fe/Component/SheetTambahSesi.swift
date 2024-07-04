@@ -14,11 +14,13 @@ struct SheetTambahSesi: View {
     @Binding var hasSession: Bool
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     
+    let minimumDate = Date.now
+    
     var body: some View {
         VStack {
             Image("swipeDownIndicator")
                 .padding(.bottom, 20)
-            DatePicker("Tanggal & Waktu", selection: $tanggal)
+            DatePicker("Tanggal & Waktu", selection: $tanggal, in: minimumDate...)
                 .padding(.bottom, 20)
             Button(action: {
                 Task {

@@ -17,6 +17,7 @@ struct FilterSheet: View {
     
     @Binding var dataIsRetrieved: Bool
     var category: String
+    let minimumDate = Date.now
     
     @Binding var isPresented: Bool
     
@@ -56,41 +57,44 @@ struct FilterSheet: View {
                         Spacer()
                         
                         HStack {
-                            DatePicker("", selection: $startTime, displayedComponents: .hourAndMinute)
+                            DatePicker("", selection: $startTime, in: minimumDate..., displayedComponents: .hourAndMinute)
                                 .labelsHidden()
                             Text("-")
-                            DatePicker("", selection: $endTime, displayedComponents: .hourAndMinute)
+                            DatePicker("", selection: $endTime, in: minimumDate..., displayedComponents: .hourAndMinute)
                                 .labelsHidden()
                         }
                     }
                     .padding()
                     .padding(.bottom, -5)
                     
-                    VStack(alignment: .leading) {
-                        Text("Varian Kasus")
-                            .font(.system(size: 16, weight: .semibold))
-                        LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 2), spacing: 10) {
-                            ForEach(caseVariants, id: \.self) { variant in
-                                Button(action: {
-                                    if selectedCaseVariants.contains(variant) {
-                                        selectedCaseVariants.remove(variant)
-                                    } else {
-                                        selectedCaseVariants.insert(variant)
+                    if category != "Sariawan" && category != "Gusi Bengkak" && category != "Kawat Lepasan" {
+                        VStack(alignment: .leading) {
+                            Text("Varian Kasus")
+                                .font(.system(size: 16, weight: .semibold))
+                            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10), count: 2), spacing: 10) {
+                                ForEach(caseVariants, id: \.self) { variant in
+                                    Button(action: {
+                                        if selectedCaseVariants.contains(variant) {
+                                            selectedCaseVariants.remove(variant)
+                                        } else {
+                                            selectedCaseVariants.insert(variant)
+                                        }
+                                        print(selectedCaseVariants)
+                                    }) {
+                                        Text(variant)
+                                            .frame(maxWidth: .infinity, maxHeight: 40)
+                                            .font(.system(size: 16))
+                                            .padding(7)
+                                            .background(selectedCaseVariants.contains(variant) ? Color("primaryColor") : Color.gray)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(20)
                                     }
-                                    print(selectedCaseVariants)
-                                }) {
-                                    Text(variant)
-                                        .frame(maxWidth: .infinity, maxHeight: 40)
-                                        .font(.system(size: 16))
-                                        .padding(7)
-                                        .background(selectedCaseVariants.contains(variant) ? Color("primaryColor") : Color.gray)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(20)
                                 }
                             }
                         }
+                        .padding()
                     }
-                    .padding()
+                    
                     
                 }
                 
