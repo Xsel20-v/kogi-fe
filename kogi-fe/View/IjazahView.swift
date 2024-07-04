@@ -33,11 +33,52 @@ struct IjazahView: View {
                             .foregroundColor(.red)
                     }
                     if isEligible_ {
-                        Text("Ijazah anda telah terverifikasi, silahkan mencari pasien")
-                            .multilineTextAlignment(.center)
+                        HStack {
+                            Spacer()
+                            Rectangle()
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
+                                .frame(width: 6/7 * geometry.size.width, height: 75)
+                                .foregroundColor(Color.green)
+                                .overlay {
+                                    ZStack {
+                                        Color(.green)
+                                            .opacity(0.075)
+                                        VStack {
+                                            Text("Ijazah anda telah terverifikasi, silahkan mencari pasien")
+                                                .font(.system(size: 12))
+                                                .multilineTextAlignment(.center)
+                                                .foregroundColor(.green)
+                                                .bold()
+                                        }
+                                    }
+                                    
+                                }
+                            Spacer()
+                        }
+                            
                     } else {
-                        Text("Ijazah anda dalam tahap verifikasi, harap menunggu")
-                            .multilineTextAlignment(.center)
+                        HStack {
+                            Spacer()
+                            Rectangle()
+                                .strokeBorder(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))
+                                .frame(width: 6/7 * geometry.size.width, height: 75)
+                                .foregroundColor(Color.yellow)
+                                .overlay {
+                                    ZStack {
+                                        Color(.yellow)
+                                            .opacity(0.075)
+                                        VStack {
+                                            Text("Ijazah anda dalam tahap verifikasi, harap menunggu")
+                                                .font(.system(size: 12))
+                                                .multilineTextAlignment(.center)
+                                                .foregroundColor(.orange)
+                                                .bold()
+                                        }
+                                    }
+                                    
+                                }
+                            Spacer()
+                        }
                     }
                     
                     Spacer()

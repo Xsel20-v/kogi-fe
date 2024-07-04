@@ -11,6 +11,8 @@ struct DetilSesiView: View {
     
     @ObservedObject var treatmentViewModel: TreatmentViewModel
     var index: Int
+    @State private var isImageMaximized = false
+    @State private var selectedImage: UIImage?
     
     var body: some View {
         ZStack {
@@ -84,6 +86,10 @@ struct DetilSesiView: View {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
                                                     .frame(width: 80, height: 80)
+                                                    .onTapGesture {
+                                                        selectedImage = uiImage
+                                                        isImageMaximized = true
+                                                    }
                                             }
                                         }
                                         
@@ -117,6 +123,10 @@ struct DetilSesiView: View {
                                                     Image(uiImage: uiImage)
                                                         .resizable()
                                                         .frame(width: 80, height: 80)
+                                                        .onTapGesture {
+                                                            selectedImage = uiImage
+                                                            isImageMaximized = true
+                                                        }
                                                 }
                                             }
                                         } else {
@@ -135,6 +145,11 @@ struct DetilSesiView: View {
                 }
             }
             .ignoresSafeArea()
+            
+            if isImageMaximized {
+                MaximizedImageView(image: $selectedImage, isImageMaximized: $isImageMaximized)
+                    .transition(.opacity)
+            }
         }
 
     }

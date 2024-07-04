@@ -17,6 +17,9 @@ struct DetailPerawatanPendingView: View {
     
     var treatment : FetchedTreatmentData
     
+    @State private var isImageMaximized = false
+    @State private var selectedImage: UIImage?
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -117,6 +120,10 @@ struct DetailPerawatanPendingView: View {
                                                         .resizable()
                                                         .frame(width: 80, height: 80)
                                                         .cornerRadius(15)
+                                                        .onTapGesture {
+                                                            selectedImage = uiImage
+                                                            isImageMaximized = true
+                                                        }
                                                 }
                                             }
                                         }
@@ -131,6 +138,11 @@ struct DetailPerawatanPendingView: View {
                     Spacer()
                 }
                 .ignoresSafeArea()
+                
+                if isImageMaximized {
+                    MaximizedImageView(image: $selectedImage, isImageMaximized: $isImageMaximized)
+                        .transition(.opacity)
+                }
             }
             .onAppear {
                 socketIOManager.connect()
@@ -147,6 +159,40 @@ struct DetailPerawatanPendingView: View {
             return dateFormatter.string(from: date)
         }
         return "Invalid date"
+    }
+}
+
+struct MaximizedImageView: View {
+    @Binding var image: UIImage?
+    @Binding var isImageMaximized: Bool
+    
+    var body: some View {
+        if let image = image {
+            ZStack(alignment: .topTrailing) {
+                Color.black.opacity(0.8)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    Spacer()
+                    
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                        .padding()
+                    
+                    Spacer()
+                }
+                
+                Button(action: {
+                    isImageMaximized = false
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.white)
+                        .font(.largeTitle)
+                        .padding()
+                }
+            }
+        }
     }
 }
 

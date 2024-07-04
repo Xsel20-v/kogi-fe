@@ -27,7 +27,7 @@ struct SignUpView: View {
     @Binding var path: NavigationPath
     
     @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
-    @AppStorage("isPatient") var isPatient: Bool = false
+    @AppStorage("isPatient") var isPatient: Bool = true
     @AppStorage("userID") var userID = "P2"
     @AppStorage("username") var username = "Axel"
     @AppStorage("dob") var dob = "2002-07-20"
@@ -35,6 +35,8 @@ struct SignUpView: View {
     @AppStorage("password") var password = "123"
     @AppStorage("certificate") var certificate_ = ""
     @AppStorage("isEligible") var isEligible = false
+    
+    let maxDate = Date.now
     
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -106,7 +108,7 @@ struct SignUpView: View {
                             }
                             
                             if isDatePickerVisible {
-                                DatePicker("Tanggal Lahir", selection: $birthDate, displayedComponents: .date)
+                                DatePicker("Tanggal Lahir", selection: $birthDate, in: ...maxDate, displayedComponents: .date)
                                     .datePickerStyle(WheelDatePickerStyle())
                                     .labelsHidden()
                                     .background(Color(.systemGray6))
