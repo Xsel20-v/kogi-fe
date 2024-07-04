@@ -163,6 +163,7 @@
 		3D4A3EBD2C00873C003FBC8F /* RiwayatPerawatanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiwayatPerawatanView.swift; sourceTree = "<group>"; };
 		3D4A3F342C00AD99003FBC8F /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		3D4A3F362C00AF5D003FBC8F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		3D6FD0942C36936E00B48AF2 /* kogi-fe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "kogi-fe.entitlements"; sourceTree = "<group>"; };
 		3D79F4322BEDF704003F0E36 /* AnamnesisTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnamnesisTextField.swift; sourceTree = "<group>"; };
 		3D79F4342BF49497003F0E36 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		3D944C972BFDC6D800A55802 /* FilterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSheet.swift; sourceTree = "<group>"; };
@@ -266,6 +267,7 @@
 		35F0B2D72BE9DD88009B3051 /* kogi-fe */ = {
 			isa = PBXGroup;
 			children = (
+				3D6FD0942C36936E00B48AF2 /* kogi-fe.entitlements */,
 				35CFF98C2BFCB7FC00F4ABB9 /* Services */,
 				354F32172BEB542F00156436 /* Component */,
 				35F0B2F22BE9E769009B3051 /* Model */,
@@ -647,10 +649,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "kogi-fe/kogi-fe.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -664,8 +667,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.axel.kogi-fe";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zel.kogi-fe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -678,10 +681,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "kogi-fe/kogi-fe.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"kogi-fe/Preview Content\"";
-				DEVELOPMENT_TEAM = 9PUN53DGHU;
+				DEVELOPMENT_TEAM = ZVGYNW47J9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -695,8 +699,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.axel.kogi-fe";
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zel.kogi-fe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
