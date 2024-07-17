@@ -166,7 +166,7 @@ struct ContainerKonfirmasiPerawatan: View {
             .frame(maxWidth: 349)
         }
         .onAppear {
-            socketIOManager.connect()
+//            socketIOManager.connect()
             
             treatmentStatus = message.message[2]
             print("Treatment STATUS:::::\(treatmentStatus)")

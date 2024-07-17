@@ -96,7 +96,7 @@ struct ChatRoomView: View {
         }
         .onAppear {
             socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
-            socketIOManager.connect()
+//            socketIOManager.connect()
             fetchTreatmentData()
             updateHistoryTimestamps()
             

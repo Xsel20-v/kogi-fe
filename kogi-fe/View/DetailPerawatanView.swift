@@ -213,7 +213,7 @@ struct DetailPerawatanView: View {
                 
             }
             .onAppear {
-                socketIOManager.connect()
+//                socketIOManager.connect()
             }
             .alert(isPresented: $showAlert, content: {
                 if !isFinishAlert {

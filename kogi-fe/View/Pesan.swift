@@ -46,7 +46,7 @@ struct Pesan: View {
             }
         }
         .onAppear {
-            socketIOManager.connect()
+//            socketIOManager.connect()
         }
         .onChange(of: socketIOManager.isConnected) {
             socketIOManager.emitChatRoom(userID)
