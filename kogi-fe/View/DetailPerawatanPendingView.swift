@@ -144,9 +144,9 @@ struct DetailPerawatanPendingView: View {
                         .transition(.opacity)
                 }
             }
-            .onAppear {
-                socketIOManager.connect()
-            }
+//            .onAppear {
+//                socketIOManager.connect()
+//            }
         }
     }
     
