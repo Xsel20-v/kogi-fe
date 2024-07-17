@@ -10,6 +10,8 @@ import SwiftUI
 struct ContainerRingkasan: View {
     
     var treatment: FetchedTreatmentData
+    @State private var isImageMaximized = false
+    @State private var selectedImage: UIImage?
     
     var body: some View {
         ZStack {
@@ -100,6 +102,10 @@ struct ContainerRingkasan: View {
                                         Image(uiImage: uiImage)
                                             .resizable()
                                             .frame(width: 80, height: 80)
+                                            .onTapGesture {
+                                                selectedImage = uiImage
+                                                isImageMaximized = true
+                                            }
                                     }
                                 }
                             }
@@ -114,6 +120,11 @@ struct ContainerRingkasan: View {
             }
             .frame(width: 320, height: 430)
             .clipped()
+            
+            if isImageMaximized {
+                MaximizedImageView(image: $selectedImage, isImageMaximized: $isImageMaximized)
+                    .transition(.opacity)
+            }
         }
     }
     
