@@ -17,41 +17,38 @@ struct RiwayatPerawatanView: View {
     @AppStorage("userID") var userID = "P1"
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Color(Constant.Colors.baseColor)
-                    .ignoresSafeArea()
-                VStack {
-                    HeaderViewWithTitle(title: "Riwayat Perawatan")
-                    
-                    ScrollView {
-                        if let treatments = treatmentViewModel.treatmentList {
-                            ForEach(treatments, id: \.treatmentID) { treatment in
-                                ContainerPerawatan(treatment: treatment)
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
-                                    .onTapGesture {
-                                        treatmentViewModel.fetchedTreatmentData = treatment
-                                        path.append("Detail Perawatan")
-                                    }
-                            }
-                        }else {
-                            Text("Tidak ada perawatan yang telah selesai")
-                                .padding()
-                                .padding(.top, 70)
-                                .opacity(0.3)
-                        }
-                       
-                    }
-                }
+        ZStack {
+            Color(Constant.Colors.baseColor)
                 .ignoresSafeArea()
-            }
-            .onAppear(perform: {
-                Task {
-                    dataIsRetrieved = await treatmentViewModel.getTreatmentDataByStatus(userID: userID, status: "done", isSingle: false)
-                    print(treatmentViewModel.treatmentList)
+            VStack {
+                HeaderViewWithTitle(title: "Riwayat Perawatan")
+                
+                ScrollView {
+                    if let treatments = treatmentViewModel.treatmentList {
+                        ForEach(treatments, id: \.treatmentID) { treatment in
+                            ContainerPerawatan(treatment: treatment, treatmentViewModel: treatmentViewModel)
+                                .onTapGesture {
+                                    treatmentViewModel.fetchedTreatmentData = treatment
+                                    path.append("Detail Perawatan")
+                                }
+                        }
+                    }else {
+                        Text("Tidak ada perawatan yang telah selesai")
+                            .padding()
+                            .padding(.top, 70)
+                            .opacity(0.3)
+                    }
+                   
                 }
-            })
+            }
+            .ignoresSafeArea()
         }
+        .onAppear(perform: {
+            Task {
+                dataIsRetrieved = await treatmentViewModel.getTreatmentDataByStatus(userID: userID, status: "done", isSingle: false)
+//                print(treatmentViewModel.treatmentList)
+            }
+        })
     }
 }
 

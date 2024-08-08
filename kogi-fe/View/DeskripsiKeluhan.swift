@@ -81,9 +81,9 @@ struct BodyView : View {
                 case Constant.Categories.sakitGigi :
                     AutoScroller(imageNames: ["gigiBerlubang1", "gigiBerlubang2", "gigiBerlubang3"])
                 case Constant.Categories.cabutGigi :
-                    AutoScroller(imageNames: ["gigiTiruan1", "gigiTiruan2"])
+                    AutoScroller(imageNames: ["cabutGigi1", "cabutGigi2"])
                 case Constant.Categories.gigiTiruan :
-                    AutoScroller(imageNames: ["karangGigi1", "karangGigi2"])
+                    AutoScroller(imageNames: ["gigiTiruan1", "gigiTiruan2"])
                 case Constant.Categories.kawatLepasan :
                     AutoScroller(imageNames: ["kawatLepasan", "kawatLepasan2", "kawatLepasan3"])
                 case Constant.Categories.gusiBengkak :

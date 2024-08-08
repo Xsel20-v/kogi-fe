@@ -212,7 +212,7 @@ struct Perawatan: View {
                         .padding(.leading, 30)
                         
                         if dataIsRetrieved {
-                            ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!)
+                            ContainerPerawatan(treatment: treatmentViewModel.fetchedTreatmentData!, treatmentViewModel: treatmentViewModel)
                                 .padding(.bottom, 15)
                                 .onTapGesture {
                                     if treatmentViewModel.fetchedTreatmentData?.treatmentStatus == "pending" {

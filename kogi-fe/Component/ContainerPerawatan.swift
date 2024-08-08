@@ -18,13 +18,18 @@ struct ContainerPerawatan: View {
     @AppStorage("isPatient") var isPatient = false
     @State var status: Status = .pending
     var treatment: FetchedTreatmentData
+    @ObservedObject var treatmentViewModel: TreatmentViewModel
+    
+    @State var dataIsReceived: Bool = false
+    
+    @State var jumlahSesi: Int = 0
+    @State var lastDate: String = ""
     
     var shadowRadius : CGFloat = 4
     var shadowY : CGFloat = 4
     var color1 : Color = .white
     
     var nama : String = "Azella"
-    var jumlahSesi: String = "2"
     
     var body: some View {
         let width: CGFloat = 360
@@ -199,7 +204,7 @@ struct ContainerPerawatan: View {
                             .frame(width: fontSize16, height: fontSize16)
                             .foregroundColor(foregroundIcon())
                         
-                        Text("\(formatDate(treatment.requestedDate)) \(formatTime(treatment.requestedDate))")
+                        Text("\(formatDate(lastDate)) \(formatTime(lastDate))")
                             .font(.system(size: fontSize12))
                             .padding(.leading, -5)
                             .foregroundColor(foregroundLocationAndDate())
@@ -213,6 +218,10 @@ struct ContainerPerawatan: View {
         .frame(maxWidth: width, alignment: .center)
         .onAppear {
             getStatus()
+            Task {
+                jumlahSesi = await treatmentViewModel.getSessionListNumber(treatment: treatment)
+                lastDate = treatmentViewModel.fetchedSessionList?.last?.dateOfSession ?? "2023-06-20T09:41:00"
+            }
         }
     }
     
@@ -305,6 +314,7 @@ struct ContainerPerawatan: View {
         }
         return "Invalid time"
     }
+    
 }
 
 //#Preview {
@@ -327,7 +337,7 @@ struct ContainerPerawatan_Previews: PreviewProvider {
             images: []
         )
         
-        ContainerPerawatan(treatment: sampleTreatment)
+        ContainerPerawatan(treatment: sampleTreatment, treatmentViewModel: TreatmentViewModel())
     }
 }
 
