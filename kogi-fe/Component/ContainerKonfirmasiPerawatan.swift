@@ -188,11 +188,13 @@ struct ContainerKonfirmasiPerawatan: View {
                 buttonText = "Expired"
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
+                isDisabled = true
                 
             case "accepted":
                 buttonText = "Diterima"
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
+                isDisabled = true
                 
             default:
                 buttonText = "Terima"
@@ -217,11 +219,13 @@ struct ContainerKonfirmasiPerawatan: View {
                 buttonText = "Expired"
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
+                isDisabled = true
                 
             case "accepted":
                 buttonText = "Diterima"
                 buttonColor = Constant.Colors.notMyMessage
                 buttonTextColor = .black
+                isDisabled = true
                 
             default:
                 buttonText = "Terima"
