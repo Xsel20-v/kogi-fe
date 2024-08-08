@@ -40,9 +40,10 @@ struct Pengaturan: View {
                     .foregroundColor(.white)
                 
                 
-                Image("sariawan1")
+                Image(systemName: "person.crop.circle.fill")
                     .resizable()
                     .frame(width: 140, height: 140)
+                    .foregroundColor(Color("systemGray"))
                     .cornerRadius(70)
                     .overlay(alignment: .bottomTrailing) {
                         Button(action: {
