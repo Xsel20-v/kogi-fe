@@ -17,7 +17,7 @@ struct RiwayatPerawatanView: View {
     @AppStorage("userID") var userID = "P1"
     
     var body: some View {
-        GeometryReader { geometry in
+//        GeometryReader { geometry in
             ZStack {
                 Color(Constant.Colors.baseColor)
                     .ignoresSafeArea()
@@ -28,7 +28,7 @@ struct RiwayatPerawatanView: View {
                         if let treatments = treatmentViewModel.treatmentList {
                             ForEach(treatments, id: \.treatmentID) { treatment in
                                 ContainerPerawatan(treatment: treatment)
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                    .padding(10)
                                     .onTapGesture {
                                         treatmentViewModel.fetchedTreatmentData = treatment
                                         path.append("Detail Perawatan")
@@ -51,7 +51,7 @@ struct RiwayatPerawatanView: View {
                     print(treatmentViewModel.treatmentList)
                 }
             })
-        }
+//        }
     }
 }
 
