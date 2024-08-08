@@ -17,6 +17,7 @@ struct ContainerKonfirmasiPerawatan: View {
     @State var buttonText = "Terima"
     @State var buttonColor: Color = .black
     @State var buttonTextColor: Color = .black
+    @State var isDisabled = false
     
     var coassID : String
     
@@ -124,8 +125,9 @@ struct ContainerKonfirmasiPerawatan: View {
                                         )
                                         
                                         // Assuming `updateTreatmentConfirmation` returns a result or completion
-                                        treatmentStatus = "ongoing"
-                                        socketIOManager.emitChatHistory("R1")
+                                        treatmentStatus = "accepted"
+                                        socketIOManager.emitChatHistory(socketIOManager.currentChatRoom.roomID)
+                                        isDisabled = true
                                         
                                     } catch {
                                         // Handle any errors from `updateTreatmentConfirmation` here
@@ -146,6 +148,7 @@ struct ContainerKonfirmasiPerawatan: View {
                             .shadow(color: .black.opacity(0.4), radius: 1, y:2)
                             
                         })
+                        .disabled(isDisabled)
                         .padding(.bottom, 5)
                     } else {
                         HStack {
@@ -169,7 +172,7 @@ struct ContainerKonfirmasiPerawatan: View {
 //            socketIOManager.connect()
             
             treatmentStatus = message.message[2]
-            print("Treatment STATUS:::::\(treatmentStatus)")
+//            print("Treatment STATUS:::::\(treatmentStatus)")
             
             switch treatmentStatus{
             case "pending":
