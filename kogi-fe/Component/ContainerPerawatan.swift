@@ -333,7 +333,7 @@ struct ContainerPerawatan_Previews: PreviewProvider {
             totalDaysOfSymptom: 3,
             dateCreated: "2023-06-20T09:41:00",
             requestedDate: "2023-06-29T09:41:00",
-            treatmentStatus: "ongoing",
+            treatmentStatus: "done",
             images: []
         )
         

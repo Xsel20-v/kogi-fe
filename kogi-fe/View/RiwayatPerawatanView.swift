@@ -31,6 +31,11 @@ struct RiwayatPerawatanView: View {
                                     treatmentViewModel.fetchedTreatmentData = treatment
                                     path.append("Detail Perawatan")
                                 }
+                        }else {
+                            Text("Tidak ada perawatan yang telah selesai")
+                                .padding()
+                                .padding(.top, 70)
+                                .opacity(0.3)
                         }
                     }else {
                         Text("Tidak ada perawatan yang telah selesai")
