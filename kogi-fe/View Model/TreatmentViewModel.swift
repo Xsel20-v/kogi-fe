@@ -180,6 +180,29 @@ class TreatmentViewModel: ObservableObject {
         return false
     }
     
+    func getSessionListNumber(treatment: FetchedTreatmentData) async -> Int {
+        networkService = NetworkService()
+        
+        do {
+            if let sessionList = try await networkService?.fetchSessionList(treatmentID: treatment.treatmentID ?? "T1") {
+                fetchedSessionList = sessionList
+                return fetchedSessionList?.count ?? 0
+            } else {
+                print("Failed to fetch session list.")
+                return 0
+            }
+        }catch NError.invalidURL {
+            print("invalid URL")
+        }catch NError.invalidResponse {
+            print("invalid Response")
+        }catch NError.invalidData {
+            print("invalid Data")
+        }catch {
+            print("unexpected error")
+        }
+        return 0
+    }
+    
     func getTreatmentCategory() -> String {
         return treatment.problemCategory
     }

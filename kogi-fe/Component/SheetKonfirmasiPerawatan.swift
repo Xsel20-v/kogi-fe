@@ -58,6 +58,7 @@ struct SheetKonfirmasiPerawatan: View {
                 let tanggalString = dateFormatter.string(from: tanggal)
                 print(tanggalString)
                 socketIOManager.sendMessage("treatment", socketIOManager.currentChatRoom.roomID, [tanggalString, selectedOption, treatmentViewModel.fetchedTreatmentData?.treatmentID ?? "null"])
+//                print("INI WOYYYY \(treatmentViewModel.fetchedTreatmentData?.treatmentID ?? "null")")
                 isTreatmentSheetPresented = false
             }) {
                 ButtonComponent(text: "Kirim Konfirmasi", buttonColors: .blue)

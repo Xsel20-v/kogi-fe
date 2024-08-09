@@ -26,7 +26,7 @@ struct OnGoingTreatmentListView: View {
                     ScrollView {
                         if let treatments = treatmentViewModel.onGoingTreatmentList {
                             ForEach(treatments, id: \.treatmentID) { treatment in
-                                ContainerPerawatan(treatment: treatment)
+                                ContainerPerawatan(treatment: treatment, treatmentViewModel: treatmentViewModel)
                                     .frame(width: geometry.size.width, height: geometry.size.height)
                                     .onTapGesture {
                                         treatmentViewModel.fetchedTreatmentData = treatment
